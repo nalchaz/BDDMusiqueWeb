@@ -16,7 +16,12 @@ namespace Lecteur\Vue;
 class MusiqueView {
     
     
-    public static function getHTMLMusique($musique){ 
-        $htmlCode= "<strong>"; 
+    public static function getHTMLMusique($musique,$sanitizePolicy = \ProjetLecteur\Controleur\ValidationUtils::SANITIZE_POLICY_ESCAPE_ENTITIES){ 
+        if (\ProjetLecteur\Metier\MusiqueValidation::filterMusique($musique,$sanitizePolicy) == false){ 
+            return "Musique Incorrecte"; 
+        }
+        $htmlCode= "<strong>Musique :</strong><br/> \n"; 
+        $htmlCode.=$musique->titre."<br/>"; 
+        return $htmlCode; 
     }
 }
