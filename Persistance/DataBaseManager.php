@@ -8,7 +8,7 @@
 * The program is distributed under the terms of the GNU General Public License *
 *                                                                              *
 \******************************************************************************/
-namespace Lecteur\Persistance;
+namespace ProjetLecteur\Persistance;
 /** @brief Permet de gérer la connexion à une base de données (ici MySQL)
  * L'exécution de requêtes SQL avec préparation "offerte service compris".
  * La classe est gérée avec le pattern SINGLETON, qui permet
@@ -19,8 +19,7 @@ class DataBaseManager{
   /** Gestionnaire de connexion à la base de données avec PDO */
 	private  $dbh = null;
 
-	/** Préfixe des tables de la base de données */
-	private $tables_prefix;
+	
 	
   /** Référence de l'unique instance de la classe suivant le modèle Singleton.
    * Initialement null */
@@ -33,13 +32,12 @@ class DataBaseManager{
    * @throws exception personnalisée en cas d'exception PDO */
   private function __construct(){ 
     try {
-      \Lecteur\Config\Config::getAuthData($db_host, $db_name, $db_user, $db_password, $tables_prefix);
+      \ProjetLecteur\Config\Config::getAuthData($db_host, $db_name, $db_user, $db_password);
       // Création de l'instance de PDO (database handler).
       $this->dbh = new \PDO($db_host.$db_name, $db_user, $db_password);
 			      // Rendre les erreurs PDO détectables et gérables par exceptions :
       $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
       $this->dbh->setAttribute(\PDO::MYSQL_ATTR_INIT_COMMAND,'SET NAMES UTF8');
-			$this->tables_prefix = $tables_prefix;
     }catch (\PDOException $e){
       throw new \Exception("Erreur de connexion à la base de données. "
 			  ."Vous n'avez pas besoin d'en savoir plus...");
@@ -58,9 +56,7 @@ class DataBaseManager{
 	
 	/** @brief Retourne le préfixe commun de toutes les tables de la BD
 	 * @return le préfixe commun de toutes les tables de la BD */
-	public function getTablesPrefix(){
-		return $this->tables_prefix;
-	}
+	
 	
   /** @brief Prépare et exécute une requête.
    * @param $requete requête avec des ?
@@ -73,14 +69,13 @@ class DataBaseManager{
   public function prepareAndExecuteQuery($requete, &$args = null){
 		// Si aucun argument n'a été fourni
 		if ($args === null){
-        $args = array();
+                    $args = array();
 		}
     // récupération du nombre d'arguments :
     $numargs = count($args);
 
     // Une requête préparée ne doit pas contenir de guillemets !!!
-    if (empty($requete) || !is_string($requete) ||
-															preg_match('/(\"|\')+/', $requete) !== 0){
+    if (empty($requete) || !is_string($requete) || preg_match('/(\"|\')+/', $requete) !== 0){
       throw new \Exception("Erreur concernant la sécurité. "
 			  ."Requête incomplètement préparée.");
     }
@@ -145,10 +140,8 @@ class DataBaseManager{
     $numargs = count($args);
 		
     // Une requête préparée ne doit pas contenir de guillemets !!!
-    if (empty($requete) || !is_string($requete) ||
-															preg_match('/(\"|\')+/', $requete) !== 0){
-      throw new \Exception("Erreur concernant la sécurité. "
-													."Requête incomplètement préparée.");
+    if (empty($requete) || !is_string($requete) || preg_match('/(\"|\')+/', $requete) !== 0){
+      throw new \Exception("Erreur concernant la sécurité. "."Requête incomplètement préparée.");
     }
 		
     // On ne laisse pas remonter d'exceptions PDO
@@ -158,11 +151,11 @@ class DataBaseManager{
       if ($statement !== false){ // si la syntaxe est correcte
 				// On recherche dans la requete les valeurs à associer via bindParam
 				// Chaînes de la forme ":quelqueChose"
-				preg_match_all("/\:[a-zA-Z][a-zA-Z0-9]+/", $requete,
-												$keyCollection, PREG_PATTERN_ORDER);
+				preg_match_all("/\:[a-zA-Z][a-zA-Z0-9]+/", $requete, $keyCollection, PREG_PATTERN_ORDER);
 				// On parcours les arguments de la requête
 				foreach ($keyCollection[0] as $key){
 					$associativeKey = substr($key, 1); // clé dans le tableau $args
+                                        echo $associativeKey ." ". $args[$associativeKey]; 
 					$statement->bindParam($key, $args[$associativeKey]);
 				}
 				// Exécution de la requête préparée :

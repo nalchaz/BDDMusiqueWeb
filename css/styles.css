@@ -1,0 +1,240 @@
+body {
+    margin:0 auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #3e3e3e;
+    background-color: #000000;
+    background-image: url(http://localhost/ProjetLecteur/css/images/bg.gif) ;
+    background-repeat: repeat-x;
+    background-position: top;
+    width:100%; 
+}
+a {
+    text-decoration:none;
+}
+#main{
+    margin:0 auto;
+    padding-top:6px;
+    margin-bottom:0;
+}
+#header {
+    margin:0 auto;
+    height:120px;
+    width:100%;
+}
+#menu {
+    width:100%;
+    height:38px;
+    
+}
+
+.retour{ 
+    margin-left: 80%; 
+}
+
+#menu a {
+    float:right;
+    font-size:15px;
+    color:#fff;
+    font-weight:bold;
+    text-decoration:none;
+    padding-left:20px;
+    padding-right:20px;
+    height:28px;
+    padding-top:10px;
+}
+#menu a:hover {
+    
+    color:#96ED00;
+}
+#header-Bottom {
+    margin:0;
+    height:89px;
+    background: url(http://localhost/ProjetLecteur/css/images/header_bot_bg.gif) no-repeat;
+    clear:both;
+}
+#logoBlock {
+    float:left;
+    width:255px;
+    padding-left:135px;
+    padding-top:10px;
+    height:79px;
+}
+#logoBlock h1{
+    font-weight:bold;
+    font-family: "Trebuchet MS";
+    color:#fff;
+    font-size:41px;
+    margin:0;
+    line-height:1.0em;
+}
+#logoBlock p {
+    margin:0;
+    color:#777777;
+    font-family: "Trebuchet MS";
+    line-height:1em;
+    font-size:10px;
+}
+
+
+
+#mainCont {
+    width:95%;
+    clear:both;
+    margin:0 auto;
+    padding:20px;
+    padding-bottom:0;
+    height:80%;
+}
+#centerCol {
+    margin:0;
+    width:100%;
+    height: 80%;
+}
+
+#playListTop {
+    
+    padding-top:20px;
+    margin:0;
+    width: 100%;
+}
+#playListTop h3 {
+    
+    color:#81CB02;
+    font-size:20px;
+    font-weight:bold;
+    height:24px;
+    width:100%;
+    margin:0;
+    padding-left:30px;
+    padding-top:8px;
+    background: url(http://localhost/ProjetLecteur/css/images/playlist_head_bg.gif) no-repeat;
+}
+#playListBody {
+    margin:0;
+    border-left:solid 1px #40434A;
+    border-right:solid 1px #40434A;
+  
+    height:100%;
+    width:100%;
+}
+.head {
+    height:20px;
+    width:100%;
+    border: solid 1px #40434A;
+}
+.head p {
+    font-size:12px;
+    font-weight:bold;
+    color:#DBDBDB;
+    margin:0;
+    padding-left:12px;
+    padding-top:5px;
+    float:left;
+    text-align: center; 
+    
+}
+.head p.left {
+    width:10%;
+
+}
+.head p.centr {
+    width:50%;
+
+}
+.head p.right {
+    width:20%;
+
+
+}
+.head p.average {
+    width:10%;
+
+
+}
+playListDark {
+    height:20px;
+    background-color:#464646;
+    width:100%;
+}
+.playListDark p {
+    color:#B3B3B3;
+    margin:0;
+    height:20px;
+    float:left;
+    padding-top:3px;
+    background-color:#464646;
+}
+.playListDark p.play {
+    background:#464646 url(http://localhost/ProjetLecteur/css/images/play.gif) no-repeat 12px center;	
+    width:10%;  
+}
+.playListDark p.track {
+    width:50%;
+    padding-left:12px; 
+}
+.playListDark p.artist{
+    width:30%;
+    padding-left:12px;
+}
+playListLight {
+    height:20px;
+    width:100%;
+}
+.playListLight p {
+    color:#B3B3B3;
+    margin:0;
+    height:20px;
+    float:left;
+    padding-top:3px;
+    width:100%;
+}
+.playListLight p.play {
+    background: url(http://localhost/ProjetLecteur/css/images/play.gif) no-repeat 12px center;	
+    width:10%;  
+}
+.playListLight p.track {
+    width:50%;
+    border-left:solid 1px #40434A;
+    padding-left:12px;
+}
+.playListLight p.artist{
+    width:30%;
+    border-left:solid 1px #40434A;
+    padding-left:12px;
+}
+p.bot {
+    border-top:solid 1px #40434A;
+    clear:both;
+    margin:0;
+    width:100%;
+    height:1px;
+}
+#playListBot {
+    	
+    height:32px;
+    width:100%;
+}
+
+
+
+#footer {
+    width : 100%; 
+    height:98px;
+    clear:both;
+    position: absolute; bottom: 0; 
+    background: url(http://localhost/ProjetLecteur/css/images/foooter_bg.gif) repeat-x;	 
+}
+
+.rights{
+    color:#3E3E3E;
+    text-align:center;
+}
+.rights a{
+    color:#3E3E3E;
+    text-decoration:none;
+}
+.rights a:hover{
+    color:#ffffff;
+    text-decoration:underline;
+}

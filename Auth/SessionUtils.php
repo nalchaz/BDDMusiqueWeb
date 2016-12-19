@@ -8,12 +8,12 @@
 * The program is distributed under the terms of the GNU General Public License *
 *                                                                              *
 \******************************************************************************/
-namespace CoursPHP\Auth;
+namespace ProjetLecteur\Auth;
 /** @brief Gère le cycle de vie de la session (Identification utilisateur)
  * génère des SID aléatoires, crée et met à jour le cookie pour le SID */
 class SessionUtils{
 	/** Durée du cookie en secondes */
-	const DUREE_COOKIE = 120;
+	const DUREE_COOKIE = 300;
 	
 	/** @brief fonction de génération de l'ID de session aléatoire */
 	public static function generateSessionId(){

@@ -8,7 +8,7 @@
 * The program is distributed under the terms of the GNU General Public License *
 *                                                                              *
 \******************************************************************************/
-namespace Lecteur\Vue;
+namespace ProjetLecteur\Vue;
 /** @brief Cette classe sert à faciliter la génération de formulaires HTML. 
 	* Elle fournit de méthodes pour générer le début, la fin du formulaire,
 	* ainsi que les inputs, textarea et select avec les options de base.
@@ -16,8 +16,8 @@ namespace Lecteur\Vue;
 	* via une variable $extraOptions des méthodes. */
 class FormManager {
 /** @brief génère la balise &lt;form&gt; avec méthode (Post, Get) et action (url) */
-	public static function beginForm($method, $action, $css_class="", 
-																									$extraOptions=""){
+	public static function beginForm($method, $action, $css_class="", $extraOptions=""){
+		$css_class_option=""; 																							
 		if (!empty($css_class)){
 			$css_class_option = "class=\"".$css_class."\" ";
 		}

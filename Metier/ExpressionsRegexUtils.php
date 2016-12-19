@@ -8,7 +8,7 @@
 * The program is distributed under the terms of the GNU General Public License *
 *                                                                              *
 \******************************************************************************/
-namespace Lecteur\Metier;
+namespace ProjetLecteur\Metier;
 /** @brief Classe de définitions d'Expressions Régulières d'usage général.
  * Définit quelques expressions régulières utiles pour la langue locale supportée
  * et les routines de test sur une chaîne correspondant. */

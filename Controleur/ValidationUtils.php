@@ -8,7 +8,7 @@
 * The program is distributed under the terms of the GNU General Public License *
 *                                                                              *
 \******************************************************************************/
-namespace Lecteur\Controleur;
+namespace ProjetLecteur\Controleur;
 /** @brief Permet la validation des données pour éviter les injections HTML
  * Typiquement, les données reçues via $_REQUEST sont filtrées avant d'être
  * affichées dans une page ou re-soumises dans un formulaire.
@@ -77,7 +77,7 @@ class ValidationUtils {
 				break;
 			case self::SANITIZE_POLICY_ESCAPE_ENTITIES:
 				// On inverse l'encodage des entités HTML
-				$chaine = htmlentities_decode($chaine, ENT_QUOTES, 'UTF-8');
+				$chaine = html_entity_decode($chaine, ENT_QUOTES, 'UTF-8');
 				break;
 			default: // SANITIZE_POLICY_DISCARD_HTML_NOQUOTE: Rien à restaurer
 							 // SANITIZE_POLICY_NONE: rien à faire

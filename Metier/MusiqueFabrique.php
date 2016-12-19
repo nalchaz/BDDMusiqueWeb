@@ -6,15 +6,15 @@
  * Time: 22:46
  */
 
-namespace Lecteur\Metier;
+namespace ProjetLecteur\Metier;
 
 
 class MusiqueFabrique
 {
     
-    protected static function validateIdMusique(&$idmusiques){ 
-        if (!isset($idmusiques) || !preg_match("/^[0-9a-f]{10}$/", $idmusiques)){ 
-            $tmp=$idmusiques; $idmusiques="";
+    protected static function validateIdMusique(&$id_musique){ 
+        if (!isset($id_musique) || !preg_match("/^[0-9a-f]{10,20}$/", $id_musique)){ 
+            $tmp=$idmusiques; $id_musique="";
             throw new \Exception("Erreur, identifiant \"".$tmp."\"incorrect"); 
         }
     }
@@ -22,24 +22,32 @@ class MusiqueFabrique
     protected static function validateNomAlbum(&$nom_album){ 
         if (!ExpressionsRegexUtils::isValidLatin1WithNumbersAndPunctuation($nom_album, 1, 50)){ 
             $tmp=$nom_album; $nom_album="";
-            throw new \Exception("Erreur, le nom album a au maximum 50 caractères"); 
+            throw new \Exception("Le nom de l'album doit être renseigné et il a au maximum 50 caractères"); 
         }
     }
     
     protected static function validateTitre(&$titre){ 
-        if (!ExpressionsRegexUtils::isValidLatin1WithNumbersAndPunctuation($titre, 1, 50)){ 
-            $tmp=$titre; $titre="";
-            throw new \Exception("Erreur, le titre a au maximum 50 caractères"); 
+        if (!ExpressionsRegexUtils::isValidLatin1($titre, 1, 50)){ 
+            throw new \Exception("Le titre doit être renseigné et il a au maximum 50 caractères"); 
         }
     }
     
-   public static function validateInstance (&$dataErrors,&$musique){ 
+    protected static function validateAnneeParution($annee_parution) {
+        if ($annee_parution != "") {
+            if ($annee_parution > 2500 || $annee_parution < 1200) {
+
+                throw new \Exception("L'année de parution doit être un nombre de 4 chiffres");
+            }
+        }
+    }
+
+    public static function validateInstance (&$dataErrors,&$musique){ 
        $dataErrors= array(); 
        try { 
-           self::validateIdMusique($musique->idmusiques);
+           self::validateIdMusique($musique->id_musique);
        } 
        catch (\Exception $ex) {
-          $dataErrors['idmusiques']=$ex->getMessage();  
+          $dataErrors['id_musique']=$ex->getMessage();  
        }
        try { 
            self::validateNomAlbum($musique->nom_album);
@@ -52,6 +60,12 @@ class MusiqueFabrique
        } 
        catch (\Exception $ex) {
           $dataErrors['titre']=$ex->getMessage();  
+       }
+       try { 
+           self::validateAnneeParution($musique->annee_parution);
+       } 
+       catch (\Exception $ex) {
+          $dataErrors['annee_parution']=$ex->getMessage();  
        }
        
    }

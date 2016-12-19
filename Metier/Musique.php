@@ -1,12 +1,6 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-namespace Lecteur\Metier;
+namespace ProjetLecteur\Metier;
 
 /**
  * Description of Musique
@@ -14,12 +8,11 @@ namespace Lecteur\Metier;
  * @author alexd
  */
 class Musique {
-    //put your code here
-    public $idMusique; 
+    public $id_musique; 
     
     public $titre; 
     
-    public $idAuteur; 
+    public $nomAuteur; 
     
     public $couverture_album; 
     
@@ -39,22 +32,23 @@ class Musique {
     
     public $chemin_audio; 
     
-    public function __construct($idMusique,$idAuteur,$couverture_album,$nom_album, $annee_parution,$duree,$periode_mel, $chemin_audio) {
-        if ($idMusique=='auto'){ 
-            $idMusique = uniqid(); 
-        }
-        else {
-            $this->idMusiqued=$idMusique; 
-        }
-        $this->idAuteur= $idAuteur;
+    public function __construct($idMusique,$titre, $nomAuteur,$couverture_album,$nom_album, $annee_parution,$duree,$periode_mel, $chemin_audio,$nbavisind,$nbavisdef,$nbavisfav) {
+        $this->id_musique = $idMusique;        
+        $this->titre=$titre;
+        $this->nomAuteur= $nomAuteur;
         $this->couverture_album =$couverture_album;
         $this->nom_album= $nom_album; 
         $this->annee_parution=$annee_parution;
         $this->duree=$duree;
         $this->periode_mel= $periode_mel;   
         $this->chemin_audio=$chemin_audio;      
-        $this->nbavis_defavorables=0; 
-        $this->nbavis_favorables=0; 
-        $this->nbavis_indifferents=0; 
+        $this->nbavis_defavorables=$nbavisdef; 
+        $this->nbavis_favorables=$nbavisfav; 
+        $this->nbavis_indifferents=$nbavisind; 
+    }
+    
+    public static function getDefaultInstance(){ 
+        $musique = new self (uniqid(),"","","","","","","","",0,0,0); 
+        return $musique; 
     }
 }

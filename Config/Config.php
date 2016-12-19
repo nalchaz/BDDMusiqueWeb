@@ -13,7 +13,7 @@ class Config
 {
     public static function getAuthData (&$db_host, &$db_name,&$db_user,&$db_password){
         $db_host="mysql:host=localhost;";
-        $db_name="dbname=BD";
+        $db_name="dbname=projetlecteur";
         $db_user="alex";
         $db_password="alex";
     }
@@ -22,9 +22,31 @@ class Config
         global $rootDirectory;
         $vueDirectory=$rootDirectory."Vue/vues/";
         return array(
-            "default"=>$vueDirectory."vueAccueil.php"
+            "default"=>$vueDirectory."vueAccueil.php", 
+            "pageAuth"=>$vueDirectory."vueFormulaire.php",  
+            "admin"=>$vueDirectory."vueAdmin.php",
+            "saisieMusiqueCreate"=>$vueDirectory."vueSaisieMusiqueCreate.php", 
+        );
+    }
+    
+    public static function getVuesErreur()
+    {
+        global $rootDirectory;
+        $vueDirectory=$rootDirectory."Vue/vues/";
+        return array ( 
+            "saisieAdresseCreate"=>$vueDirectory."vueErreurSaisieMusique.php", 
+        ); 
+    }
+    
+    public static function getRootURI() { 
+        global $rootURI; 
+        return $rootURI;  
+    }
+    
+    public static function getStyleSheetsURL() { 
+        $cssDirectoryURL =filter_var("http://".$_SERVER['SERVER_NAME'].self::getRootURI()."/css/", FILTER_SANITIZE_URL); 
+        return array ( 
+            "default"=>$cssDirectoryURL."style.css"
         );
     }
 }
-
-?>
