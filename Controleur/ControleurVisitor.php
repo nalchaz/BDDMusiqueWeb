@@ -36,12 +36,14 @@ class ControleurVisitor {
         \ProjetLecteur\Auth\ValidationRequest::validationLogin($dataError, $email, $password);
         $modele = \ProjetLecteur\Auth\Authentification::checkAndInitiateSession($email, $password, $dataError);
         if ($modele->getError() === false) {
+           if($modele->getRole()==="admin") {
             require (\ProjetLecteur\Config\Config::getVues()["admin"]);
+           }
+           else { 
+               require (\ProjetLecteur\Config\Config::getVues()["visitor"]);
+           }
         } else {
             require (\ProjetLecteur\Config\Config::getVues()["pageAuth"]);
-            foreach ($dataError as $error) :
-                echo $error . "<br />\n";
-            endforeach;
             
         }
     }

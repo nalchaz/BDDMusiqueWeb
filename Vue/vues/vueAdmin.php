@@ -7,46 +7,54 @@
 <head>
 <title>MusicShow</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="http://localhost/ProjetLecteur/css/styles.css" rel="stylesheet" type="text/css" />
+<link href="http://localhost/ProjetLecteur/css/stylesAdmin.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<div id="main">
   <div id="header">
-    <div id="menu" <?php echo " <p style='margin-left:80%; font-size:12px; color: white;'  >Connecté en tant que ".$_SESSION['email']."</p>"
-            . "<p style='margin-top: 2px;'>Role : " .$_SESSION['role'] ."</p>" ?> </div>
+      <div id="menu" > </div>
     <div id="header-Bottom">
       <div id="logoBlock">
         <h1>MusicShow</h1>
-  
+        
       </div>
-      
+      <?php echo " <p class=\"identifiant\">Connecté en tant que ".$_SESSION['email']."</p>"
+            . "<p class=\"role\">Role : " .$_SESSION['role'] ."</p>" ?>
   </div>
   </div>
-  <div id="mainCont">
     <div id="centerCol">
       
       <div id="playListTop">
         <h3>MUSICS</h3>
         
-        <form method ="post" action="?action=saisie"><input type="submit" value="AjouterMusique" name="create" /></form>
-      </div>
-      <div id="playListBody">
-        <div class="head">
-          <p class="left">PLAY</p>
-          <p class="centr">TRACK</p>
-          <p class="right">ARTIST</p>
-          <p class="average">AVERAGE</p>
-        </div>
+        <form  method="post" action="?action=saisie" class="ajout"><input type="submit" value="AjouterMusique" name="create" /></form>
+      </div>      
+        <?php
+        $modele= \ProjetLecteur\Modele\ModelCollectionMusique::getModelAdresseAll(); 
+        echo "<table id=\"playListBody\">"; 
+        echo "<thead class=\"head\">"; 
+        echo "<th class=\"pouvoirAdmin\">ADMIN POWER</th>"; 
+        echo  "<th class=\"left\">PLAY</th>"; 
+        echo  "<th class=\"centr\">TRACK</th>"; 
+        echo  "<th class=\"right\">COVER</th>";
+        echo  "<th class=\"periode\">Mise en ligne</th>"; 
+        echo  "<th class=\"average\">AVERAGE</th>";
+        echo "</thead>";
+        echo "<tbody>";
+        foreach ($modele->getData() as $musique) {
+            echo "<tr>"; 
+            echo "<td><a href=\"?action=delete&idMusique=" . $musique->idMusique . "\">X      </a><a class=\"modif\" href=\"?action=delete&idMusique=" . $musique->idMusique . "\">      Modifier</a></td>";
+            echo  \ProjetLecteur\Vue\MusiqueView::getHTMLMusiqueDevelopped($musique); 
+            echo "</tr>"; 
+        }
+        ?>
+      </tbody> 
+      </table>
         
-        <div class="playListLight">
-          <p class="bot">&nbsp;</p>
-        </div>
       </div>
-      <div id="playListBot"></div> 
-    </div>
+  
         
   
-    </div>
+ 
       <div id="footer">
           <div class="rights">Copyright © <p>Alexandre Donné Nahel Chazot</p>
   

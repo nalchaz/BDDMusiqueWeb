@@ -34,6 +34,7 @@ class Config
         global $rootDirectory;
         $vueDirectory=$rootDirectory."Vue/vues/";
         return array ( 
+            "default"=>$vueDirectory."vueErreurDefault.php",
             "saisieAdresseCreate"=>$vueDirectory."vueErreurSaisieMusique.php", 
         ); 
     }

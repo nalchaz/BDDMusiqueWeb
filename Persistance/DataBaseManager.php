@@ -155,7 +155,7 @@ class DataBaseManager{
 				// On parcours les arguments de la requête
 				foreach ($keyCollection[0] as $key){
 					$associativeKey = substr($key, 1); // clé dans le tableau $args
-                                        echo $associativeKey ." ". $args[$associativeKey]; 
+                                        if ($args[$associativeKey] === "") $args[$associativeKey]="a"; 
 					$statement->bindParam($key, $args[$associativeKey]);
 				}
 				// Exécution de la requête préparée :

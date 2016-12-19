@@ -40,20 +40,32 @@ class MusiqueFabrique
             }
         }
     }
+    
+    protected static function validatePeriode ($periodeMel){ 
+        if (empty($periodeMel)){ 
+            throw new \Exception("La période de mise en ligne doit être renseignée"); 
+        }
+    }
+    
+    protected static function validateCouverture ($couverture){ 
+        if (empty($couverture)){ 
+            throw new \Exception("La couverture de l'album doit être renseignée"); 
+        }
+    }
 
     public static function validateInstance (&$dataErrors,&$musique){ 
        $dataErrors= array(); 
        try { 
-           self::validateIdMusique($musique->id_musique);
+           self::validateIdMusique($musique->idMusique);
        } 
        catch (\Exception $ex) {
-          $dataErrors['id_musique']=$ex->getMessage();  
+          $dataErrors['idMusique']=$ex->getMessage();  
        }
        try { 
-           self::validateNomAlbum($musique->nom_album);
+           self::validateNomAlbum($musique->nomAlbum);
        } 
        catch (\Exception $ex) {
-          $dataErrors['nom_album']=$ex->getMessage();  
+          $dataErrors['nomAlbum']=$ex->getMessage();  
        }
        try { 
            self::validateTitre($musique->titre);
@@ -62,12 +74,23 @@ class MusiqueFabrique
           $dataErrors['titre']=$ex->getMessage();  
        }
        try { 
-           self::validateAnneeParution($musique->annee_parution);
+           self::validateAnneeParution($musique->anneeParution);
        } 
        catch (\Exception $ex) {
-          $dataErrors['annee_parution']=$ex->getMessage();  
+          $dataErrors['anneeParution']=$ex->getMessage();  
        }
-       
+       try { 
+           self::validatePeriode($musique->periodeMel);
+       } 
+       catch (\Exception $ex) {
+          $dataErrors['periodeMel']=$ex->getMessage();  
+       }
+       try { 
+           self::validateCouverture($musique->couvertureAlbum);
+       } 
+       catch (\Exception $ex) {
+          $dataErrors['couvertureAlbum']=$ex->getMessage();  
+       }
    }
 
     public static function getValidInstance(&$dataErrors, &$inputArray, $policy = \ProjetLecteur\Controleur\ValidationUtils::SANITIZE_POLICY_DISCARD_HTML_NOQUOTE) {

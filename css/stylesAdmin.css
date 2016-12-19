@@ -7,17 +7,20 @@ body {
     background-image: url(http://localhost/ProjetLecteur/css/images/bg.gif) ;
     background-repeat: repeat-x;
     background-position: top;
-    width:100%; 
+    width:95%; 
 }
 a {
     text-decoration:none;
 }
-#main{
-    margin:0 auto;
-    padding-top:6px;
-    margin-bottom:0;
+
+
+.modif { 
+    text-align: right; 
+    margin-left: 20px; 
 }
+
 #header {
+    padding-top:6px;
     margin:0 auto;
     height:120px;
     width:100%;
@@ -28,8 +31,17 @@ a {
     
 }
 
-.retour{ 
-    margin-left: 80%; 
+.identifiant{ 
+    margin-left:80%; 
+    font-size:12px;
+    color: white;
+}
+
+.role{
+    color : white; 
+    margin-top: 2px;
+    margin-left:80%; 
+    font-size:12px;
 }
 
 #menu a {
@@ -68,25 +80,11 @@ a {
     margin:0;
     line-height:1.0em;
 }
-#logoBlock p {
-    margin:0;
-    color:#777777;
-    font-family: "Trebuchet MS";
-    line-height:1em;
-    font-size:10px;
-}
 
 
 
-#mainCont {
-    width:95%;
-    clear:both;
-    margin:0 auto;
-    padding:20px;
-    padding-bottom:0;
-    height:80%;
-}
 #centerCol {
+    clear:both;
     margin:0;
     width:100%;
     height: 80%;
@@ -97,7 +95,6 @@ a {
     padding-top:20px;
     margin:0;
     width: 100%;
-    display : inline; 
 }
 #playListTop h3 {
     
@@ -105,45 +102,63 @@ a {
     font-size:20px;
     font-weight:bold;
     height:24px;
-    width:100%;
     margin:0;
     padding-left:30px;
     padding-top:8px;
     background: url(http://localhost/ProjetLecteur/css/images/playlist_head_bg.gif) no-repeat;
 }
+
+td { 
+    border: 1px solid white; 
+}
+
 #playListBody {
     margin:0;
- 
     height:100%;
     width:100%;
 }
 .head {
     height:20px;
-    width:100%;
-    border: solid 1px #40434A;
+
+
+
 }
 .head th {
     font-size:12px;
     font-weight:bold;
     color:#DBDBDB;
     margin:0;
-    padding-left:12px;
     padding-top:5px;
-    float:left;
     text-align: center; 
     border : 1px solid #96ED00; 
     
+}
+
+tr { 
+    height: 30px; 
+    border : 1px solid #96ED00; 
+}
+
+tr a { 
+    font-size : 15px; 
+    color : red;
+}
+
+
+
+.head th.pouvoirAdmin { 
+    width:7%; 
 }
 .head th.left {
     width:10%;
 
 }
 .head th.centr {
-    width:30%;
+    width:25%;
 
 }
 .head th.right {
-    width:30%;
+    width:25%;
 
 
 }
@@ -224,7 +239,7 @@ p.bot {
 
 
 #footer {
-    width : 100%; 
+    width : 95%; 
     height:98px;
     clear:both;
     position: absolute; bottom: 0; 

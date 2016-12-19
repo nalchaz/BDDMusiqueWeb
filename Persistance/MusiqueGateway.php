@@ -34,10 +34,10 @@ class MusiqueGateway {
     public static function createMusique (&$dataError,&$inputArray){ 
         $musique= \ProjetLecteur\Metier\MusiqueFabrique::getValidInstance($dataErrorAttributes, $inputArray);
         if (empty($dataErrorAttributes)){ 
-            $queryResult= DataBaseManager::getInstance()->prepareAndExecuteQueryAssoc('REPLACE INTO '.'musiques(titre, nomAuteur, couverture_album, nom_album,' 
-                    .'annee_parution, duree, nbavis_favorables, nbavis_indifferents, nbavis_defavorables, id_musique, periode_mel,chemin_audio)'  
-                    .'VALUES (:titre,:nomAuteur, :couverture_album, :nom_album,' 
-                    .':annee_parution, :duree, :nbavis_favorables, :nbavis_indifferents, :nbavis_defavorables, :id_musique, :periode_mel,:chemin_audio)', 
+            $queryResult= DataBaseManager::getInstance()->prepareAndExecuteQueryAssoc('REPLACE INTO '.'musiques(titre, nomAuteur, couvertureAlbum, nomAlbum,' 
+                    .'anneeParution, duree, nbavisFavorables, nbavisIndifferents, nbavisDefavorables, idMusique, periodeMel,cheminAudio)'  
+                    .'VALUES (:titre,:nomAuteur, :couvertureAlbum, :nomAlbum,' 
+                    .':anneeParution, :duree, :nbavisFavorables, :nbavisIndifferents, :nbavisDefavorables, :idMusique, :periodeMel,:cheminAudio)', 
                     $inputArray); 
             if ($queryResult ===false){ 
                 $dataError['persistance']= "Problème d'exécution de la requête"; 

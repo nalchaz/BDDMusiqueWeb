@@ -12,28 +12,28 @@ class MusiqueValidation {
     public static function filterMusique($musique,$reversed,$policy){ 
         VU::filterString($musique->titre,$reversed,$policy);
         VU::filterString($musique->nomAuteur,$reversed,$policy); 
-        VU::filterString($musique->nom_album,$reversed,$policy); 
-        VU::filterString($musique->chemin_audio,$reversed,$policy); 
-        VU::filterString($musique->couverture_album,$reversed,$policy); 
+        VU::filterString($musique->nomAlbum,$reversed,$policy); 
+        VU::filterString($musique->cheminAudio,$reversed,$policy); 
+        VU::filterString($musique->couvertureAlbum,$reversed,$policy); 
         VU::filterString($musique->duree,$reversed,$policy);
-        VU::filterString($musique->annee_parution,$reversed,$policy);
-        VU::filterString($musique->periode_mel,$reversed,$policy);
+        VU::filterString($musique->anneeParution,$reversed,$policy);
+        VU::filterString($musique->periodeMel,$reversed,$policy);
          
     }
     
     public static function validationInput ($inputArray,&$musique,$policy){ 
-        @$musique->id_musique= $inputArray['id_musique']; 
+        @$musique->idMusique= $inputArray['idMusique']; 
         $musique->titre =$inputArray['titre']; 
         $musique->nomAuteur=$inputArray['nomAuteur']; 
-        $musique->chemin_audio=$inputArray['chemin_audio']; 
-        $musique->nom_album=$inputArray['nom_album']; 
-        $musique->couverture_album=$inputArray['couverture_album']; 
-        $musique->periode_mel=$inputArray['periode_mel']; 
+        $musique->cheminAudio=$inputArray['cheminAudio']; 
+        $musique->nomAlbum=$inputArray['nomAlbum']; 
+        $musique->couvertureAlbum=$inputArray['couvertureAlbum']; 
+        $musique->periodeMel=$inputArray['periodeMel']; 
         $musique->duree=$inputArray['duree']; 
-        $musique->annee_parution=$inputArray['annee_parution']; 
-        $musique->nbavis_favorables=$inputArray['nbavis_favorables'];
-        $musique->nbavis_indifferents=$inputArray['nbavis_indifferents'];
-        $musique->nbavis_defavorables=$inputArray['nbavis_defavorables'];
+        $musique->anneeParution=$inputArray['anneeParution']; 
+        $musique->nbavisFavorables=$inputArray['nbavisFavorables'];
+        $musique->nbavisIndifferents=$inputArray['nbavisIndifferents'];
+        $musique->nbavisDefavorables=$inputArray['nbavisDefavorables'];
         self::filterMusique($musique, true, $policy);
     }
 }

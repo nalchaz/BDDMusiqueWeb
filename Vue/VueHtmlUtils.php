@@ -8,7 +8,7 @@
 * The program is distributed under the terms of the GNU General Public License *
 *                                                                              *
 \******************************************************************************/
-namespace Lecteur\Vue;
+namespace ProjetLecteur\Vue;
 /** @brief Classe d'utilitaires de génération de code HTML.
  * Définit des méthodes pour générer l'en-tête et la fin d'un document,
  * ainsi qu'un formulaire d'authentification (saisie login/password) */

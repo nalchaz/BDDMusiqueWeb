@@ -21,7 +21,11 @@ class MusiqueView {
             return "Musique Incorrecte"; 
         }
         
-        $htmlCode=$musique->titre."<br/>"; 
+        $htmlCode="<td>".$musique->titre."</td>"; 
+        $htmlCode.="<td>".$musique->titre."</td>"; 
+        $htmlCode.="<td>".$musique->titre."</td>"; 
+        $htmlCode.="<td>".$musique->titre."</td>"; 
+        $htmlCode.="<td>".$musique->titre."</td>"; 
         return $htmlCode; 
     }
 }

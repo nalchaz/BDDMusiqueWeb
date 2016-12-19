@@ -8,43 +8,43 @@ namespace ProjetLecteur\Metier;
  * @author alexd
  */
 class Musique {
-    public $id_musique; 
+    public $idMusique; 
     
     public $titre; 
     
     public $nomAuteur; 
     
-    public $couverture_album; 
+    public $couvertureAlbum; 
     
-    public $nom_album; 
+    public $nomAlbum; 
     
-    public $annee_parution; 
+    public $anneeParution; 
     
     public $duree; 
     
-    public $nbavis_favorables; 
+    public $nbavisFavorables; 
     
-    public $nbavis_indifferents; 
+    public $nbavisIndifferents; 
     
-    public $nbavis_defavorables; 
+    public $nbavisDefavorables; 
     
-    public $periode_mel; 
+    public $periodeMel; 
     
-    public $chemin_audio; 
+    public $cheminAudio; 
     
     public function __construct($idMusique,$titre, $nomAuteur,$couverture_album,$nom_album, $annee_parution,$duree,$periode_mel, $chemin_audio,$nbavisind,$nbavisdef,$nbavisfav) {
-        $this->id_musique = $idMusique;        
+        $this->idMusique = $idMusique;        
         $this->titre=$titre;
         $this->nomAuteur= $nomAuteur;
-        $this->couverture_album =$couverture_album;
-        $this->nom_album= $nom_album; 
-        $this->annee_parution=$annee_parution;
+        $this->couvertureAlbum =$couverture_album;
+        $this->nomAlbum= $nom_album; 
+        $this->anneeParution=$annee_parution;
         $this->duree=$duree;
-        $this->periode_mel= $periode_mel;   
-        $this->chemin_audio=$chemin_audio;      
-        $this->nbavis_defavorables=$nbavisdef; 
-        $this->nbavis_favorables=$nbavisfav; 
-        $this->nbavis_indifferents=$nbavisind; 
+        $this->periodeMel= $periode_mel;   
+        $this->cheminAudio=$chemin_audio;      
+        $this->nbavisDefavorables=$nbavisdef; 
+        $this->nbavisFavorables=$nbavisfav; 
+        $this->nbavisIndifferents=$nbavisind; 
     }
     
     public static function getDefaultInstance(){ 

@@ -31,9 +31,11 @@
         <div class="head">
           <p class="left">PLAY</p>
           <p class="centr">TRACK</p>
-          <p class="right">ARTIST</p>
+          <p class="right">COVER</p>
+          <p class="periode">Mise en ligne</p>
           <p class="average">AVERAGE</p>
         </div>
+          
         
         <div class="playListLight">
           <p class="bot">&nbsp;</p>

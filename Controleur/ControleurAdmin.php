@@ -41,16 +41,14 @@ class ControleurAdmin {
     public function actionCreate (){ 
         $modele= \ProjetLecteur\Modele\ModelMusique::getModelMusiqueCreate($_POST);
         if($modele->getError() === false){ 
-            require \ProjetLecteur\Config\Config::getVues()['default'];
+            require \ProjetLecteur\Config\Config::getVues()['admin'];
         }
         else { 
             if (!empty($modele->getError()['persistance'])){ 
                 echo $modele->getError()['persistance']; 
             }
             else { 
-                foreach ($modele->getError() as $txt){ 
-                    echo $txt; 
-                }
+                
                 require \ProjetLecteur\Config\Config::getVuesErreur()['saisieAdresseCreate']; 
                 
                 }
