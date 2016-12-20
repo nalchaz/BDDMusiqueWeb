@@ -10,55 +10,65 @@
 <link href="http://localhost/ProjetLecteur/css/stylesAdmin.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-  <div id="header">
-      <div id="menu" > </div>
-    <div id="header-Bottom">
-      <div id="logoBlock">
-        <h1>MusicShow</h1>
-        
-      </div>
-      <?php echo " <p class=\"identifiant\">Connecté en tant que ".$_SESSION['email']."</p>"
-            . "<p class=\"role\">Role : " .$_SESSION['role'] ."</p>" ?>
-  </div>
-  </div>
-    <div id="centerCol">
+    <div id="conteneur">
+        <div id="header">
+            <div id="menu"> <a href= "?action=deconnexion"> Se déconnecter</a> </div>
+            <div id="header-Bottom">
+                <div id="logoBlock">
+                    <h1>MusicShow</h1>
+
+                </div>
+                <?php echo " <p class=\"identifiant\">Connecté en tant que " . $_SESSION['email'] . "</p>"
+                . "<p class=\"role\">Role : " . $_SESSION['role'] . "</p>"
+                ?>
+            </div>
+        </div>
+        <div id="centerCol">
+
+            <div id="playListTop">
+                <h3>MUSICS</h3>
+
+                <form  method="post" action="?action=saisie" class="ajout"><input type="submit" value="AjouterMusique" name="create" /></form>
+            </div>      
+            <?php
+            $nbmusiques = 0;
+            $class;
+            $modele = \ProjetLecteur\Modele\ModelCollectionMusique::getModelAdresseAll();
+            echo "<table id=\"playListBody\">";
+            echo "<thead class=\"head\">";
+            echo "<th class=\"pouvoirAdmin\">ADMIN POWER</th>";
+            echo "<th class=\"left\">PLAY</th>";
+            echo "<th class=\"centr\">TRACK</th>";
+            echo "<th class=\"right\">COVER</th>";
+            echo "<th class=\"periode\">Mise en ligne</th>";
+            echo "<th class=\"average\">AVIS POSITIFS</th>";
+            echo "</thead>";
+            echo "<tbody>";
+            foreach ($modele->getData() as $musique) {
+                $nbmusiques++;
+                if ($nbmusiques % 2 == 0) {
+                    $class = "playListDark";
+                } else {
+                    $class = "playListLight";
+                }
+                echo "<tr class=" . $class . ">";
+                echo "<td><a href=\"?action=delete&idMusique=" . $musique->idMusique . "\">X      </a><a class=\"modif\" href=\"?action=edit&idMusique=" . $musique->idMusique . "\">      Modifier</a></td>";
+                echo \ProjetLecteur\Vue\MusiqueView::getHTMLMusiqueRow($musique);
+                echo "</tr>";
+            }
+            echo "</tbody>";
+            echo "</table>";
+            ?>
+
+        </div>
+
+        <footer id="footer">
+            <p class="rights">Copyright : Alexandre Donné & Nahel Chazot, G5 2016</p>
+
+        </footer>
+    </div>
+
       
-      <div id="playListTop">
-        <h3>MUSICS</h3>
-        
-        <form  method="post" action="?action=saisie" class="ajout"><input type="submit" value="AjouterMusique" name="create" /></form>
-      </div>      
-        <?php
-        $modele= \ProjetLecteur\Modele\ModelCollectionMusique::getModelAdresseAll(); 
-        echo "<table id=\"playListBody\">"; 
-        echo "<thead class=\"head\">"; 
-        echo "<th class=\"pouvoirAdmin\">ADMIN POWER</th>"; 
-        echo  "<th class=\"left\">PLAY</th>"; 
-        echo  "<th class=\"centr\">TRACK</th>"; 
-        echo  "<th class=\"right\">COVER</th>";
-        echo  "<th class=\"periode\">Mise en ligne</th>"; 
-        echo  "<th class=\"average\">AVERAGE</th>";
-        echo "</thead>";
-        echo "<tbody>";
-        foreach ($modele->getData() as $musique) {
-            echo "<tr>"; 
-            echo "<td><a href=\"?action=delete&idMusique=" . $musique->idMusique . "\">X      </a><a class=\"modif\" href=\"?action=delete&idMusique=" . $musique->idMusique . "\">      Modifier</a></td>";
-            echo  \ProjetLecteur\Vue\MusiqueView::getHTMLMusiqueDevelopped($musique); 
-            echo "</tr>"; 
-        }
-        ?>
-      </tbody> 
-      </table>
-        
-      </div>
-  
-        
-  
- 
-      <div id="footer">
-          <div class="rights">Copyright © <p>Alexandre Donné Nahel Chazot</p>
-  
-  </div>
-</div>
+
 </body>
 </html>

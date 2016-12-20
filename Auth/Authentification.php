@@ -48,11 +48,16 @@ class Authentification {
             }
             $backupSessionEmail=$_SESSION['email']; 
             $backupSessionRole=$_SESSION['role']; 
-            //SessionUtils::createSession($backupSessionEmail, $backupSessionRole); 
+            @SessionUtils::createSession($backupSessionEmail, $backupSessionRole); 
             session_write_close();
         }
         return $userModel; 
             
         }
+    
+    
+    public static function deconnexion (){ 
+        SessionUtils::endSession(); 
     }
+}
  

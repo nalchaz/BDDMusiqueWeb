@@ -50,5 +50,11 @@ class SessionUtils{
 		$_SESSION['role'] = htmlentities($role, ENT_QUOTES, "UTF-8");
 		$_SESSION['ipAddress'] = $_SERVER['REMOTE_ADDR'];
 	}
+        
+        public static function endSession (){ 
+            $_SESSION['role']="visitor"; 
+            setcookie("session-id", "", time()-60, '/');
+            session_write_close(); 
+        }
 }
 ?>

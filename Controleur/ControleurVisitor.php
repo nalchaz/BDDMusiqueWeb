@@ -21,6 +21,9 @@ class ControleurVisitor {
                 break; 
             case "validateAuth" : 
                 $this->actionValidateAuth(); 
+                break;
+            case "deconnexion": 
+                $this->actionDeconnexion(); 
                 break; 
             default :
                     require(\ProjetLecteur\Config\Config::getVues()["default"]);
@@ -40,7 +43,7 @@ class ControleurVisitor {
             require (\ProjetLecteur\Config\Config::getVues()["admin"]);
            }
            else { 
-               require (\ProjetLecteur\Config\Config::getVues()["visitor"]);
+               require (\ProjetLecteur\Config\Config::getVues()["default"]);
            }
         } else {
             require (\ProjetLecteur\Config\Config::getVues()["pageAuth"]);

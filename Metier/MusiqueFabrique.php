@@ -19,12 +19,6 @@ class MusiqueFabrique
         }
     }
     
-    protected static function validateNomAlbum(&$nom_album){ 
-        if (!ExpressionsRegexUtils::isValidLatin1WithNumbersAndPunctuation($nom_album, 1, 50)){ 
-            $tmp=$nom_album; $nom_album="";
-            throw new \Exception("Le nom de l'album doit être renseigné et il a au maximum 50 caractères"); 
-        }
-    }
     
     protected static function validateTitre(&$titre){ 
         if (!ExpressionsRegexUtils::isValidLatin1($titre, 1, 50)){ 
@@ -34,7 +28,7 @@ class MusiqueFabrique
     
     protected static function validateAnneeParution($annee_parution) {
         if ($annee_parution != "") {
-            if ($annee_parution > 2500 || $annee_parution < 1200) {
+            if (!preg_match('/^[0-9]{4}$/', $annee_parution)) {
 
                 throw new \Exception("L'année de parution doit être un nombre de 4 chiffres");
             }
@@ -61,12 +55,7 @@ class MusiqueFabrique
        catch (\Exception $ex) {
           $dataErrors['idMusique']=$ex->getMessage();  
        }
-       try { 
-           self::validateNomAlbum($musique->nomAlbum);
-       } 
-       catch (\Exception $ex) {
-          $dataErrors['nomAlbum']=$ex->getMessage();  
-       }
+       
        try { 
            self::validateTitre($musique->titre);
        } 

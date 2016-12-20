@@ -26,6 +26,15 @@ class ControleurAdmin {
             case "delete" :
                 $this->actionDelete();
                 break;
+            case "edit" : 
+                $this->actionEdit() ; 
+                break;
+            case "update" : 
+               $this->actionUpdate(); 
+                break; 
+            case "deconnexion": 
+                $this->actionDeconnexion(); 
+                break;
             default :
                 require(\ProjetLecteur\Config\Config::getVues()["admin"]);
                 break;
@@ -41,7 +50,7 @@ class ControleurAdmin {
     public function actionCreate (){ 
         $modele= \ProjetLecteur\Modele\ModelMusique::getModelMusiqueCreate($_POST);
         if($modele->getError() === false){ 
-            require \ProjetLecteur\Config\Config::getVues()['admin'];
+            require \ProjetLecteur\Config\Config::getVues()['afficheMusique'];
         }
         else { 
             if (!empty($modele->getError()['persistance'])){ 
@@ -49,10 +58,53 @@ class ControleurAdmin {
             }
             else { 
                 
-                require \ProjetLecteur\Config\Config::getVuesErreur()['saisieAdresseCreate']; 
+                require \ProjetLecteur\Config\Config::getVuesErreur()['saisieMusiqueCreate']; 
                 
                 }
             }
         
+    }
+    
+    public function actionDelete (){ 
+        $idMusique= filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
+        $modele= \ProjetLecteur\Modele\ModelMusique::deleteMusique($idMusique); 
+        if ($modele->getError()===false){ 
+            require(\ProjetLecteur\Config\Config::getVues()['afficheMusique']); 
+        }
+        else { 
+            require (\ProjetLecteur\Config\Config::getVuesErreur()['default']);
+        }
+    }
+    
+    public function actionEdit (){ 
+        $rawId=isset($_REQUEST['idMusique']) ? $_REQUEST['idMusique'] : ""; 
+        $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
+        $modele= \ProjetLecteur\Modele\ModelMusique::getModelMusique($idMusique); 
+        if ($modele->getError()===false){ 
+            require (\ProjetLecteur\Config\Config::getVues()['saisieMusiqueUpdate']); 
+        }
+        else { 
+            require (\ProjetLecteur\Config\Config::getVuesErreur()['default']); 
+        }
+    }
+    
+    public function actionUpdate(){ 
+        $modele= \ProjetLecteur\Modele\ModelMusique::getModelMusiqueUpdate($_POST); 
+        if ($modele->getError()===false){ 
+            require (\ProjetLecteur\Config\Config::getVues()['afficheMusique']);
+        }
+        else { 
+            if (!empty($modele->getError()['persistance'])){ 
+                require (\ProjetLecteur\Config\Config::getVuesErreur()['default']); 
+            }
+            else { 
+                require (\ProjetLecteur\Config\Config::getVuesErreur()['saisieMusiqueUpdate']);
+            }
+        }
+    }
+    
+    public function actionDeconnexion (){ 
+        \ProjetLecteur\Auth\Authentification::deconnexion() ;
+        require (\ProjetLecteur\Config\Config::getVues()['default']); 
     }
 }    

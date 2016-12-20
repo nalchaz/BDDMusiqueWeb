@@ -29,6 +29,7 @@ class ControleurFront
                case "update" : 
                case "create" : 
                case "delete" : 
+               case "deconnexion" :
                 if ($role === "admin"){ 
                        $adminCtrl= new ControleurAdmin($action); 
                    

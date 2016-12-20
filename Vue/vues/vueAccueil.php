@@ -6,50 +6,66 @@
 <head>
 <title>MusicShow</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="http://localhost/ProjetLecteur/css/styles.css" rel="stylesheet" type="text/css" />
+<link href="http://localhost/ProjetLecteur/css/stylesAdmin.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<div id="main">
+    <div id="conteneur">
   <div id="header">
-    <div id="menu"> <a href= "?action=auth"> Se connecter</a> </div>
+      <div id="menu"> <a href= "?action=auth"> Se connecter</a> </div>
     <div id="header-Bottom">
       <div id="logoBlock">
         <h1>MusicShow</h1>
-  
+        
       </div>
-      
+
   </div>
   </div>
-</div>
-  <div id="mainCont">
     <div id="centerCol">
       
       <div id="playListTop">
         <h3>MUSICS</h3>
-      </div>
-      <div id="playListBody">
-        <div class="head">
-          <p class="left">PLAY</p>
-          <p class="centr">TRACK</p>
-          <p class="right">COVER</p>
-          <p class="periode">Mise en ligne</p>
-          <p class="average">AVERAGE</p>
-        </div>
-          
         
-        <div class="playListLight">
-          <p class="bot">&nbsp;</p>
-        </div>
-      </div>
-      <div id="playListBot"></div> 
-    </div>
+      </div>      
+        <?php
+        $nbmusiques=0; 
+        $class; 
+        $modele= \ProjetLecteur\Modele\ModelCollectionMusique::getModelAdresseAll(); 
+        echo "<table id=\"playListBody\">"; 
+        echo "<thead class=\"head\">"; 
+        echo  "<th class=\"left\">PLAY</th>"; 
+        echo  "<th class=\"centr\">TRACK</th>"; 
+        echo  "<th class=\"right\">COVER</th>";
+        echo  "<th class=\"periode\">Mise en ligne</th>"; 
+        echo  "<th class=\"average\">AVERAGE</th>";
+        echo "</thead>";
+        echo "<tbody>";
+        foreach ($modele->getData() as $musique) {
+            $nbmusiques++; 
+            if ($nbmusiques%2==0){ 
+                $class="playListDark"; 
+            }
+            else { 
+                $class="playListLight"; 
+            }
+            echo "<tr class=".$class.">"; 
+            
+            echo  \ProjetLecteur\Vue\MusiqueView::getHTMLMusiqueRow($musique); 
+            echo "</tr>"; 
+            
+        }
+        echo "</tbody>";
+        echo "</table>";
+        ?>
         
+      </div>
   
-    </div>
-      <div id="footer">
-          <div class="rights">Copyright © <p>Alexandre Donné Nahel Chazot</p>
+         <footer id="footer">
+            <p class="rights">Copyright : Alexandre Donné & Nahel Chazot, G5 2016</p>
+            
+        </footer>
   
-  </div>
 </div>
+      
+
 </body>
 </html>

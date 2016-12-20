@@ -1,10 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 namespace ProjetLecteur\Modele;
 
@@ -22,13 +17,13 @@ class ModelMusique extends Model{
     }
     
     public function getTitle () { 
-        return $this->titile; 
+        return $this->title; 
     }
     
     public static function getModelDefaultMusique (){ 
         $model =new self (array()); 
         $model->musique= \ProjetLecteur\Metier\Musique::getDefaultInstance();
-        $model->title= "Saisie d'une adresse"; 
+        $model->title= "Saisie d'une musique"; 
         return $model;     
     }
     
@@ -42,7 +37,21 @@ class ModelMusique extends Model{
     public static function getModelMusiqueCreate($inputArray) { 
         $model= new self(array()); 
         $model->musique= \ProjetLecteur\Persistance\MusiqueGateway::createMusique($model->dataError,$inputArray); 
-        $model->title="L'adresse a été insérée"; 
+        $model->title="La musique a été insérée"; 
+        return $model; 
+    }
+    
+    public static function getModelMusiqueUpdate($inputArray){ 
+        $model= new self (array()); 
+        $model->musique= \ProjetLecteur\Persistance\MusiqueGateway::updateMusique($model->dataError,$inputArray); 
+        $model->title= "La musique a été mise à jour"; 
+        return $model; 
+    }
+    
+    public static function deleteMusique ($idMusique){ 
+        $model= new self (array()); 
+        @$model->musique= \ProjetLecteur\Persistance\MusiqueGateway::deleteMusique($model->dataError,$idMusique); 
+        $model->title="Musique supprimée"; 
         return $model; 
     }
 }

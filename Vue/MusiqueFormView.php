@@ -27,8 +27,8 @@ class MusiqueFormView {
         $htmlCode.= FormManager::addTextInput("Nom Auteur", "nomAuteur", "nomAuteur", 4,$musique->nomAuteur); 
         $htmlCode.= FormManager::addTextInput("Nom Album", "nomAlbum", "nomAlbum", 4,$musique->nomAlbum);
         $htmlCode.= FormManager::addTextInput("Couverture Album", "couvertureAlbum", "couvertureAlbum", 4,$musique->couvertureAlbum);
-        $htmlCode.= FormManager::addInput("Année Parution","number", "anneeParution", "anneeParution",$musique->anneeParution);
-        $htmlCode.= FormManager::addInput("Durée en secondes","number", "duree", "duree",$musique->duree);
+        $htmlCode.= FormManager::addTextInput("Année Parution", "anneeParution", "anneeParution",$musique->anneeParution);
+        $htmlCode.= FormManager::addTextInput("Durée en secondes", "duree", "duree",$musique->duree);
         $htmlCode.= FormManager::addTextInput("Periode mise en ligne", "periodeMel", "periodeMel", 4,$musique->periodeMel);
         $htmlCode.= FormManager::addTextInput("Chemin Audio", "cheminAudio", "cheminAudio", 4,$musique->cheminAudio);
         $htmlCode.= FormManager::addSubmitButton("Ajouter"); 
@@ -61,9 +61,9 @@ class MusiqueFormView {
         $htmlCode.= self::addErrorsMsgs($dataError, "couvertureAlbum"); 
         $htmlCode.= FormManager::addTextInput("Couverture Album", "couvertureAlbum", "couvertureAlbum", 4,$musique->couvertureAlbum);
         $htmlCode.= self::addErrorsMsgs($dataError, "anneeParution"); 
-        $htmlCode.= FormManager::addInput("Année Parution","number", "anneeParution", "anneeParution", $musique->anneeParution);
+        $htmlCode.= FormManager::addTextInput("Année Parution", "anneeParution", "anneeParution",$musique->anneeParution);
         $htmlCode.= self::addErrorsMsgs($dataError, "duree"); 
-        $htmlCode.= FormManager::addInput("Duree","number", "duree", "duree", $musique->duree);
+        $htmlCode.= FormManager::addTextInput("Durée en secondes", "duree", "duree",$musique->duree);
         $htmlCode.= self::addErrorsMsgs($dataError, "periodeMel"); 
         $htmlCode.= FormManager::addTextInput("Periode mise en ligne", "periodeMel", "periodeMel", 4,$musique->periodeMel);
         $htmlCode.= self::addErrorsMsgs($dataError, "cheminAudio"); 

@@ -16,16 +16,56 @@ namespace ProjetLecteur\Vue;
 class MusiqueView {
     
     
-    public static function getHTMLMusiqueDevelopped($musique,$sanitizePolicy= \ProjetLecteur\Controleur\ValidationUtils::SANITIZE_POLICY_ESCAPE_ENTITIES){ 
+    public static function getHTMLMusiqueRow($musique,$sanitizePolicy= \ProjetLecteur\Controleur\ValidationUtils::SANITIZE_POLICY_ESCAPE_ENTITIES){ 
         if (\ProjetLecteur\Metier\MusiqueValidation::filterMusique($musique,false,$sanitizePolicy) === false){ 
             return "Musique Incorrecte"; 
         }
-        
-        $htmlCode="<td>".$musique->titre."</td>"; 
-        $htmlCode.="<td>".$musique->titre."</td>"; 
-        $htmlCode.="<td>".$musique->titre."</td>"; 
-        $htmlCode.="<td>".$musique->titre."</td>"; 
-        $htmlCode.="<td>".$musique->titre."</td>"; 
+        if ($musique->cheminAudio!=""){ 
+            $htmlCode="<td class=\"play\"><audio src=".$musique->cheminAudio."></audio></td>";
+        }
+        else { 
+            $htmlCode="<td></td>"; 
+        }
+        $htmlCode.="<td class=\"titre\">".$musique->titre."</td>"; 
+        $htmlCode.="<td class=\"couv\"><image src=".$musique->couvertureAlbum."</image></td>"; 
+        $htmlCode.="<td class=\"periodeMel\">".$musique->periodeMel."</td>"; 
+        $htmlCode.="<td class=\"avpos\">".$musique->nbavisFavorables."</td>"; 
+        return $htmlCode; 
+    }
+    
+    
+    public static function getHTMLDevelopped($musique,$sanitizePolicy= \ProjetLecteur\Controleur\ValidationUtils::SANITIZE_POLICY_ESCAPE_ENTITIES){ 
+        if (\ProjetLecteur\Metier\MusiqueValidation::filterMusique($musique,false,$sanitizePolicy) === false){ 
+            return "Musique Incorrecte"; 
+        }
+        $htmlCode="<strong>Musique</strong>"; 
+        $htmlCode.="<p class=\"titre\"> Titre : ".$musique->titre."</p>"; 
+        $htmlCode.="<image src=".$musique->couvertureAlbum."</image>"; 
+        $htmlCode.="<p class=\"periodeMel\">Période mise en ligne : ".$musique->periodeMel."</p>"; 
+        if (!empty($musique->nomAlbum)){
+        $htmlCode.="<p> Album :".$musique->nomAlbum."</p>";
+        }
+        else { 
+            $htmlCode.=""; 
+        }
+        if ($musique->nomAuteur!=""){
+            $htmlCode.="<p> Auteur :".$musique->nomAuteur."</p>";
+        }
+        else { 
+            $htmlCode.=""; 
+        }
+        if ($musique->duree!=""){
+            $htmlCode.="<p>Durée : ".$musique->duree."secondes</p>";
+        }
+        else { 
+            $htmlCode.=""; 
+        }
+        if ($musique->anneeParution!=""){
+            $htmlCode.="<p>".$musique->anneeParution."</p>";
+        }
+        else { 
+            $htmlCode.=""; 
+        }
         return $htmlCode; 
     }
 }

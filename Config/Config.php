@@ -25,7 +25,9 @@ class Config
             "default"=>$vueDirectory."vueAccueil.php", 
             "pageAuth"=>$vueDirectory."vueFormulaire.php",  
             "admin"=>$vueDirectory."vueAdmin.php",
-            "saisieMusiqueCreate"=>$vueDirectory."vueSaisieMusiqueCreate.php", 
+            "saisieMusiqueCreate"=>$vueDirectory."vueSaisieMusiqueCreate.php",
+            "afficheMusique"=>$vueDirectory."vueAfficheMusique.php", 
+            "saisieMusiqueUpdate"=>$vueDirectory."vueSaisieMusiqueUpdate.php",
         );
     }
     
@@ -35,7 +37,9 @@ class Config
         $vueDirectory=$rootDirectory."Vue/vues/";
         return array ( 
             "default"=>$vueDirectory."vueErreurDefault.php",
-            "saisieAdresseCreate"=>$vueDirectory."vueErreurSaisieMusique.php", 
+            "saisieMusiqueCreate"=>$vueDirectory."vueErreurSaisieCreate.php", 
+            "saisieMusiqueUpdate"=>$vueDirectory."vueErreurSaisieUpdate.php", 
+            
         ); 
     }
     
@@ -47,7 +51,10 @@ class Config
     public static function getStyleSheetsURL() { 
         $cssDirectoryURL =filter_var("http://".$_SERVER['SERVER_NAME'].self::getRootURI()."/css/", FILTER_SANITIZE_URL); 
         return array ( 
-            "default"=>$cssDirectoryURL."style.css"
+            "default"=>$cssDirectoryURL."style.css",
+            "admin"=>$cssDirectoryURL."syleAdmin.css",
+            "formLogin"=>$cssDirectoryURL."styleForm.css",
+            "saisie"=>$cssDirectoryURL."saisie.css",
         );
     }
 }

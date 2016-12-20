@@ -1,3 +1,5 @@
+body, html{height:100%;}
+
 body {
     margin:0 auto;
     font-family: Arial, Helvetica, sans-serif;
@@ -7,17 +9,26 @@ body {
     background-image: url(http://localhost/ProjetLecteur/css/images/bg.gif) ;
     background-repeat: repeat-x;
     background-position: top;
-    width:100%; 
+    width:95%; 
 }
 a {
     text-decoration:none;
 }
-#main{
-    margin:0 auto;
-    padding-top:6px;
-    margin-bottom:0;
+
+
+.modif { 
+    text-align: right; 
+    margin-left: 20px; 
 }
+
+#conteneur { 
+    position : relative; 
+    min-height:100%; 
+    margin : 0 auto; 
+}
+
 #header {
+    padding-top:6px;
     margin:0 auto;
     height:120px;
     width:100%;
@@ -28,9 +39,7 @@ a {
     
 }
 
-.retour{ 
-    margin-left: 80%; 
-}
+
 
 #menu a {
     float:right;
@@ -68,28 +77,16 @@ a {
     margin:0;
     line-height:1.0em;
 }
-#logoBlock p {
-    margin:0;
-    color:#777777;
-    font-family: "Trebuchet MS";
-    line-height:1em;
-    font-size:10px;
-}
 
 
 
-#mainCont {
-    width:95%;
-    clear:both;
-    margin:0 auto;
-    padding:20px;
-    padding-bottom:0;
-    height:80%;
-}
 #centerCol {
+    clear:both;
     margin:0;
     width:100%;
     height: 80%;
+    margin-bottom: 0; 
+
 }
 
 #playListTop {
@@ -97,7 +94,6 @@ a {
     padding-top:20px;
     margin:0;
     width: 100%;
-    display : inline; 
 }
 #playListTop h3 {
     
@@ -105,135 +101,140 @@ a {
     font-size:20px;
     font-weight:bold;
     height:24px;
-    width:100%;
     margin:0;
     padding-left:30px;
     padding-top:8px;
     background: url(http://localhost/ProjetLecteur/css/images/playlist_head_bg.gif) no-repeat;
 }
+
+
 #playListBody {
     margin:0;
- 
-    height:100%;
+    height:80%;
     width:100%;
+    border-collapse: collapse;
 }
 .head {
-    height:20px;
-    width:100%;
-    border: solid 1px #40434A;
+    height:20px;   
+
 }
+
+
 .head th {
     font-size:12px;
     font-weight:bold;
     color:#DBDBDB;
     margin:0;
-    padding-left:12px;
     padding-top:5px;
-    float:left;
     text-align: center; 
-    border : 1px solid #96ED00; 
+    border : solid 1px #ffffff; 
     
 }
+
+tr { 
+    height: 60px; 
+    border : solid 1px white; 
+}
+
+tr a { 
+    font-size : 15px; 
+    color : red;
+}
+
+.titre { 
+    text-align:  center;
+    color: white; 
+    font-size : 20px; 
+}
+
+.periodeMel { 
+    text-align:  center;
+    font-size: 15px;
+    color: white;
+}
+
+.avpos{ 
+    text-align:  center;
+    color: white; 
+    font-size : 17px; 
+}
+
+.couv { 
+    text-align:  center;
+}
+
+
 .head th.left {
     width:10%;
 
 }
 .head th.centr {
-    width:30%;
+    width:38%;
 
 }
 .head th.right {
-    width:30%;
+    width:15%;
 
 
 }
 
 .head th.periode { 
-    width : 10%
+    width : 12%
 }
 
 .head th.average {
-    width:10%;
-
+    width:12%;
 
 }
 playListDark {
-    height:20px;
     background-color:#464646;
-    width:100%;
 }
-.playListDark p {
+.playListDark td {
     color:#B3B3B3;
     margin:0;
     height:20px;
-    float:left;
     padding-top:3px;
     background-color:#464646;
+    
+    border : solid 1px #ffffff ; 
+    
 }
-.playListDark p.play {
+.playListDark td.play {
     background:#464646 url(http://localhost/ProjetLecteur/css/images/play.gif) no-repeat 12px center;	
     width:10%;  
 }
-.playListDark p.track {
-    width:50%;
-    padding-left:12px; 
-}
-.playListDark p.artist{
-    width:30%;
-    padding-left:12px;
-}
+
 playListLight {
-    height:20px;
-    width:100%;
+
 }
-.playListLight p {
+.playListLight td {
     color:#B3B3B3;
     margin:0;
-    height:20px;
-    float:left;
-    padding-top:3px;
-    width:100%;
+    border : solid 1px #ffffff; 
+    border-collapse: collapse;
 }
-.playListLight p.play {
-    background: url(http://localhost/ProjetLecteur/css/images/play.gif) no-repeat 12px center;	
+.playListLight td.play {
+    background: url(http://localhost/ProjetLecteur/css/images/play.gif) no-repeat 20px center;	
     width:10%;  
 }
-.playListLight p.track {
-    width:50%;
-    border-left:solid 1px #40434A;
-    padding-left:12px;
-}
-.playListLight p.artist{
-    width:30%;
-    border-left:solid 1px #40434A;
-    padding-left:12px;
-}
-p.bot {
-    border-top:solid 1px #40434A;
-    clear:both;
-    margin:0;
-    width:100%;
-    height:1px;
-}
-#playListBot {
-    	
-    height:32px;
-    width:100%;
-}
+
 
 
 
 #footer {
+    margin-top : 10px; 
     width : 100%; 
     height:98px;
     clear:both;
-    position: absolute; bottom: 0; 
+    position : absolute; 
+    bottom: 0; 
     background: url(http://localhost/ProjetLecteur/css/images/foooter_bg.gif) repeat-x;	 
 }
 
 .rights{
     color:#3E3E3E;
     text-align:center;
+    font-size : 15px; 
 }
 .rights a{
     color:#3E3E3E;
