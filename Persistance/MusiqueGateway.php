@@ -43,7 +43,7 @@ class MusiqueGateway {
     }
     
     public static function getMusiqueAll(&$dataError){
-        $queryResult= DataBaseManager::getInstance()->prepareAndExecuteQuery('SELECT * from musiques ORDER BY nbavisFavorables'); 
+        $queryResult= DataBaseManager::getInstance()->prepareAndExecuteQuery('SELECT * from musiques ORDER BY nbavisFavorables DESC'); 
         $collectionMusique=array(); 
         if ($queryResult !==false){ 
             foreach ($queryResult as $row){ 
@@ -101,6 +101,38 @@ class MusiqueGateway {
         $musique->nbavisFavorables++; 
         if (empty($dataErrorIdSearch)){ 
             $queryResult = DataBaseManager::getInstance()->prepareAndExecuteQuery('UPDATE musiques set nbavisFavorables=nbavisFavorables+1 WHERE idMusique=?',$args=array($idMusique)); 
+            if ($queryResult ===false){ 
+                $dataError['persistance']= "Problème d'exécution de la requête"; 
+            }
+            else { 
+                $dataError= array_merge($dataError,$dataErrorIdSearch); 
+            }
+            return $musique; 
+        }
+    }
+    
+    public static function addAvisIndifferent (&$dataError,$idMusique){ 
+        $dataErrorIdSearch=array(); 
+        $musique=self::getMusiqueById($dataErrorIdSearch, $idMusique); 
+        $musique->nbavisIndifferents++; 
+        if (empty($dataErrorIdSearch)){ 
+            $queryResult = DataBaseManager::getInstance()->prepareAndExecuteQuery('UPDATE musiques set nbavisIndifferents=nbavisIndifferents+1 WHERE idMusique=?',$args=array($idMusique)); 
+            if ($queryResult ===false){ 
+                $dataError['persistance']= "Problème d'exécution de la requête"; 
+            }
+            else { 
+                $dataError= array_merge($dataError,$dataErrorIdSearch); 
+            }
+            return $musique; 
+        }
+    }
+    
+    public static function addAvisDefavorable (&$dataError,$idMusique){ 
+        $dataErrorIdSearch=array(); 
+        $musique=self::getMusiqueById($dataErrorIdSearch, $idMusique); 
+        $musique->nbavisDefavorables++; 
+        if (empty($dataErrorIdSearch)){ 
+            $queryResult = DataBaseManager::getInstance()->prepareAndExecuteQuery('UPDATE musiques set nbavisDefavorables=nbavisDefavorables+1 WHERE idMusique=?',$args=array($idMusique)); 
             if ($queryResult ===false){ 
                 $dataError['persistance']= "Problème d'exécution de la requête"; 
             }

@@ -25,7 +25,7 @@ class Config
             "default"=>$vueDirectory."vueAccueil.php", 
             "pageAuth"=>$vueDirectory."vueFormulaire.php", 
             "pageRegister"=>$vueDirectory."vueFormRegister.php", 
-            "visitor"=>$vueDirectory."vueVisitor.php", 
+            "visitorAuth"=>$vueDirectory."vueVisitorAuth.php", 
             "admin"=>$vueDirectory."vueAdmin.php",
             "saisieMusiqueCreate"=>$vueDirectory."vueSaisieMusiqueCreate.php",
             "afficheMusique"=>$vueDirectory."vueAfficheMusique.php", 
@@ -55,7 +55,6 @@ class Config
         $cssDirectoryURL =filter_var("http://".$_SERVER['SERVER_NAME'].self::getRootURI()."/css/", FILTER_SANITIZE_URL); 
         return array ( 
             "default"=>$cssDirectoryURL."style.css",
-            "admin"=>$cssDirectoryURL."stylesAdmin.css",
             "formLogin"=>$cssDirectoryURL."styleForm.css",
             "saisie"=>$cssDirectoryURL."saisie.css",
             "infos"=>$cssDirectoryURL."infos.css",

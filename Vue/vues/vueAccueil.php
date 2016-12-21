@@ -36,7 +36,7 @@
         echo  "<th class=\"centr\">TRACK</th>"; 
         echo  "<th class=\"right\">COVER</th>";
         echo  "<th class=\"periode\">Mise en ligne</th>"; 
-        echo  "<th class=\"average\">AVERAGE</th>";
+        echo  "<th class=\"average\">AVIS POSITIFS</th>";
         echo "</thead>";
         echo "<tbody>";
         foreach ($modele->getData() as $musique) {

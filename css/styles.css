@@ -11,8 +11,17 @@ body {
     background-position: top;
     width:95%; 
 }
+
 a {
-    text-decoration:none;
+    color : red ; 
+    text-align : center; 
+    font-size : 14px; 
+}
+
+td
+{
+    text-align: center;  
+   
 }
 
 
@@ -39,7 +48,18 @@ a {
     
 }
 
+.identifiant{ 
+    margin-left:80%; 
+    font-size:12px;
+    color: white;
+}
 
+.role{
+    color : white; 
+    margin-top: 2px;
+    margin-left:80%; 
+    font-size:12px;
+}
 
 #menu a {
     float:right;
@@ -78,6 +98,10 @@ a {
     line-height:1.0em;
 }
 
+p { 
+    text-align : center; 
+    color : white;    
+}
 
 
 #centerCol {
@@ -88,6 +112,8 @@ a {
     margin-bottom: 0; 
 
 }
+
+
 
 #playListTop {
     
@@ -108,11 +134,14 @@ a {
 }
 
 
+
+
 #playListBody {
     margin:0;
     height:80%;
     width:100%;
     border-collapse: collapse;
+    text-align : center; 
 }
 .head {
     height:20px;   
@@ -136,40 +165,30 @@ tr {
     border : solid 1px white; 
 }
 
-tr a { 
-    font-size : 15px; 
-    color : white;
-}
 
-.titre { 
-    text-align:  center;
-    color: white; 
-    font-size : 20px; 
-}
 
-.periodeMel { 
-    text-align:  center;
-    font-size: 15px;
-    color: white;
-}
 
 .avpos{ 
+    font-size : 14px; 
     text-align:  center;
     color: white; 
-    font-size : 17px; 
 }
+
+
 
 .couv { 
     text-align:  center;
 }
 
-
+.head th.pouvoirAdmin { 
+    width:7%; 
+}
 .head th.left {
     width:10%;
 
 }
 .head th.centr {
-    width:38%;
+    width:35%;
 
 }
 .head th.right {
@@ -179,11 +198,11 @@ tr a {
 }
 
 .head th.periode { 
-    width : 12%
+    width : 10%
 }
 
 .head th.average {
-    width:12%;
+    width:10%;
 
 }
 playListDark {
@@ -219,6 +238,20 @@ playListLight {
 }
 
 
+.titre { 
+    text-align : center; 
+    text-decoration: none; 
+    color : white ;
+    font-size : 20px; 
+}
+
+.periodeMel { 
+    text-align:  center;
+    font-size: 14px;
+    color: white;
+}
+
+
 
 
 #footer {
@@ -238,9 +271,10 @@ playListLight {
 }
 .rights a{
     color:#3E3E3E;
-    text-decoration:none;
+
 }
 .rights a:hover{
     color:#ffffff;
     text-decoration:underline;
 }
+

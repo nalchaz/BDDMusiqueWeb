@@ -7,7 +7,7 @@
 <head>
 <title>MusicShow</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="http://localhost/ProjetLecteur/css/stylesAdmin.css" rel="stylesheet" type="text/css" />
+<link href="http://localhost/ProjetLecteur/css/styles.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div id="conteneur">

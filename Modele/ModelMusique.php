@@ -61,4 +61,18 @@ class ModelMusique extends Model{
         $model->title="Avis positif ajouté"; 
         return $model;
     }
+    
+    public static function addAvisDefavorable ($idMusique) { 
+        $model= new self (array()); 
+        @$model->musique= \ProjetLecteur\Persistance\MusiqueGateway::addAvisDefavorable($model->dataError,$idMusique); 
+        $model->title="Avis positif ajouté"; 
+        return $model;
+    }
+    
+    public static function addAvisIndifferent ($idMusique) { 
+        $model= new self (array()); 
+        @$model->musique= \ProjetLecteur\Persistance\MusiqueGateway::addAvisIndifferent($model->dataError,$idMusique); 
+        $model->title="Avis positif ajouté"; 
+        return $model;
+    }
 }

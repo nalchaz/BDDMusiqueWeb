@@ -23,7 +23,8 @@ class UserGateway {
                     if (count($queryResult)==1){ 
                         $row=$queryResult[0];  
                     }
-                    if (count($queryResult)!=1 || hash("sha512",$row['password']) != $hashedPassword){ 
+                    if (count($queryResult)!=1 || $row['password'] != $hashedPassword){ 
+                        echo $hashedPassword ." NUT ".$row['password']; 
                         $dataError['login']="Adresse email ou mot de passe incorrect"; 
                         return ""; 
                     }
@@ -37,6 +38,7 @@ class UserGateway {
     }
     
     public static function createUser (&$dataError,$inputArray){ 
+        $inputArray['password']=hash("sha512",$inputArray['password']); 
         $queryResult= \ProjetLecteur\Persistance\DataBaseManager::getInstance()->prepareAndExecuteQueryAssoc('INSERT INTO admin(login,password,role)'
                 . ' VALUES (:email,:password,:role)',$inputArray); 
         if ($queryResult===false){
