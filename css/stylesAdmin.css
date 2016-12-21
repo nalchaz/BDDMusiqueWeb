@@ -11,8 +11,17 @@ body {
     background-position: top;
     width:95%; 
 }
+
 a {
-    text-decoration:none;
+    color : red ; 
+    text-align : center; 
+    font-size : 14px; 
+}
+
+td
+{
+    text-align: center;  
+   
 }
 
 
@@ -89,6 +98,10 @@ a {
     line-height:1.0em;
 }
 
+p { 
+    text-align : center; 
+    color : white;    
+}
 
 
 #centerCol {
@@ -99,6 +112,8 @@ a {
     margin-bottom: 0; 
 
 }
+
+
 
 #playListTop {
     
@@ -119,11 +134,14 @@ a {
 }
 
 
+
+
 #playListBody {
     margin:0;
     height:80%;
     width:100%;
     border-collapse: collapse;
+    text-align : center; 
 }
 .head {
     height:20px;   
@@ -147,28 +165,16 @@ tr {
     border : solid 1px white; 
 }
 
-tr a { 
-    font-size : 15px; 
-    color : red;
-}
+
+
 
 .avpos{ 
+    font-size : 14px; 
     text-align:  center;
     color: white; 
-    font-size : 17px; 
 }
 
-.titre { 
-    text-align:  center;
-    color: white; 
-    font-size : 20px; 
-}
 
-.periodeMel { 
-    text-align:  center;
-    font-size: 15px;
-    color: white;
-}
 
 .couv { 
     text-align:  center;
@@ -232,6 +238,20 @@ playListLight {
 }
 
 
+.titre { 
+    text-align : center; 
+    text-decoration: none; 
+    color : white ;
+    font-size : 20px; 
+}
+
+.periodeMel { 
+    text-align:  center;
+    font-size: 14px;
+    color: white;
+}
+
+
 
 
 #footer {
@@ -251,7 +271,7 @@ playListLight {
 }
 .rights a{
     color:#3E3E3E;
-    text-decoration:none;
+
 }
 .rights a:hover{
     color:#ffffff;

@@ -23,12 +23,15 @@ class Config
         $vueDirectory=$rootDirectory."Vue/vues/";
         return array(
             "default"=>$vueDirectory."vueAccueil.php", 
-            "pageAuth"=>$vueDirectory."vueFormulaire.php",  
+            "pageAuth"=>$vueDirectory."vueFormulaire.php", 
+            "pageRegister"=>$vueDirectory."vueFormRegister.php", 
+            "visitor"=>$vueDirectory."vueVisitor.php", 
             "admin"=>$vueDirectory."vueAdmin.php",
             "saisieMusiqueCreate"=>$vueDirectory."vueSaisieMusiqueCreate.php",
             "afficheMusique"=>$vueDirectory."vueAfficheMusique.php", 
             "saisieMusiqueUpdate"=>$vueDirectory."vueSaisieMusiqueUpdate.php",
-        );
+            "infos"=>$vueDirectory."vueInfos.php",
+            );
     }
     
     public static function getVuesErreur()
@@ -52,9 +55,10 @@ class Config
         $cssDirectoryURL =filter_var("http://".$_SERVER['SERVER_NAME'].self::getRootURI()."/css/", FILTER_SANITIZE_URL); 
         return array ( 
             "default"=>$cssDirectoryURL."style.css",
-            "admin"=>$cssDirectoryURL."syleAdmin.css",
+            "admin"=>$cssDirectoryURL."stylesAdmin.css",
             "formLogin"=>$cssDirectoryURL."styleForm.css",
             "saisie"=>$cssDirectoryURL."saisie.css",
+            "infos"=>$cssDirectoryURL."infos.css",
         );
     }
 }

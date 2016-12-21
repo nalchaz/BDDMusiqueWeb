@@ -9,36 +9,39 @@
 namespace ProjetLecteur\Controleur;
 
 
-class ControleurFront
-{
-    function __construct()
-    {
+class ControleurFront {
+
+    function __construct() {
 
         try {
 
             $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
-            $modele= \ProjetLecteur\Auth\Authentification::restoreSession(); 
-            $role=($modele->getError() === false) ? $modele->getRole() : ""; 
+            $modele = \ProjetLecteur\Auth\Authentification::restoreSession();
+            $role = ($modele->getError() === false) ? $modele->getRole() : "";
             switch ($action) {
-               case "auth" : 
-               case "validateAuth" : 
-                   $publicCtrl= new ControleurVisitor($action); 
-                   break; 
-               case "saisie" : 
-               case "edit" : 
-               case "update" : 
-               case "create" : 
-               case "delete" : 
-               case "deconnexion" :
-                if ($role === "admin"){ 
-                       $adminCtrl= new ControleurAdmin($action); 
-                   
-                }
+                case "auth" :
+                case "validateAuth" :
+                case "register":
+                    $publicCtrl = new ControleurVisitor($action);
+                    break;
+                case "saisie" :
+                case "edit" :
+                case "update" :
+                case "create" :
+                case "delete" :
+                
+                    if ($role === "admin") {
+                        $adminCtrl = new ControleurAdmin($action);
+                    }
                 else { 
                        require (\ProjetLecteur\Config\Config::getVues()["pageAuth"]); 
                 }
                  break; 
-               case "getAll": 
+                case "getAll":
+                case "deconnexion" :
+                case "infos" : 
+                case "jaime":
+                case "jaimepas" :
                 default :
                     if ($role === "admin"){ 
                        $adminCtrl= new ControleurAdmin($action); 
@@ -55,8 +58,6 @@ class ControleurFront
     }
     
     
-    function actionConnexion () { 
-        
-    }
+  
 }
 ?>

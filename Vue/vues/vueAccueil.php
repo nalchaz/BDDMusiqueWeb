@@ -11,7 +11,7 @@
 <body>
     <div id="conteneur">
   <div id="header">
-      <div id="menu"> <a href= "?action=auth"> Se connecter</a> </div>
+      <div id="menu"><a href="?action=register">S'enregistrer</a> <a href= "?action=auth"> Se connecter</a> </div>
     <div id="header-Bottom">
       <div id="logoBlock">
         <h1>MusicShow</h1>

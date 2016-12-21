@@ -94,6 +94,22 @@ class MusiqueGateway {
             }
         return $musique; 
     }
+   
+    public static function addAvisFavorable (&$dataError,$idMusique){ 
+        $dataErrorIdSearch=array(); 
+        $musique=self::getMusiqueById($dataErrorIdSearch, $idMusique); 
+        $musique->nbavisFavorables++; 
+        if (empty($dataErrorIdSearch)){ 
+            $queryResult = DataBaseManager::getInstance()->prepareAndExecuteQuery('UPDATE musiques set nbavisFavorables=nbavisFavorables+1 WHERE idMusique=?',$args=array($idMusique)); 
+            if ($queryResult ===false){ 
+                $dataError['persistance']= "Problème d'exécution de la requête"; 
+            }
+            else { 
+                $dataError= array_merge($dataError,$dataErrorIdSearch); 
+            }
+            return $musique; 
+        }
+    }
     
     public static function deleteMusique (&$dataError,$idMusique){ 
         $dataErrorIdSearch=array(); 

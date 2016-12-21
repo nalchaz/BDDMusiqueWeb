@@ -25,7 +25,7 @@ class ValidationRequest {
         if (!isset($dataError)) {
             $dataError = array();
         }
-        $wouldBePassword = $_POST['motdepasse'];
+        $wouldBePassword = $_POST['password'];
         if (empty($wouldBePassword) || !AuthUtils::isStrongPassword($wouldBePassword)) {
             $password = "";
             $dataError['mdp'] = "Mot de passe incorrect" . ": votre mot de passe doit contenir au moins 8 caractères, " . "une minuscule, une majuscule, un chiffre.</p>";

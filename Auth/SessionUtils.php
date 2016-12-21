@@ -51,9 +51,9 @@ class SessionUtils{
 		$_SESSION['ipAddress'] = $_SERVER['REMOTE_ADDR'];
 	}
         
-        public static function endSession (){ 
-            $_SESSION['role']="visitor"; 
+        public static function endSession (){  
             setcookie("session-id", "", time()-60, '/');
+            $_SESSION=array(); 
             session_write_close(); 
         }
 }

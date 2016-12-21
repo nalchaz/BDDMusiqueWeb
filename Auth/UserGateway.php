@@ -30,10 +30,17 @@ class UserGateway {
                     return $row['role']; 
                 }
                 else { 
-                    echo "Imp"; 
                     $dataError['login']="Impossible d'accéder à la table des utilisateurs"; 
                     return ""; 
                 }
                 
+    }
+    
+    public static function createUser (&$dataError,$inputArray){ 
+        $queryResult= \ProjetLecteur\Persistance\DataBaseManager::getInstance()->prepareAndExecuteQueryAssoc('INSERT INTO admin(login,password,role)'
+                . ' VALUES (:email,:password,:role)',$inputArray); 
+        if ($queryResult===false){
+            $dataError['persistance']= "Problème d'exécution de la requête (login peut-être existant)"; 
+        }
     }
 }

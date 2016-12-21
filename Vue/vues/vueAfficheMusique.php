@@ -1,4 +1,4 @@
- <?=\ProjetLecteur\Vue\VueHtmlUtils::enTeteHTML5("MusicShow" ,"UTF−8" , \ProjetLecteur\Config\Config::getStyleSheetsURL()["admin"]) ?>
+ <?=\ProjetLecteur\Vue\VueHtmlUtils::enTeteHTML5("MusicShow" ,"UTF−8" , \ProjetLecteur\Config\Config::getStyleSheetsURL()["infos"]) ?>
 
  <h1><?=$modele->getTitle() ?></h1>
 

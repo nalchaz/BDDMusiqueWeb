@@ -1,0 +1,179 @@
+body, html{height:100%;}
+
+body {
+    margin:0 auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #3e3e3e;
+    background-color: #000000;
+    background-image: url(http://localhost/ProjetLecteur/css/images/bg.gif) ;
+    background-repeat: repeat-x;
+    background-position: top;
+    width:95%;
+    text-align : center; 
+}
+
+a {
+    color : white ; 
+    text-align : center; 
+    text-decoration: none; 
+}
+
+
+
+.avis { 
+    
+    border-collapse : collapse;         
+}
+
+.avis tr { 
+    height : 10px; 
+}
+
+.avis tr td,.avis th { 
+    border : solid 1px red ;
+    font-size : 15px; 
+    color : white; 
+    padding : 5px ;
+    text-align : center; 
+}
+
+#conteneur { 
+    position : relative; 
+    min-height:100%; 
+    margin : 0 auto; 
+}
+
+#header {
+    padding-top:6px;
+    margin:0 auto;
+    height:120px;
+    width:100%;
+}
+#menu {
+    width:100%;
+    height:38px;
+    
+}
+
+p ,strong{ 
+    color : white; 
+    text-align : center; 
+}
+
+.identifiant{ 
+    margin-left:80%; 
+    font-size:12px;
+    color: white;
+}
+
+.role{
+    color : white; 
+    margin-top: 2px;
+    margin-left:80%; 
+    font-size:12px;
+}
+
+#menu a {
+    float:right;
+    font-size:15px;
+    color:#fff;
+    font-weight:bold;
+    text-decoration:none;
+    padding-left:20px;
+    padding-right:20px;
+    height:28px;
+    padding-top:10px;
+}
+#menu a:hover {
+    
+    color:#96ED00;
+}
+#header-Bottom {
+    margin:0;
+    height:89px;
+    background: url(http://localhost/ProjetLecteur/css/images/header_bot_bg.gif) no-repeat;
+    clear:both;
+}
+#logoBlock {
+    float:left;
+    width:255px;
+    padding-left:135px;
+    padding-top:10px;
+    height:79px;
+}
+#logoBlock h1{
+    font-weight:bold;
+    font-family: "Trebuchet MS";
+    color:#fff;
+    font-size:41px;
+    margin:0;
+    line-height:1.0em;
+}
+
+#infosCtr {
+    clear:both;
+    margin:0;
+    width:100%;
+    height: 80%;
+    margin-bottom: 0; 
+
+}
+
+
+.avis { 
+    display : inline; 
+}
+.titreI { 
+    font-size : 25px;
+    text-decoration: underline; 
+    color : blue; 
+}
+
+.periodeMelI{ 
+    font-size : 17px;
+}
+
+.nomAlbumI { 
+    font-size : 20px; 
+}
+
+.annee { 
+    font-size : 15px; 
+}
+
+.duree { 
+    font-size : 15px; 
+}
+
+.auteur { 
+    font-size : 20px; 
+}
+
+.couv { 
+    text-align: center; 
+}
+
+#footer {
+    margin-top : 10px; 
+    width : 100%; 
+    height:98px;
+    clear:both;
+    position : absolute; 
+    bottom: 0; 
+    background: url(http://localhost/ProjetLecteur/css/images/foooter_bg.gif) repeat-x;	 
+}
+
+.rights{
+    color:#3E3E3E;
+    text-align:center;
+    font-size : 15px; 
+}
+.rights a{
+    color:#3E3E3E;
+
+}
+.rights a:hover{
+    color:#ffffff;
+    text-decoration:underline;
+}

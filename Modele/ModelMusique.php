@@ -54,4 +54,11 @@ class ModelMusique extends Model{
         $model->title="Musique supprimée"; 
         return $model; 
     }
+    
+    public static function addAvisFavorable ($idMusique) { 
+        $model= new self (array()); 
+        @$model->musique= \ProjetLecteur\Persistance\MusiqueGateway::addAvisFavorable($model->dataError,$idMusique); 
+        $model->title="Avis positif ajouté"; 
+        return $model;
+    }
 }
