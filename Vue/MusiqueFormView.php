@@ -20,9 +20,9 @@ class MusiqueFormView {
         \ProjetLecteur\Metier\MusiqueValidation::filterMusique($musique, false, $filteringPolicy); 
         $htmlCode= FormManager::beginForm("post", $action); 
         $htmlCode.= FormManager::addHiddenInput("idMusique", "idMusique", $musique->idMusique);
-        $htmlCode.= FormManager::addHiddenInput("nbavisFavorables", "nbavisFavorables", 0);
-        $htmlCode.= FormManager::addHiddenInput("nbavisIndifferents", "nbavisIndifferents", 0);
-        $htmlCode.= FormManager::addHiddenInput("nbavisDefavorables", "nbavisDefavorables", 0);
+        $htmlCode.= FormManager::addHiddenInput("nbavisFavorables", "nbavisFavorables", $musique->nbavisFavorables);
+        $htmlCode.= FormManager::addHiddenInput("nbavisIndifferents", "nbavisIndifferents", $musique->nbavisIndifferents);
+        $htmlCode.= FormManager::addHiddenInput("nbavisDefavorables", "nbavisDefavorables", $musique->nbavisDefavorables);
         $htmlCode.= FormManager::addTextInput("Titre", "titre", "titre", 4, $musique->titre); 
         $htmlCode.= FormManager::addTextInput("Nom Auteur", "nomAuteur", "nomAuteur", 4,$musique->nomAuteur); 
         $htmlCode.= FormManager::addTextInput("Nom Album", "nomAlbum", "nomAlbum", 4,$musique->nomAlbum);

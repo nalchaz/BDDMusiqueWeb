@@ -10,7 +10,8 @@ namespace ProjetLecteur\Modele;
  */
 class ModelMusique extends Model{
     private $musique; 
-    private $title; 
+    private $title;
+    private $commentaires; 
     
     public function getData () { 
         return $this->musique; 
@@ -18,6 +19,10 @@ class ModelMusique extends Model{
     
     public function getTitle () { 
         return $this->title; 
+    }
+    
+    public function getCommentaires (){ 
+        return $this->commentaires; 
     }
     
     public static function getModelDefaultMusique (){ 
@@ -30,6 +35,7 @@ class ModelMusique extends Model{
     public static function getModelMusique ($idmusique){ 
         $model = new self (array()); 
         $model->musique = \ProjetLecteur\Persistance\MusiqueGateway::getMusiqueById($model->dataError, $idmusique); 
+        $model->commentaires=\ProjetLecteur\Modele\ModelCollectionCommentaire::getModelCommentaireMusique($idmusique);
         $model->title="Affichage d'une musique"; 
         return $model; 
     }

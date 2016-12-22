@@ -32,21 +32,12 @@ class ControleurAdmin {
             case "update" : 
                $this->actionUpdate(); 
                 break; 
-            case "infos": 
+            case "infos":
                 $this->actionInfos(); 
-                break ;
-            case "jaime" : 
-                $this->actionJaime(); 
-                break; 
-            case "jaimepas" : 
-                $this->actionJaimePas(); 
-                break; 
-            case "indiffere": 
-                $this->actionIndiffere(); 
-                break; 
-            case "deconnexion": 
-                $this->actionDeconnexion(); 
                 break;
+            case "deleteCom" : 
+                $this->actionDeleteCom(); 
+                break; 
             default :
                 require(\ProjetLecteur\Config\Config::getVues()["admin"]);
                 break;
@@ -75,6 +66,18 @@ class ControleurAdmin {
                 }
             }
         
+    }
+    
+    public function actionInfos(){ 
+        $rawId=isset($_REQUEST['idMusique']) ? $_REQUEST['idMusique'] : ""; 
+        $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
+        $modele= \ProjetLecteur\Modele\ModelMusique::getModelMusique($idMusique);      
+        if ($modele->getError() ===false){
+            require \ProjetLecteur\Config\Config::getVues()['infosAdmin']; 
+        }
+        else { 
+            require \ProjetLecteur\Config\Config::getVuesErreur()['default']; 
+        }
     }
     
     public function actionDelete (){ 
@@ -115,56 +118,18 @@ class ControleurAdmin {
         }
     }
     
-    public function actionDeconnexion (){ 
-        \ProjetLecteur\Auth\Authentification::deconnexion() ;
-        require (\ProjetLecteur\Config\Config::getVues()['default']); 
-    }
-    
-    public function actionInfos(){ 
-        $rawId=isset($_REQUEST['idMusique']) ? $_REQUEST['idMusique'] : ""; 
-        $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
-        $modele= \ProjetLecteur\Modele\ModelMusique::getModelMusique($idMusique); 
-        if ($modele->getError() ===false){
-            require \ProjetLecteur\Config\Config::getVues()['infos']; 
-        }
-        else { 
-            require \ProjetLecteur\Config\Config::getVuesErreur()['default']; 
-        }
-    }
-    
-    public function actionJaime() { 
-        $rawId=isset($_REQUEST['idMusique']) ? $_REQUEST['idMusique'] : ""; 
-        $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
-        $modele= \ProjetLecteur\Modele\ModelMusique::addAvisFavorable($idMusique); 
+    public function actionDeleteCom (){ 
+        $idCommentaire= filter_var($_REQUEST['idCommentaire'], FILTER_SANITIZE_STRING); 
+        $modele=\ProjetLecteur\Modele\ModelCommentaire::deleteCommentaire($idCommentaire);       
         if ($modele->getError()===false){ 
-            require \ProjetLecteur\Config\Config::getVues()['infos']; 
+              require (\ProjetLecteur\Config\Config::getVues()['afficheCommentaire']); 
         }
         else { 
-            require \ProjetLecteur\Config\Config::getVuesErreur()['default']; 
+            require (\ProjetLecteur\Config\Config::getVuesErreur()['default']);
         }
     }
     
-    public function actionJaimepas() { 
-        $rawId=isset($_REQUEST['idMusique']) ? $_REQUEST['idMusique'] : ""; 
-        $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
-        $modele= \ProjetLecteur\Modele\ModelMusique::addAvisDefavorable($idMusique); 
-        if ($modele->getError()===false){ 
-            require \ProjetLecteur\Config\Config::getVues()['infos']; 
-        }
-        else { 
-            require \ProjetLecteur\Config\Config::getVuesErreur()['default']; 
-        }
-    }
+   
     
-    public function actionIndiffere() { 
-        $rawId=isset($_REQUEST['idMusique']) ? $_REQUEST['idMusique'] : ""; 
-        $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
-        $modele= \ProjetLecteur\Modele\ModelMusique::addAvisIndifferent($idMusique); 
-        if ($modele->getError()===false){ 
-            require \ProjetLecteur\Config\Config::getVues()['infos']; 
-        }
-        else { 
-            require \ProjetLecteur\Config\Config::getVuesErreur()['default']; 
-        }
-    }
+    
 }    

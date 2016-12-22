@@ -39,6 +39,7 @@
                     <?php 
                         foreach ($modele->getCommentaires() as $com){ 
                             echo "<div class=\"unCom\">"; 
+                            echo "<a class=\"deleteCom\" href=\"?action=deleteCom&idCommentaire=".$com->idCommentaire."\">Supprimer ce commentaire</a>";
                             
                             echo "<p class=\"logincom\">".$com->login." le ".$com->dateInsertion." à ".$com->heureInsertion." : </p>"; 
                             

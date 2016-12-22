@@ -75,9 +75,12 @@ class ControleurVisitor {
             require (\ProjetLecteur\Config\Config::getVues()["admin"]);
            }
            else if ($modele->getRole()==="visitor"){ 
-               require (\ProjetLecteur\Config\Config::getVues()["visitor"]);
+               require (\ProjetLecteur\Config\Config::getVues()["visitorAuth"]);
            }
         } else {
+            foreach ($modele->getError() as $error){ 
+                echo $error ."<br/>"; 
+            }
             require (\ProjetLecteur\Config\Config::getVues()["pageAuth"]);
             
         }

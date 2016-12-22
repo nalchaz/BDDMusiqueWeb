@@ -103,7 +103,7 @@ class FormManager {
 			$returnText .= "<label for=\"".$id."\">".$labelText."</label>\n"; 
 		}
 		$returnText .= "<textarea name=\"".$name."\" id=\"".$id."\" rows=\"".$rows
-										."\" cols=\"".$cols."\" ".$extraOptions." >".$valueOption
+										."\" cols=\"".$cols."\" ".$extraOptions." >"
 										."</textarea>\n";
 		$returnText .= "</p>\n";
 		return $returnText;

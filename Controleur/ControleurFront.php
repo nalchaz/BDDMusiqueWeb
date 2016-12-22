@@ -25,7 +25,7 @@ class ControleurFront {
                 case "update" :
                 case "create" :
                 case "delete" :
-                
+                case "deleteCom":
                     if ($role === "admin") {
                         $adminCtrl = new ControleurAdmin($action);
                     }
@@ -33,15 +33,24 @@ class ControleurFront {
                         require (\ProjetLecteur\Config\Config::getVues()["pageAuth"]); 
                     }
                     break; 
-                case "deconnexion" :
-                case "infos" : 
+                case "infos" :
+                    if ($role ==="visitor"){ 
+                        $privateCtrl=new ControleurVisitorAuth($action);
+                    }
+                    else if ($role ==="admin"){
+                        $adminCtrl=new ControleurAdmin($action);
+                    }
+                    else { 
+                        require (\ProjetLecteur\Config\Config::getVues()["pageAuth"]); 
+                    }
+                    break;
+                case "deconnexion" : 
                 case "jaime":
                 case "jaimepas" :
-                    if ($role === "admin"){ 
-                       $adminCtrl= new ControleurAdmin($action); 
-                   
-                    }
-                    else if ($role ==="visitor") { 
+                case "indiffere": 
+                case "ajoutComment" : 
+                    
+                    if ($role ==="visitor" || $role==="admin") { 
                         $privateCtrl= new ControleurVisitorAuth($action); 
                     }
                     else {
@@ -63,7 +72,7 @@ class ControleurFront {
             }
         }
      catch (\Exception $e) {
-            $modele = new \CoursPHP\Modele\Model(
+            $modele = new \ProjetLecteur\Modele\Model(
                     array('exception' => $e->getMessage()));
             require (\ProjetLecteur\Config\Config::getVuesErreur()["default"]);
         }

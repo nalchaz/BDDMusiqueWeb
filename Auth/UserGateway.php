@@ -24,7 +24,6 @@ class UserGateway {
                         $row=$queryResult[0];  
                     }
                     if (count($queryResult)!=1 || $row['password'] != $hashedPassword){ 
-                        echo $hashedPassword ." NUT ".$row['password']; 
                         $dataError['login']="Adresse email ou mot de passe incorrect"; 
                         return ""; 
                     }

@@ -154,7 +154,7 @@ class DataBaseManager{
 				preg_match_all("/\:[a-zA-Z][a-zA-Z0-9]+/", $requete, $keyCollection, PREG_PATTERN_ORDER);
 				// On parcours les arguments de la requête
 				foreach ($keyCollection[0] as $key){
-                                    
+                                        
 					$associativeKey = substr($key, 1); // clé dans le tableau $args
 					$statement->bindParam($key, $args[$associativeKey]);
 				}

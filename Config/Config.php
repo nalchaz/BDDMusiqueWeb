@@ -31,6 +31,8 @@ class Config
             "afficheMusique"=>$vueDirectory."vueAfficheMusique.php", 
             "saisieMusiqueUpdate"=>$vueDirectory."vueSaisieMusiqueUpdate.php",
             "infos"=>$vueDirectory."vueInfos.php",
+            "infosAdmin"=>$vueDirectory."vueInfosAdmin.php",
+            "afficheCommentaire"=>$vueDirectory."vueAfficheCommentaire.php", 
             );
     }
     

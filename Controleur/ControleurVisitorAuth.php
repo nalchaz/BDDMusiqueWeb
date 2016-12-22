@@ -25,6 +25,9 @@ class ControleurVisitorAuth {
             case "indiffere": 
                 $this->actionIndiffere(); 
                 break; 
+            case "ajoutComment": 
+                $this->actionAjoutComment(); 
+                break; 
             case "deconnexion":
                 $this->actionDeconnexion();
                 break;
@@ -43,7 +46,7 @@ class ControleurVisitorAuth {
     public function actionInfos(){ 
         $rawId=isset($_REQUEST['idMusique']) ? $_REQUEST['idMusique'] : ""; 
         $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
-        $modele= \ProjetLecteur\Modele\ModelMusique::getModelMusique($idMusique); 
+        $modele= \ProjetLecteur\Modele\ModelMusique::getModelMusique($idMusique);      
         if ($modele->getError() ===false){
             require \ProjetLecteur\Config\Config::getVues()['infos']; 
         }
@@ -57,7 +60,7 @@ class ControleurVisitorAuth {
         $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
         $modele= \ProjetLecteur\Modele\ModelMusique::addAvisFavorable($idMusique); 
         if ($modele->getError()===false){ 
-            require \ProjetLecteur\Config\Config::getVues()['infos']; 
+            $this->actionInfos();  
         }
         else { 
             require \ProjetLecteur\Config\Config::getVuesErreur()['default']; 
@@ -69,7 +72,7 @@ class ControleurVisitorAuth {
         $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
         $modele= \ProjetLecteur\Modele\ModelMusique::addAvisDefavorable($idMusique); 
         if ($modele->getError()===false){ 
-            require \ProjetLecteur\Config\Config::getVues()['infos']; 
+            $this->actionInfos();  
         }
         else { 
             require \ProjetLecteur\Config\Config::getVuesErreur()['default']; 
@@ -81,7 +84,17 @@ class ControleurVisitorAuth {
         $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
         $modele= \ProjetLecteur\Modele\ModelMusique::addAvisIndifferent($idMusique); 
         if ($modele->getError()===false){ 
-            require \ProjetLecteur\Config\Config::getVues()['infos']; 
+            $this->actionInfos();  
+        }
+        else { 
+            require \ProjetLecteur\Config\Config::getVuesErreur()['default']; 
+        }
+    }
+    
+    public function actionAjoutComment(){ 
+        $modele= \ProjetLecteur\Modele\ModelCommentaire::getModelCommentaireCreate($_POST); 
+        if ($modele->getError() ===false){ 
+            $this->actionInfos(); 
         }
         else { 
             require \ProjetLecteur\Config\Config::getVuesErreur()['default']; 
