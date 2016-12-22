@@ -6,14 +6,19 @@
             <file>file:/C:/wamp64/www/ProjetLecteur/Vue/vues/vueInfos.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Modele/ModelMusique.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Controleur/ControleurVisitor.php</file>
+            <file>file:/C:/wamp64/www/ProjetLecteur/Auth/AuthUtils.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Persistance/MusiqueGateway.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Vue/vues/vueInfosAdmin.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Auth/Authentification.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Metier/CommentaireValidation.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Vue/vues/vueSaisieMusiqueUpdate.php</file>
+            <file>file:/C:/wamp64/www/ProjetLecteur/Auth/ValidationRequest.php</file>
+            <file>file:/C:/wamp64/www/ProjetLecteur/Auth/ModelUser.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Vue/MusiqueFormView.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Config/Config.php</file>
+            <file>file:/C:/wamp64/www/ProjetLecteur/Metier/MusiqueValidation.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Persistance/DataBaseManager.php</file>
+            <file>file:/C:/wamp64/www/ProjetLecteur/Controleur/ValidationUtils.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Modele/ModelCollectionCommentaire.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Auth/UserGateway.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Modele/ModelCommentaire.php</file>
@@ -27,6 +32,7 @@
             <file>file:/C:/wamp64/www/ProjetLecteur/Metier/MusiqueFabrique.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Persistance/CommentaireGateway.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Vue/vues/vueAccueil.php</file>
+            <file>file:/C:/wamp64/www/ProjetLecteur/Persistance/MusiqueUserGateway.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Vue/vues/vueAdmin.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Metier/CommentaireFabrique.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Vue/CommentaireView.php</file>

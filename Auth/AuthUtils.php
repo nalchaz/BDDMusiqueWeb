@@ -19,10 +19,9 @@ class AuthUtils {
         $lengthCondition = ( strlen($wouldBePasswd) >= 8 &&
                 strlen($wouldBePasswd) <= 35);
 
-        $CharacterDiversityCondition = preg_match( "/[a−z]/" ,$wouldBePasswd)
-        && preg_match( "/[A−Z]/" ,$wouldBePasswd)
+        $CharacterDiversityCondition = preg_match( "/[A−Z]/" ,$wouldBePasswd)
         && preg_match( "/[0−9]/",$wouldBePasswd) ; 
-        return $lengthCondition ;
+        return $lengthCondition && $CharacterDiversityCondition ;
     }
 
 }

@@ -46,7 +46,7 @@ class MusiqueView {
        
         $htmlCode="<p class=\"titreI\">".$musique->titre."</p>"; 
         if ($musique->nomAuteur!=""){
-            $htmlCode.="<p class=\"auteur\"> ".$musique->nomAuteur."</p>";
+            $htmlCode.="<p class=\"auteur\"> Auteur : ".$musique->nomAuteur."</p>";
         }
         else { 
             $htmlCode.=""; 
@@ -66,12 +66,11 @@ class MusiqueView {
             $htmlCode.=""; 
         }
         if ($musique->anneeParution!=""){
-            $htmlCode.="<p class=\"annee\">".$musique->anneeParution."</p>";
+            $htmlCode.="<p class=\"annee\">Sorti en ".$musique->anneeParution."</p>";
         }
         else { 
             $htmlCode.=""; 
         }
-        $htmlCode.="<p class=\"periodeMelI\">Mise en ligne le : ".$musique->periodeMel."</p>"; 
         return $htmlCode; 
     } 
     

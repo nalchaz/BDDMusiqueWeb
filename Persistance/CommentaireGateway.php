@@ -25,7 +25,7 @@ class CommentaireGateway {
             }
         }
         if ($nb>=3){ //Si déjà 3 commentaires on en supprime 1
-           $resultSupp=DataBaseManager::getInstance()->prepareAndExecuteQuery('DELETE FROM '.'commentaires WHERE idMusique= ? ORDER BY heureInsertion LIMIT 1'
+           $resultSupp=DataBaseManager::getInstance()->prepareAndExecuteQuery('DELETE FROM '.'commentaires WHERE idMusique= ? ORDER BY dateInsertion,heureInsertion LIMIT 1'
                ,$args);
            if ($resultSupp === false){ 
                $dataError['persistance']="Echec requête"; 
@@ -75,7 +75,7 @@ class CommentaireGateway {
     
     public static function getCommentaireMusique(&$dataError,$idMusique){ 
         $args=array($idMusique); 
-        $queryResult= DataBaseManager::getInstance()->prepareAndExecuteQuery('SELECT * FROM commentaires WHERE idMusique= ? ORDER BY heureInsertion DESC',$args);
+        $queryResult= DataBaseManager::getInstance()->prepareAndExecuteQuery('SELECT * FROM commentaires WHERE idMusique= ? ORDER BY dateInsertion,heureInsertion DESC',$args);
         $collectionCommentaire=array(); 
         if ($queryResult !==false){ 
             foreach ($queryResult as $row){ 

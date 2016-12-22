@@ -35,11 +35,16 @@ class MusiqueFabrique
         }
     }
     
-    protected static function validatePeriode ($periodeMel){ 
-        if (empty($periodeMel)){ 
-            throw new \Exception("La période de mise en ligne doit être renseignée"); 
+    protected static function validateDuree($duree){
+        if ($duree != "") {
+            if (!preg_match('/^[0-9]{*}$/', $duree)) {
+
+                throw new \Exception("La durée doit être un nombre entier");
+            }
         }
     }
+    
+    
     
     protected static function validateCouverture ($couverture){ 
         if (empty($couverture)){ 
@@ -69,16 +74,17 @@ class MusiqueFabrique
           $dataErrors['anneeParution']=$ex->getMessage();  
        }
        try { 
-           self::validatePeriode($musique->periodeMel);
-       } 
-       catch (\Exception $ex) {
-          $dataErrors['periodeMel']=$ex->getMessage();  
-       }
-       try { 
            self::validateCouverture($musique->couvertureAlbum);
        } 
        catch (\Exception $ex) {
           $dataErrors['couvertureAlbum']=$ex->getMessage();  
+       }
+       
+       try { 
+           self::validateDuree($musique->duree);
+       } 
+       catch (\Exception $ex) {
+          $dataErrors['duree']=$ex->getMessage();  
        }
    }
 

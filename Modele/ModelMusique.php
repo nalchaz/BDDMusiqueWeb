@@ -61,24 +61,46 @@ class ModelMusique extends Model{
         return $model; 
     }
     
+    
+    
     public static function addAvisFavorable ($idMusique) { 
-        $model= new self (array()); 
-        @$model->musique= \ProjetLecteur\Persistance\MusiqueGateway::addAvisFavorable($model->dataError,$idMusique); 
+        $model= new self (array());
+        $verif=true;  
+        // Pour tester si l'avis a déjà été donné par cet utilisateur sur cette musique
+        $model->musique=\ProjetLecteur\Persistance\MusiqueUserGateway::addAvis($_SESSION['email'],$idMusique, $model->dataError);  
+        if (!empty($model->dataError)){ 
+            $verif=false; 
+        }
+        $model->musique= \ProjetLecteur\Persistance\MusiqueGateway::addAvisFavorable($model->dataError,$idMusique,$verif); 
         $model->title="Avis positif ajouté"; 
         return $model;
+        
     }
     
     public static function addAvisDefavorable ($idMusique) { 
-        $model= new self (array()); 
-        @$model->musique= \ProjetLecteur\Persistance\MusiqueGateway::addAvisDefavorable($model->dataError,$idMusique); 
-        $model->title="Avis positif ajouté"; 
+        $model= new self (array());
+        $verif=true;  
+        // Pour tester si l'avis a déjà été donné par cet utilisateur sur cette musique
+        $model->musique=\ProjetLecteur\Persistance\MusiqueUserGateway::addAvis($_SESSION['email'],$idMusique, $model->dataError);  
+        if (!empty($model->dataError)){ 
+            $verif=false; 
+        }
+        $model->musique= \ProjetLecteur\Persistance\MusiqueGateway::addAvisDefavorable($model->dataError,$idMusique,$verif); 
+        $model->title="Avis Négatif ajouté"; 
         return $model;
     }
     
     public static function addAvisIndifferent ($idMusique) { 
-        $model= new self (array()); 
-        @$model->musique= \ProjetLecteur\Persistance\MusiqueGateway::addAvisIndifferent($model->dataError,$idMusique); 
-        $model->title="Avis positif ajouté"; 
+        $model= new self (array());
+        $verif=true;  
+        // Pour tester si l'avis a déjà été donné par cet utilisateur sur cette musique
+        $model->musique=\ProjetLecteur\Persistance\MusiqueUserGateway::addAvis($_SESSION['email'],$idMusique, $model->dataError);  
+        if (!empty($model->dataError)){ 
+            $verif=false; 
+        }
+        //si la vérif est false l'incrémentation ne se fera pas
+        $model->musique= \ProjetLecteur\Persistance\MusiqueGateway::addAvisIndifferent($model->dataError,$idMusique,$verif); 
+        $model->title="Avis Indifférent ajouté"; 
         return $model;
     }
 }

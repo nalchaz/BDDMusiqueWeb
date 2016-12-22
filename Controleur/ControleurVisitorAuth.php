@@ -58,9 +58,13 @@ class ControleurVisitorAuth {
     public function actionJaime() { 
         $rawId=isset($_REQUEST['idMusique']) ? $_REQUEST['idMusique'] : ""; 
         $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
-        $modele= \ProjetLecteur\Modele\ModelMusique::addAvisFavorable($idMusique); 
-        if ($modele->getError()===false){ 
+        $modele=\ProjetLecteur\Modele\ModelMusique::addAvisFavorable($idMusique);
+        if (isset($modele->getError()['verif'])){ 
+            echo "<p style=\"position : absolute; margin-top: 40px; color : red; font-size : 20px;\">Avis déjà ajouté</p>"; 
             $this->actionInfos();  
+        }
+        else if ($modele->getError()===false){ 
+            $this->actionInfos(); 
         }
         else { 
             require \ProjetLecteur\Config\Config::getVuesErreur()['default']; 
@@ -70,9 +74,13 @@ class ControleurVisitorAuth {
     public function actionJaimepas() { 
         $rawId=isset($_REQUEST['idMusique']) ? $_REQUEST['idMusique'] : ""; 
         $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
-        $modele= \ProjetLecteur\Modele\ModelMusique::addAvisDefavorable($idMusique); 
-        if ($modele->getError()===false){ 
+        $modele=\ProjetLecteur\Modele\ModelMusique::addAvisDefavorable($idMusique);
+        if (isset($modele->getError()['verif'])){ 
+            echo "<p style=\"position : absolute; margin-top: 40px; color : red; font-size : 20px;\">Avis déjà ajouté</p>"; 
             $this->actionInfos();  
+        }
+        else if ($modele->getError()===false){ 
+            $this->actionInfos(); 
         }
         else { 
             require \ProjetLecteur\Config\Config::getVuesErreur()['default']; 
@@ -82,9 +90,13 @@ class ControleurVisitorAuth {
     public function actionIndiffere() { 
         $rawId=isset($_REQUEST['idMusique']) ? $_REQUEST['idMusique'] : ""; 
         $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
-        $modele= \ProjetLecteur\Modele\ModelMusique::addAvisIndifferent($idMusique); 
-        if ($modele->getError()===false){ 
+        $modele=\ProjetLecteur\Modele\ModelMusique::addAvisIndifferent($idMusique);
+        if (isset($modele->getError()['verif'])){ 
+            echo "<p style=\"position : absolute; margin-top: 40px; color : red; font-size : 20px;\">Avis déjà ajouté</p>"; 
             $this->actionInfos();  
+        }
+        else if ($modele->getError()===false){ 
+            $this->actionInfos(); 
         }
         else { 
             require \ProjetLecteur\Config\Config::getVuesErreur()['default']; 

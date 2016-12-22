@@ -64,7 +64,7 @@ class MusiqueGateway {
             $queryResult= DataBaseManager::getInstance()->prepareAndExecuteQueryAssoc('REPLACE INTO '.'musiques(titre, nomAuteur, couvertureAlbum, nomAlbum,' 
                     .'anneeParution, duree, nbavisFavorables, nbavisIndifferents, nbavisDefavorables, idMusique, periodeMel,cheminAudio)'  
                     .'VALUES (:titre,:nomAuteur, :couvertureAlbum, :nomAlbum,' 
-                    .':anneeParution, :duree, :nbavisFavorables, :nbavisIndifferents, :nbavisDefavorables, :idMusique, :periodeMel,:cheminAudio)', 
+                    .':anneeParution, :duree, :nbavisFavorables, :nbavisIndifferents, :nbavisDefavorables, :idMusique, sysdate(),:cheminAudio)', 
                     $inputArray); 
             if ($queryResult ===false){ 
                 $dataError['persistance']= "Problème d'exécution de la requête"; 
@@ -95,28 +95,31 @@ class MusiqueGateway {
         return $musique; 
     }
    
-    public static function addAvisFavorable (&$dataError,$idMusique){ 
+    public static function addAvisFavorable (&$dataError,$idMusique,$verif){ 
         $dataErrorIdSearch=array(); 
         $musique=self::getMusiqueById($dataErrorIdSearch, $idMusique); 
         $musique->nbavisFavorables++; 
-        if (empty($dataErrorIdSearch)){ 
-            $queryResult = DataBaseManager::getInstance()->prepareAndExecuteQuery('UPDATE musiques set nbavisFavorables=nbavisFavorables+1 WHERE idMusique=?',$args=array($idMusique)); 
+        if (empty($dataErrorIdSearch) && $verif==true){ 
+            $args=array($idMusique); 
+            $queryResult = DataBaseManager::getInstance()->prepareAndExecuteQuery('UPDATE musiques set nbavisFavorables=nbavisFavorables+1 WHERE idMusique=?',$args); 
             if ($queryResult ===false){ 
                 $dataError['persistance']= "Problème d'exécution de la requête"; 
             }
             else { 
                 $dataError= array_merge($dataError,$dataErrorIdSearch); 
             }
-            return $musique; 
+            
         }
+        return $musique; 
     }
     
-    public static function addAvisIndifferent (&$dataError,$idMusique){ 
+    public static function addAvisIndifferent (&$dataError,$idMusique,$verif){ 
         $dataErrorIdSearch=array(); 
         $musique=self::getMusiqueById($dataErrorIdSearch, $idMusique); 
         $musique->nbavisIndifferents++; 
-        if (empty($dataErrorIdSearch)){ 
-            $queryResult = DataBaseManager::getInstance()->prepareAndExecuteQuery('UPDATE musiques set nbavisIndifferents=nbavisIndifferents+1 WHERE idMusique=?',$args=array($idMusique)); 
+        if (empty($dataErrorIdSearch) && $verif==true){
+            $args=array($idMusique); 
+            $queryResult = DataBaseManager::getInstance()->prepareAndExecuteQuery('UPDATE musiques set nbavisIndifferents=nbavisIndifferents+1 WHERE idMusique=?',$args); 
             if ($queryResult ===false){ 
                 $dataError['persistance']= "Problème d'exécution de la requête"; 
             }
@@ -127,12 +130,13 @@ class MusiqueGateway {
         }
     }
     
-    public static function addAvisDefavorable (&$dataError,$idMusique){ 
+    public static function addAvisDefavorable (&$dataError,$idMusique,$verif){ 
         $dataErrorIdSearch=array(); 
         $musique=self::getMusiqueById($dataErrorIdSearch, $idMusique); 
         $musique->nbavisDefavorables++; 
-        if (empty($dataErrorIdSearch)){ 
-            $queryResult = DataBaseManager::getInstance()->prepareAndExecuteQuery('UPDATE musiques set nbavisDefavorables=nbavisDefavorables+1 WHERE idMusique=?',$args=array($idMusique)); 
+        if (empty($dataErrorIdSearch) && $verif==true){ 
+            $args=array($idMusique); 
+            $queryResult = DataBaseManager::getInstance()->prepareAndExecuteQuery('UPDATE musiques set nbavisDefavorables=nbavisDefavorables+1 WHERE idMusique=?',$args); 
             if ($queryResult ===false){ 
                 $dataError['persistance']= "Problème d'exécution de la requête"; 
             }

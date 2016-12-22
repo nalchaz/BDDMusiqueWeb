@@ -183,6 +183,7 @@ p ,strong{
 #affich { 
     text-decoration: underline ;
     color : crimson ;
+    font-size : 15px; 
 }
 
 #afficherComms { 
@@ -192,6 +193,7 @@ p ,strong{
 .unCom { 
     line-height: 4px; 
     text-align: left; 
+    margin-left : 20%; 
 }
 
 .logincom { 
@@ -209,7 +211,8 @@ p ,strong{
     margin-top : 0; 
     font-size : 16px; 
     text-align: left; 
-    color : blue; 
+    color : ivory ; 
+    margin-left : 10px; 
 }
 
 .rights{
