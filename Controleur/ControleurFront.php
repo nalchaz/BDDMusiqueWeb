@@ -34,11 +34,8 @@ class ControleurFront {
                     }
                     break; 
                 case "infos" :
-                    if ($role ==="visitor"){ 
+                    if ($role ==="visitor" || $role==="admin"){ 
                         $privateCtrl=new ControleurVisitorAuth($action);
-                    }
-                    else if ($role ==="admin"){
-                        $adminCtrl=new ControleurAdmin($action);
                     }
                     else { 
                         require (\ProjetLecteur\Config\Config::getVues()["pageAuth"]); 

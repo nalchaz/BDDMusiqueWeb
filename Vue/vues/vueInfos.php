@@ -39,7 +39,9 @@
                     <?php 
                         foreach ($modele->getCommentaires() as $com){ 
                             echo "<div class=\"unCom\">"; 
-                            
+                            if ($_SESSION['role']==="admin"){
+                                echo "<a class=\"deleteCom\" href=\"?action=deleteCom&idCommentaire=".$com->idCommentaire."\">Supprimer ce commentaire</a>";
+                            }
                             echo "<p class=\"logincom\">".$com->login." le ".$com->dateInsertion." à ".$com->heureInsertion." : </p>"; 
                             
                             echo "<p class=\"textcom\">".$com->texte."</p>"; 

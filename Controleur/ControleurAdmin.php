@@ -32,9 +32,6 @@ class ControleurAdmin {
             case "update" : 
                $this->actionUpdate(); 
                 break; 
-            case "infos":
-                $this->actionInfos(); 
-                break;
             case "deleteCom" : 
                 $this->actionDeleteCom(); 
                 break; 
@@ -68,17 +65,7 @@ class ControleurAdmin {
         
     }
     
-    public function actionInfos(){ 
-        $rawId=isset($_REQUEST['idMusique']) ? $_REQUEST['idMusique'] : ""; 
-        $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
-        $modele= \ProjetLecteur\Modele\ModelMusique::getModelMusique($idMusique);      
-        if ($modele->getError() ===false){
-            require \ProjetLecteur\Config\Config::getVues()['infosAdmin']; 
-        }
-        else { 
-            require \ProjetLecteur\Config\Config::getVuesErreur()['default']; 
-        }
-    }
+    
     
     public function actionDelete (){ 
         $idMusique= filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 

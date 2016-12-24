@@ -75,7 +75,7 @@ class CommentaireGateway {
     
     public static function getCommentaireMusique(&$dataError,$idMusique){ 
         $args=array($idMusique); 
-        $queryResult= DataBaseManager::getInstance()->prepareAndExecuteQuery('SELECT * FROM commentaires WHERE idMusique= ? ORDER BY dateInsertion,heureInsertion DESC',$args);
+        $queryResult= DataBaseManager::getInstance()->prepareAndExecuteQuery('SELECT * FROM commentaires WHERE idMusique= ? ORDER BY dateInsertion,heureInsertion DESC ',$args);
         $collectionCommentaire=array(); 
         if ($queryResult !==false){ 
             foreach ($queryResult as $row){ 
