@@ -20,7 +20,11 @@
                 </div>
             </div>
             <div id="infosCtr">
-                <?php echo \ProjetLecteur\Vue\MusiqueView::getHtmlInfos($modele->getData()); ?>
+             <?php  
+                if ($verif===false) { 
+                    echo "<p style=\"margin-top: 40px; color : red;font-size : 20px;\">Avis déjà ajouté</p>"; 
+                }
+                echo \ProjetLecteur\Vue\MusiqueView::getHtmlInfos($modele->getData()); ?>
                 <div id="comment"  >
                     <p id="ajoutComment"  >Ajouter un commentaire (200 caractères maximum)</p>
                     <form action="?action=ajoutComment" method="post" id="formulaire">
@@ -33,7 +37,7 @@
                         <button type="submit" >Ajouter</button>                    
                     </form>
                 </div>
-                <p id="affich">Afficher les commentaires</p>
+                <p id="affich">Cliquez pour afficher les commentaires</p>
                 <div class="afficherComms" id="afficherComms">
                     
                     <?php 

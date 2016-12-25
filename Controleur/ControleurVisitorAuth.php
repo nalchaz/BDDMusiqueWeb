@@ -43,7 +43,7 @@ class ControleurVisitorAuth {
         require (\ProjetLecteur\Config\Config::getVues()['default']); 
     }
     
-    public function actionInfos(){ 
+    public function actionInfos($verif=null){ 
         $rawId=isset($_REQUEST['idMusique']) ? $_REQUEST['idMusique'] : ""; 
         $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
         $modele= \ProjetLecteur\Modele\ModelMusique::getModelMusique($idMusique);      
@@ -59,12 +59,11 @@ class ControleurVisitorAuth {
         $rawId=isset($_REQUEST['idMusique']) ? $_REQUEST['idMusique'] : ""; 
         $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
         $modele=\ProjetLecteur\Modele\ModelMusique::addAvisFavorable($idMusique);
-        if (isset($modele->getError()['verif'])){ 
-            echo "<p style=\"position : absolute; margin-top: 40px; color : red; font-size : 20px;\">Avis déjà ajouté</p>"; 
-            $this->actionInfos();  
-        }
-        else if ($modele->getError()===false){ 
+        if ($modele->getError()===false ){ 
             $this->actionInfos(); 
+        }
+        else if (isset($modele->getError()['verif'])){ 
+            $this->actionInfos(false); 
         }
         else { 
             require \ProjetLecteur\Config\Config::getVuesErreur()['default']; 
@@ -75,12 +74,12 @@ class ControleurVisitorAuth {
         $rawId=isset($_REQUEST['idMusique']) ? $_REQUEST['idMusique'] : ""; 
         $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
         $modele=\ProjetLecteur\Modele\ModelMusique::addAvisDefavorable($idMusique);
-        if (isset($modele->getError()['verif'])){ 
-            echo "<p style=\"position : absolute; margin-top: 40px; color : red; font-size : 20px;\">Avis déjà ajouté</p>"; 
-            $this->actionInfos();  
-        }
-        else if ($modele->getError()===false){ 
+        
+        if ($modele->getError()===false ){ 
             $this->actionInfos(); 
+        }
+        else if (isset($modele->getError()['verif'])){ 
+            $this->actionInfos(false); 
         }
         else { 
             require \ProjetLecteur\Config\Config::getVuesErreur()['default']; 
@@ -91,12 +90,12 @@ class ControleurVisitorAuth {
         $rawId=isset($_REQUEST['idMusique']) ? $_REQUEST['idMusique'] : ""; 
         $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
         $modele=\ProjetLecteur\Modele\ModelMusique::addAvisIndifferent($idMusique);
-        if (isset($modele->getError()['verif'])){ 
-            echo "<p style=\"position : absolute; margin-top: 40px; color : red; font-size : 20px;\">Avis déjà ajouté</p>"; 
-            $this->actionInfos();  
-        }
-        else if ($modele->getError()===false){ 
+        
+        if ($modele->getError()===false ){ 
             $this->actionInfos(); 
+        }
+        else if (isset($modele->getError()['verif'])){ 
+            $this->actionInfos(false); 
         }
         else { 
             require \ProjetLecteur\Config\Config::getVuesErreur()['default']; 
