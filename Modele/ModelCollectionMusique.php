@@ -19,7 +19,7 @@ class ModelCollectionMusique extends Model {
         $this->dataError=array(); 
     }
     
-    public static function getModelAdresseAll (){ 
+    public static function getModelMusiqueAll (){ 
         $model = new self(array()); 
         $model->collectionMusique = \ProjetLecteur\Persistance\MusiqueGateway::getMusiqueAll($model->dataError); 
         return $model; 

@@ -13,7 +13,7 @@ namespace ProjetLecteur\Modele;
  *
  * @author alexd
  */
-class ModelCollectionCommentaire {
+class ModelCollectionCommentaire extends Model {
     private $collectionCommentaire ; 
     
     public function getData(){ 

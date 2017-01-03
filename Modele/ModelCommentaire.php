@@ -13,7 +13,7 @@ namespace ProjetLecteur\Modele;
  *
  * @author alexd
  */
-class ModelCommentaire extends model{
+class ModelCommentaire extends Model{
     private $commentaire; 
     private $title; 
     
