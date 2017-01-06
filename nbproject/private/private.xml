@@ -3,15 +3,27 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/wamp64/www/ProjetLecteur/Vue/vues/vueInfos.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Modele/ModelMusique.php</file>
-            <file>file:/C:/wamp64/www/ProjetLecteur/Vue/vues/vueAccueil.php</file>
+            <file>file:/C:/wamp64/www/ProjetLecteur/Controleur/ControleurVisitorAuthMusique.php</file>
+            <file>file:/C:/wamp64/www/ProjetLecteur/Controleur/ControleurVisitorAuthCommentaire.php</file>
+            <file>file:/C:/wamp64/www/ProjetLecteur/Controleur/ControleurFront.php</file>
+            <file>file:/C:/wamp64/www/ProjetLecteur/Persistance/MusiqueGateway.php</file>
+            <file>file:/C:/wamp64/www/ProjetLecteur/Vue/vues/vueInfosAdmin.php</file>
+            <file>file:/C:/wamp64/www/ProjetLecteur/Vue/vues/vueVisitorAuth.php</file>
+            <file>file:/C:/wamp64/www/ProjetLecteur/Persistance/CommentaireGateway.php</file>
+            <file>file:/C:/wamp64/www/ProjetLecteur/Controleur/ControleurAdminMusique.php</file>
+            <file>file:/C:/wamp64/www/ProjetLecteur/Persistance/MusiqueUserGateway.php</file>
+            <file>file:/C:/wamp64/www/ProjetLecteur/Config/Config.php</file>
+            <file>file:/C:/wamp64/www/ProjetLecteur/Controleur/ControleurAuth.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Vue/vues/vueAdmin.php</file>
-            <file>file:/C:/wamp64/www/ProjetLecteur/Metier/Commentaire.php</file>
-            <file>file:/C:/wamp64/www/ProjetLecteur/Metier/CommentaireFabrique.php</file>
+            <file>file:/C:/wamp64/www/ProjetLecteur/Controleur/ControleurAdminCommentaire.php</file>
+            <file>file:/C:/wamp64/www/ProjetLecteur/Vue/CommentaireView.php</file>
+            <file>file:/C:/wamp64/www/ProjetLecteur/Persistance/DataBaseManager.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Modele/ModelCollectionCommentaire.php</file>
-            <file>file:/C:/wamp64/www/ProjetLecteur/Metier/CommentaireValidation.php</file>
-            <file>file:/C:/wamp64/www/ProjetLecteur/Modele/ModelCollectionMusique.php</file>
+            <file>file:/C:/wamp64/www/ProjetLecteur/Auth/UserGateway.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Modele/ModelCommentaire.php</file>
+            <file>file:/C:/wamp64/www/ProjetLecteur/Auth/SessionUtils.php</file>
         </group>
     </open-files>
 </project-private>

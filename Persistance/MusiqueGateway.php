@@ -111,6 +111,7 @@ class MusiqueGateway {
             }
             
         }
+        $musique= self::getMusiqueById($dataErrorIdSearch, $idMusique); 
         return $musique; 
     }
     
@@ -126,8 +127,10 @@ class MusiqueGateway {
             else { 
                 $dataError= array_merge($dataError,$dataErrorIdSearch); 
             }
-            return $musique; 
+            
         }
+        $musique= self::getMusiqueById($dataErrorIdSearch, $idMusique); 
+        return $musique; 
     }
     
     public static function addAvisDefavorable (&$dataError,$idMusique,$verif){ 
@@ -142,15 +145,17 @@ class MusiqueGateway {
             else { 
                 $dataError= array_merge($dataError,$dataErrorIdSearch); 
             }
-            return $musique; 
+            
         }
+        $musique= self::getMusiqueById($dataErrorIdSearch, $idMusique); 
+        return $musique; 
     }
     
     public static function deleteMusique (&$dataError,$idMusique){ 
         $dataErrorIdSearch=array(); 
         $musique=self::getMusiqueById($dataErrorIdSearch, $idMusique); 
         if (empty($dataErrorIdSearch)){ 
-            $queryResult = DataBaseManager::getInstance()->prepareAndExecuteQuery('DELETE FROM musiques WHERE idMusique=?',$args=array($idMusique)); 
+            $queryResult = DataBaseManager::getInstance()->prepareAndExecuteQuery('DELETE FROM musiques WHERE idMusique=? ' ,$args=array($idMusique)); 
             if ($queryResult ===false){ 
                 $dataError['persistance']= "Problème d'exécution de la requête"; 
             }

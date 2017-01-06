@@ -26,7 +26,7 @@ class ModelCommentaire extends Model{
     }
     
     public static function getModelCommentaireCreate($inputArray){ 
-        $model= new self(array()); 
+        $model= new self(array());
         $model->commentaire= \ProjetLecteur\Persistance\CommentaireGateway::createCommentaire($model->dataError,$inputArray); 
         $model->title="Le commentaire a été insérée"; 
         return $model;

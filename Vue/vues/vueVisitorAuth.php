@@ -32,7 +32,7 @@
             <?php
             $nbmusiques = 0;
             $class;
-            $modele = \ProjetLecteur\Modele\ModelCollectionMusique::getModelAdresseAll();
+            $modele = \ProjetLecteur\Modele\ModelCollectionMusique::getModelMusiqueAll();
             echo "<table id=\"playListBody\">";
             echo "<thead class=\"head\">";
             echo "<th class=\"left\">PLAY</th>";

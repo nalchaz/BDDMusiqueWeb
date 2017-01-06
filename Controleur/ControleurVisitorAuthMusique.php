@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace ProjetLecteur\Controleur;
 
 /**
@@ -9,7 +7,7 @@ namespace ProjetLecteur\Controleur;
  *
  * @author alexd
  */
-class ControleurVisitorAuth {
+class ControleurVisitorAuthMusique {
 
     function __construct($action) {
         switch ($action) {
@@ -25,12 +23,6 @@ class ControleurVisitorAuth {
             case "indiffere": 
                 $this->actionIndiffere(); 
                 break; 
-            case "ajoutComment": 
-                $this->actionAjoutComment(); 
-                break; 
-            case "deconnexion":
-                $this->actionDeconnexion();
-                break;
             default : 
                 require(\ProjetLecteur\Config\Config::getVues()["visitorAuth"]);
                 break; 
@@ -38,13 +30,8 @@ class ControleurVisitorAuth {
     }
     
     
-    public function actionDeconnexion (){ 
-        \ProjetLecteur\Auth\Authentification::deconnexion() ;
-        require (\ProjetLecteur\Config\Config::getVues()['default']); 
-    }
     
     public function actionInfos($verif=null){ 
-        $rawId=isset($_REQUEST['idMusique']) ? $_REQUEST['idMusique'] : ""; 
         $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
         $modele= \ProjetLecteur\Modele\ModelMusique::getModelMusique($idMusique);      
         if ($modele->getError() ===false){
@@ -56,14 +43,15 @@ class ControleurVisitorAuth {
     }
     
     public function actionJaime() { 
-        $rawId=isset($_REQUEST['idMusique']) ? $_REQUEST['idMusique'] : ""; 
         $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
         $modele=\ProjetLecteur\Modele\ModelMusique::addAvisFavorable($idMusique);
         if ($modele->getError()===false ){ 
-            $this->actionInfos(); 
+            $verif=true; 
+            require \ProjetLecteur\Config\Config::getVues()['infos']; 
         }
         else if (isset($modele->getError()['verif'])){ 
-            $this->actionInfos(false); 
+            $verif=false;
+            require \ProjetLecteur\Config\Config::getVues()['infos']; 
         }
         else { 
             require \ProjetLecteur\Config\Config::getVuesErreur()['default']; 
@@ -71,15 +59,15 @@ class ControleurVisitorAuth {
     }
     
     public function actionJaimepas() { 
-        $rawId=isset($_REQUEST['idMusique']) ? $_REQUEST['idMusique'] : ""; 
         $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
         $modele=\ProjetLecteur\Modele\ModelMusique::addAvisDefavorable($idMusique);
-        
         if ($modele->getError()===false ){ 
-            $this->actionInfos(); 
+            $verif=true; 
+            require \ProjetLecteur\Config\Config::getVues()['infos']; 
         }
         else if (isset($modele->getError()['verif'])){ 
-            $this->actionInfos(false); 
+            $verif=false;
+            require \ProjetLecteur\Config\Config::getVues()['infos']; 
         }
         else { 
             require \ProjetLecteur\Config\Config::getVuesErreur()['default']; 
@@ -87,29 +75,22 @@ class ControleurVisitorAuth {
     }
     
     public function actionIndiffere() { 
-        $rawId=isset($_REQUEST['idMusique']) ? $_REQUEST['idMusique'] : ""; 
         $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
         $modele=\ProjetLecteur\Modele\ModelMusique::addAvisIndifferent($idMusique);
         
         if ($modele->getError()===false ){ 
-            $this->actionInfos(); 
+            $verif=true; 
+            require \ProjetLecteur\Config\Config::getVues()['infos']; 
         }
-        else if (isset($modele->getError()['verif'])){ 
-            $this->actionInfos(false); 
+        else if (isset($modele->getError()['verif'])){
+            $verif=false;
+            require \ProjetLecteur\Config\Config::getVues()['infos'];
         }
         else { 
             require \ProjetLecteur\Config\Config::getVuesErreur()['default']; 
         }
     }
     
-    public function actionAjoutComment(){ 
-        $modele= \ProjetLecteur\Modele\ModelCommentaire::getModelCommentaireCreate($_POST); 
-        if ($modele->getError() ===false){ 
-            $this->actionInfos(); 
-        }
-        else { 
-            require \ProjetLecteur\Config\Config::getVuesErreur()['default']; 
-        }
-    }
+
 
 }

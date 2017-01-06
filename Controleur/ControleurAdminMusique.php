@@ -13,7 +13,7 @@ namespace ProjetLecteur\Controleur;
  *
  * @author alexd
  */
-class ControleurAdmin {
+class ControleurAdminMusique {
 
     function __construct($action) {
         switch ($action) {
@@ -32,8 +32,17 @@ class ControleurAdmin {
             case "update" : 
                $this->actionUpdate(); 
                 break; 
-            case "deleteCom" : 
-                $this->actionDeleteCom(); 
+            case "infos" :
+                $this->actionInfos();
+                break;
+            case "jaime" :
+                $this->actionJaime();
+                break;
+            case "jaimepas" : 
+                $this->actionJaimePas(); 
+                break; 
+            case "indiffere": 
+                $this->actionIndiffere(); 
                 break; 
             default :
                 require(\ProjetLecteur\Config\Config::getVues()["admin"]);
@@ -105,18 +114,68 @@ class ControleurAdmin {
         }
     }
     
-    public function actionDeleteCom (){ 
-        $idCommentaire= filter_var($_REQUEST['idCommentaire'], FILTER_SANITIZE_STRING); 
-        $modele=\ProjetLecteur\Modele\ModelCommentaire::deleteCommentaire($idCommentaire);       
-        if ($modele->getError()===false){ 
-              require (\ProjetLecteur\Config\Config::getVues()['afficheCommentaire']); 
+    
+   public function actionInfos($verif=null){ 
+        $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
+        $modele= \ProjetLecteur\Modele\ModelMusique::getModelMusique($idMusique);      
+        if ($modele->getError() ===false){
+            require \ProjetLecteur\Config\Config::getVues()['infosAdmin']; 
         }
         else { 
-            require (\ProjetLecteur\Config\Config::getVuesErreur()['default']);
+            require \ProjetLecteur\Config\Config::getVuesErreur()['default']; 
         }
     }
     
-   
+    public function actionJaime() { 
+        $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
+        $modele=\ProjetLecteur\Modele\ModelMusique::addAvisFavorable($idMusique);
+        if ($modele->getError()===false ){ 
+            $verif=true; 
+            require \ProjetLecteur\Config\Config::getVues()['infosAdmin']; 
+        }
+        else if (isset($modele->getError()['verif'])){ 
+            $verif=false;
+            require \ProjetLecteur\Config\Config::getVues()['infosAdmin']; 
+        }
+        else { 
+            require \ProjetLecteur\Config\Config::getVuesErreur()['default']; 
+        }
+    }
+    
+    public function actionJaimepas() { 
+        $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
+        $modele=\ProjetLecteur\Modele\ModelMusique::addAvisDefavorable($idMusique);
+        
+        if ($modele->getError()===false ){ 
+            $verif=true; 
+            require \ProjetLecteur\Config\Config::getVues()['infosAdmin']; 
+        }
+        else if (isset($modele->getError()['verif'])){ 
+            $verif=false;
+            require \ProjetLecteur\Config\Config::getVues()['infosAdmin']; 
+        }
+        else { 
+            require \ProjetLecteur\Config\Config::getVuesErreur()['default']; 
+        }
+    }
+    
+    public function actionIndiffere() { 
+        $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
+        $modele=\ProjetLecteur\Modele\ModelMusique::addAvisIndifferent($idMusique);
+        
+        if ($modele->getError()===false ){ 
+            $verif=true; 
+            require \ProjetLecteur\Config\Config::getVues()['infosAdmin']; 
+        }
+        else if (isset($modele->getError()['verif'])){
+            $verif=false;
+            require \ProjetLecteur\Config\Config::getVues()['infosAdmin'];
+        }
+        else { 
+            require \ProjetLecteur\Config\Config::getVuesErreur()['default']; 
+        }
+    }
     
     
-}    
+    
+}

@@ -71,6 +71,7 @@ class ModelMusique extends Model{
         if (!empty($model->dataError)){  
             $verif=false; 
         }
+        $model->commentaires=\ProjetLecteur\Modele\ModelCollectionCommentaire::getModelCommentaireMusique($idMusique);
         $model->musique=\ProjetLecteur\Persistance\MusiqueGateway::addAvisFavorable($model->dataError,$idMusique,$verif); 
         $model->title="Avis positif ajouté"; 
         return $model;
@@ -85,6 +86,7 @@ class ModelMusique extends Model{
         if (!empty($model->dataError)){ 
             $verif=false; 
         }
+        $model->commentaires=\ProjetLecteur\Modele\ModelCollectionCommentaire::getModelCommentaireMusique($idMusique);
         $model->musique=\ProjetLecteur\Persistance\MusiqueGateway::addAvisDefavorable($model->dataError,$idMusique,$verif); 
         $model->title="Avis Négatif ajouté"; 
         return $model;
@@ -99,6 +101,7 @@ class ModelMusique extends Model{
             $verif=false; 
         }
         //si la vérif est false l'incrémentation ne se fera pas
+        $model->commentaires=\ProjetLecteur\Modele\ModelCollectionCommentaire::getModelCommentaireMusique($idMusique);
         $model->musique=\ProjetLecteur\Persistance\MusiqueGateway::addAvisIndifferent($model->dataError,$idMusique,$verif); 
         $model->title="Avis Indifférent ajouté"; 
         return $model;

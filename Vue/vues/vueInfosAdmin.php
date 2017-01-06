@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -43,7 +42,7 @@
                     <?php 
                         foreach ($modele->getCommentaires() as $com){ 
                             echo "<div class=\"unCom\">"; 
-
+                            echo "<a class=\"deleteCom\" href=\"?action=deleteCom&idCommentaire=".$com->idCommentaire."\">Supprimer ce commentaire</a>";
                             echo "<p class=\"logincom\">".$com->login." le ".$com->dateInsertion." à ".$com->heureInsertion." : </p>"; 
                             
                             echo "<p class=\"textcom\">".$com->texte."</p>"; 
@@ -72,3 +71,4 @@
         </script>
     </body>
 </html>
+

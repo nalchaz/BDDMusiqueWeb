@@ -13,7 +13,7 @@ namespace ProjetLecteur\Controleur;
  *
  * @author alexd
  */
-class ControleurVisitor {
+class ControleurAuth {
     function __construct($action) {
         switch($action){ 
             case "auth" : 
@@ -28,7 +28,9 @@ class ControleurVisitor {
             case "validateRegister": 
                 $this->actionValidateRegister(); 
                 break; 
-            
+            case "deconnexion" : 
+                $this->actionDeconnexion(); 
+                break; 
             default :
                 require(\ProjetLecteur\Config\Config::getVues()["default"]);
                 break;
@@ -84,6 +86,11 @@ class ControleurVisitor {
             require (\ProjetLecteur\Config\Config::getVues()["pageAuth"]);
             
         }
+    }
+    
+     public function actionDeconnexion (){ 
+        \ProjetLecteur\Auth\Authentification::deconnexion() ;
+        require (\ProjetLecteur\Config\Config::getVues()['default']); 
     }
     
     

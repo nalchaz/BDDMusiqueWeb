@@ -17,54 +17,67 @@ class ControleurFront {
                 case "auth" :
                 case "validateAuth" :
                 case "register":
-                case "validateRegister": 
-                    $publicCtrl = new ControleurVisitor($action);
+                case "validateRegister":
+                case "deconnexion" :
+                    $publicCtrl = new ControleurAuth($action);
                     break;
                 case "saisie" :
                 case "edit" :
                 case "update" :
                 case "create" :
                 case "delete" :
-                case "deleteCom":
                     if ($role === "admin") {
-                        $adminCtrl = new ControleurAdmin($action);
+                        $adminCtrl = new ControleurAdminMusique($action);
                     }
                     else { 
                         require (\ProjetLecteur\Config\Config::getVues()["pageAuth"]); 
                     }
                     break; 
-                case "infos" :
-                    if ($role ==="visitor" || $role==="admin"){ 
-                        $privateCtrl=new ControleurVisitorAuth($action);
+                case "deleteCom" : 
+                    if ($role === "admin") {
+                        $adminCtrl = new ControleurAdminCommentaire($action);
                     }
                     else { 
                         require (\ProjetLecteur\Config\Config::getVues()["pageAuth"]); 
                     }
                     break;
-                case "deconnexion" : 
+                case "infos" :
                 case "jaime":
                 case "jaimepas" :
-                case "indiffere": 
-                case "ajoutComment" : 
-                    
-                    if ($role ==="visitor" || $role==="admin") { 
-                        $privateCtrl= new ControleurVisitorAuth($action); 
+                case "indiffere":                    
+                    if ($role ==="visitor" ) { 
+                        $privateCtrl= new ControleurVisitorAuthMusique($action); 
+                    }
+                    else if ($role==="admin"){
+                        $adminCtrl=new ControleurAdminMusique($action); 
                     }
                     else {
                         require (\ProjetLecteur\Config\Config::getVues()["pageAuth"]); 
                     }
-                    break; 
-                default :
-                    if ($role === "admin"){ 
-                       $adminCtrl= new ControleurAdmin($action); 
-                   
+                    break;
+                case "ajoutComment" : 
+                    if ($role ==="visitor" ) { 
+                        $privateCtrl= new ControleurVisitorAuthCommentaire($action); 
                     }
-                    else if ($role ==="visitor") { 
-                        $privateCtrl= new ControleurVisitorAuth($action); 
+                    else if ($role==="admin"){
+                        $adminCtrl=new ControleurAdminCommentaire($action); 
                     }
                     else {
-                        $publicCtrl=new ControleurVisitor($action); 
+                        require (\ProjetLecteur\Config\Config::getVues()["pageAuth"]); 
                     }
+                    break;
+                default :
+                    if ($role ==="admin"){ 
+                        require(\ProjetLecteur\Config\Config::getVues()["admin"]);
+                    }
+                    else if ($role==="visitor"){ 
+                        require(\ProjetLecteur\Config\Config::getVues()["visitorAuth"]);
+                    }
+                    else { 
+                        require(\ProjetLecteur\Config\Config::getVues()["default"]);
+                    }
+                    break;
+                    
                     
             }
         }
