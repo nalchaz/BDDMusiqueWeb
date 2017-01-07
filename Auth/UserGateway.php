@@ -52,7 +52,6 @@ class UserGateway {
         }
         
         else {
-            echo $res; 
             $queryResult= \ProjetLecteur\Persistance\DataBaseManager::getInstance()->prepareAndExecuteQueryAssoc('INSERT INTO admin(login,password,role)'
                 . ' VALUES (:email,:password,:role)',$inputArray); 
             if ($queryResult===false){

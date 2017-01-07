@@ -48,7 +48,7 @@ class ControleurAdminCommentaire {
     
     public function actionAjoutComment(){ 
         
-        \ProjetLecteur\Modele\ModelCommentaire::CreateCommentaire($_POST); 
+        \ProjetLecteur\Modele\ModelCommentaire::createCommentaire($_POST); 
         $modele= \ProjetLecteur\Modele\ModelMusique::getModelMusique($_POST['idMusique']); 
         $modeleCommentaires= \ProjetLecteur\Modele\ModelCollectionCommentaire::getModelCommentaireMusique($_POST['idMusique']); 
         if ($modele->getError() ===false && $modeleCommentaires->getError()===false){ 
