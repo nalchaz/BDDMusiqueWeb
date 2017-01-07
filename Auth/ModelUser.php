@@ -51,6 +51,8 @@ class ModelUser extends \ProjetLecteur\Modele\Model{
 
     public static function createUser ($inputArray){ 
         $model=new self(array()); 
+        $model->role="visitor"; 
+        $model->email=$inputArray['email'];
         UserGateway::createUser($model->dataError, $inputArray); 
         return $model; 
     }

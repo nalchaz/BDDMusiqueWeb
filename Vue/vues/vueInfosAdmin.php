@@ -10,8 +10,9 @@
     <body>
         <div class="conteneur">
             <div id="header">
-                <div id="menu"> <?php echo "<p style=\"color : white ;\">Connecté en tant que " . $_SESSION['email'] . "</p>" ?> <a href="?action=default" class='retour' >Revenir à l'accueil</a></div>
-                <div id="header-Bottom">
+                <div id="menu"> <?php echo "<p style=\"color : white ;\">Connecté en tant que " . $_SESSION['email'] . "</p>" ?> <a href="?action=default" class='retour' >Revenir à l'accueil</a>
+                    <a href= "?action=deconnexion"> Se déconnecter</a>
+                </div>                <div id="header-Bottom">
                     <div id="logoBlock">
                         <h1>MusicShow</h1>
 
@@ -19,9 +20,11 @@
                 </div>
             </div>
             <div id="infosCtr">
-             <?php  
-                if ($verif===false) { 
-                    echo "<p style=\"margin-top: 40px; color : red;font-size : 20px;\">Avis déjà ajouté</p>"; 
+             <?php
+                if (isset($verif)){ 
+                    if ($verif===false) { 
+                        echo "<p style=\"margin-top: 40px; color : red;font-size : 20px;\">Avis déjà ajouté</p>"; 
+                    }
                 }
                 echo \ProjetLecteur\Vue\MusiqueView::getHtmlInfos($modele->getData()); ?>
                 <div id="comment"  >
@@ -40,7 +43,7 @@
                 <div class="afficherComms" id="afficherComms">
                     
                     <?php 
-                        foreach ($modele->getCommentaires() as $com){ 
+                        foreach ($modeleCommentaires->getData() as $com){ 
                             echo "<div class=\"unCom\">"; 
                             echo "<a class=\"deleteCom\" href=\"?action=deleteCom&idCommentaire=".$com->idCommentaire."\">Supprimer ce commentaire</a>";
                             echo "<p class=\"logincom\">".$com->login." le ".$com->dateInsertion." à ".$com->heureInsertion." : </p>"; 

@@ -35,7 +35,7 @@ class ControleurAdminCommentaire {
     
     public function actionDeleteCom (){ 
         $idCommentaire= filter_var($_REQUEST['idCommentaire'], FILTER_SANITIZE_STRING); 
-        $modele=\ProjetLecteur\Modele\ModelCommentaire::deleteCommentaire($idCommentaire);       
+        $modele=\ProjetLecteur\Modele\ModelCommentaire::getModelCommentaireDelete($idCommentaire);       
         if ($modele->getError()===false){ 
               require (\ProjetLecteur\Config\Config::getVues()['afficheCommentaire']); 
         }
@@ -47,10 +47,11 @@ class ControleurAdminCommentaire {
   
     
     public function actionAjoutComment(){ 
+        
+        \ProjetLecteur\Modele\ModelCommentaire::CreateCommentaire($_POST); 
         $modele= \ProjetLecteur\Modele\ModelMusique::getModelMusique($_POST['idMusique']); 
-        $modeleCom= \ProjetLecteur\Modele\ModelCommentaire::getModelCommentaireCreate($_POST); 
-        if ($modele->getError() ===false){ 
-            $verif=true; 
+        $modeleCommentaires= \ProjetLecteur\Modele\ModelCollectionCommentaire::getModelCommentaireMusique($_POST['idMusique']); 
+        if ($modele->getError() ===false && $modeleCommentaires->getError()===false){ 
             require \ProjetLecteur\Config\Config::getVues()['infosAdmin'];  
         }
         else { 

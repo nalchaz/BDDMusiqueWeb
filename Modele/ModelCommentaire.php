@@ -25,14 +25,11 @@ class ModelCommentaire extends Model{
         return $this->title; 
     }
     
-    public static function getModelCommentaireCreate($inputArray){ 
-        $model= new self(array());
-        $model->commentaire= \ProjetLecteur\Persistance\CommentaireGateway::createCommentaire($model->dataError,$inputArray); 
-        $model->title="Le commentaire a été insérée"; 
-        return $model;
+    public static function createCommentaire($inputArray){ 
+        \ProjetLecteur\Persistance\CommentaireGateway::createCommentaire($model->dataError,$inputArray); 
     }
     
-    public static function deleteCommentaire($idCommentaire){ 
+    public static function getModelCommentaireDelete($idCommentaire){ 
         $model=new self (array()); 
         $model->commentaire=\ProjetLecteur\Persistance\CommentaireGateway::deleteCommentaire($model->dataError,$idCommentaire);
         $model->title="Le commentaire a été supprimé"; 

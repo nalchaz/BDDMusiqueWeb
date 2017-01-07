@@ -12,8 +12,28 @@
             <form class="form-signin" action="?action=validateRegister" method="post">
                 <span id="reauth-email" class="reauth-email"></span>
                 <?=\ProjetLecteur\Vue\FormManager::addHiddenInput("role", "role", "visitor"); ?>
+                <?php 
+                    if (isset($dataError['login'])){ 
+                        echo "<p style=\"color : red;\">".$dataError['login']."</p>"; 
+                    }
+
+                    if (isset($dataError['loginExist'])){ 
+                        echo "<p style=\"color : red;\">".$dataError['loginExist']."</p>"; 
+                    }
+                ?>
                 <input style="height : 40px;"  type="email" id="email" name="email" class="form-control" placeholder="Adresse email" required autofocus>
+                 <?php 
+                    if (isset($dataError['mdp'])){ 
+                        echo "<p style=\"color : red;\">".$dataError['mdp']."</p>"; 
+                    }
+                ?>
+                
                 <input style="height : 40px;" type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                <?php 
+                    if (isset($dataError['confirm'])){ 
+                        echo "<p style=\"color : red;\">".$dataError['confirm']."</p>"; 
+                    }
+                ?>
                 <input style="height : 40px;" type="password" name="passwordConfirm" id="passwordConfirm" class="form-control" placeholder="Confirm Password" required>
                     <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" >Register</button>
             </form>
@@ -27,4 +47,3 @@
         
     </body> 
 </html> 
-

@@ -11,7 +11,7 @@ namespace ProjetLecteur\Modele;
 class ModelMusique extends Model{
     private $musique; 
     private $title;
-    private $commentaires; 
+
     
     public function getData () { 
         return $this->musique; 
@@ -20,10 +20,7 @@ class ModelMusique extends Model{
     public function getTitle () { 
         return $this->title; 
     }
-    
-    public function getCommentaires (){ 
-        return $this->commentaires; 
-    }
+
     
     public static function getModelDefaultMusique (){ 
         $model =new self (array()); 
@@ -35,7 +32,6 @@ class ModelMusique extends Model{
     public static function getModelMusique ($idmusique){ 
         $model = new self (array()); 
         $model->musique = \ProjetLecteur\Persistance\MusiqueGateway::getMusiqueById($model->dataError, $idmusique); 
-        $model->commentaires=\ProjetLecteur\Modele\ModelCollectionCommentaire::getModelCommentaireMusique($idmusique);
         $model->title="Affichage d'une musique"; 
         return $model; 
     }
@@ -54,7 +50,7 @@ class ModelMusique extends Model{
         return $model; 
     }
     
-    public static function deleteMusique ($idMusique){ 
+    public static function getModelMusiqueDelete ($idMusique){ 
         $model= new self (array()); 
         @$model->musique= \ProjetLecteur\Persistance\MusiqueGateway::deleteMusique($model->dataError,$idMusique); 
         $model->title="Musique supprimée"; 
@@ -63,7 +59,7 @@ class ModelMusique extends Model{
     
     
     
-    public static function addAvisFavorable ($idMusique) { 
+    public static function getModelMusiqueAjoutAvisFavorable ($idMusique) { 
         $model= new self (array());
         $verif=true;  
         // Pour tester si l'avis a déjà été donné par cet utilisateur sur cette musique
@@ -71,14 +67,13 @@ class ModelMusique extends Model{
         if (!empty($model->dataError)){  
             $verif=false; 
         }
-        $model->commentaires=\ProjetLecteur\Modele\ModelCollectionCommentaire::getModelCommentaireMusique($idMusique);
         $model->musique=\ProjetLecteur\Persistance\MusiqueGateway::addAvisFavorable($model->dataError,$idMusique,$verif); 
         $model->title="Avis positif ajouté"; 
         return $model;
         
     }
     
-    public static function addAvisDefavorable ($idMusique) { 
+    public static function getModelMusiqueAjoutAvisDefavorable ($idMusique) { 
         $model= new self (array());
         $verif=true;  
         // Pour tester si l'avis a déjà été donné par cet utilisateur sur cette musique
@@ -86,13 +81,12 @@ class ModelMusique extends Model{
         if (!empty($model->dataError)){ 
             $verif=false; 
         }
-        $model->commentaires=\ProjetLecteur\Modele\ModelCollectionCommentaire::getModelCommentaireMusique($idMusique);
         $model->musique=\ProjetLecteur\Persistance\MusiqueGateway::addAvisDefavorable($model->dataError,$idMusique,$verif); 
         $model->title="Avis Négatif ajouté"; 
         return $model;
     }
     
-    public static function addAvisIndifferent ($idMusique) { 
+    public static function getModelMusiqueAjoutAvisIndifferent  ($idMusique) { 
         $model= new self (array());
         $verif=true;  
         // Pour tester si l'avis a déjà été donné par cet utilisateur sur cette musique
@@ -100,8 +94,7 @@ class ModelMusique extends Model{
         if (!empty($model->dataError)){ 
             $verif=false; 
         }
-        //si la vérif est false l'incrémentation ne se fera pas
-        $model->commentaires=\ProjetLecteur\Modele\ModelCollectionCommentaire::getModelCommentaireMusique($idMusique);
+        //si la vérif est false l'incrémentation ne se fera pas, la requête sql ne sera pas exécutée
         $model->musique=\ProjetLecteur\Persistance\MusiqueGateway::addAvisIndifferent($model->dataError,$idMusique,$verif); 
         $model->title="Avis Indifférent ajouté"; 
         return $model;

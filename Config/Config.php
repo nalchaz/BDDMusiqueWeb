@@ -32,7 +32,9 @@ class Config
             "saisieMusiqueUpdate"=>$vueDirectory."vueSaisieMusiqueUpdate.php",
             "infos"=>$vueDirectory."vueInfos.php",
             "infosAdmin"=>$vueDirectory."vueInfosAdmin.php",
-            "afficheCommentaire"=>$vueDirectory."vueAfficheCommentaire.php", 
+            "afficheCommentaire"=>$vueDirectory."vueAfficheCommentaire.php",
+            "pageRegisterErr"=>$vueDirectory."vueFormRegisterErr.php",
+            "pageAuthErr"=>$vueDirectory."vueFormAuthErr.php"
             );
     }
     

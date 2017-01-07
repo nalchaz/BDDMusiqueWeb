@@ -37,11 +37,27 @@ class UserGateway {
     }
     
     public static function createUser (&$dataError,$inputArray){ 
-        $inputArray['password']=hash("sha512",$inputArray['password']); 
-        $queryResult= \ProjetLecteur\Persistance\DataBaseManager::getInstance()->prepareAndExecuteQueryAssoc('INSERT INTO admin(login,password,role)'
+        $inputArray['password']=hash("sha512",$inputArray['password']);
+        $args=array($inputArray['email']); 
+        // On vérifie si le login est déjà présent dans la base de données
+        $queryVerif=\ProjetLecteur\Persistance\DataBaseManager::getInstance()->prepareAndExecuteQuery('SELECT count(*) from admin where login=?',$args); 
+        if ($queryVerif===false){
+                $dataError['persistance']= "Problème d'exécution de la requête "; 
+            }
+        foreach ($queryVerif as $row) 
+            foreach ($row as $result) 
+                $res=$result;
+        if ($res ==1){
+            $dataError['loginExist']="Login déjà existant, veuillez en choisir un autre"; 
+        }
+        
+        else {
+            echo $res; 
+            $queryResult= \ProjetLecteur\Persistance\DataBaseManager::getInstance()->prepareAndExecuteQueryAssoc('INSERT INTO admin(login,password,role)'
                 . ' VALUES (:email,:password,:role)',$inputArray); 
-        if ($queryResult===false){
-            $dataError['persistance']= "Problème d'exécution de la requête (login peut-être existant)"; 
+            if ($queryResult===false){
+                $dataError['persistance']= "Problème d'exécution de la requête "; 
+            }
         }
     }
 }

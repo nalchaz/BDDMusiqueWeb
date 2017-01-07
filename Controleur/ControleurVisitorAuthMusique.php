@@ -34,8 +34,9 @@ class ControleurVisitorAuthMusique {
     public function actionInfos($verif=null){ 
         $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
         $modele= \ProjetLecteur\Modele\ModelMusique::getModelMusique($idMusique);      
-        if ($modele->getError() ===false){
-            require \ProjetLecteur\Config\Config::getVues()['infos']; 
+        $modeleCommentaires=\ProjetLecteur\Modele\ModelCollectionCommentaire::getModelCommentaireMusique($idMusique); 
+        if ($modele->getError() ===false && $modeleCommentaires->getError()===false){ 
+            require \ProjetLecteur\Config\Config::getVues()['infos'];  
         }
         else { 
             require \ProjetLecteur\Config\Config::getVuesErreur()['default']; 
@@ -44,10 +45,10 @@ class ControleurVisitorAuthMusique {
     
     public function actionJaime() { 
         $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
-        $modele=\ProjetLecteur\Modele\ModelMusique::addAvisFavorable($idMusique);
-        if ($modele->getError()===false ){ 
-            $verif=true; 
-            require \ProjetLecteur\Config\Config::getVues()['infos']; 
+        $modele=\ProjetLecteur\Modele\ModelMusique::getModelMusiqueAjoutAvisFavorable($idMusique);
+        $modeleCommentaires=\ProjetLecteur\Modele\ModelCollectionCommentaire::getModelCommentaireMusique($idMusique); 
+        if ($modele->getError() ===false && $modeleCommentaires->getError()===false){ 
+            require \ProjetLecteur\Config\Config::getVues()['infos'];  
         }
         else if (isset($modele->getError()['verif'])){ 
             $verif=false;
@@ -60,10 +61,10 @@ class ControleurVisitorAuthMusique {
     
     public function actionJaimepas() { 
         $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
-        $modele=\ProjetLecteur\Modele\ModelMusique::addAvisDefavorable($idMusique);
-        if ($modele->getError()===false ){ 
-            $verif=true; 
-            require \ProjetLecteur\Config\Config::getVues()['infos']; 
+        $modele=\ProjetLecteur\Modele\ModelMusique::getModelMusiqueAjoutAvisDefavorable($idMusique);
+        $modeleCommentaires=\ProjetLecteur\Modele\ModelCollectionCommentaire::getModelCommentaireMusique($idMusique); 
+        if ($modele->getError() ===false && $modeleCommentaires->getError()===false){ 
+            require \ProjetLecteur\Config\Config::getVues()['infos'];  
         }
         else if (isset($modele->getError()['verif'])){ 
             $verif=false;
@@ -76,11 +77,11 @@ class ControleurVisitorAuthMusique {
     
     public function actionIndiffere() { 
         $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
-        $modele=\ProjetLecteur\Modele\ModelMusique::addAvisIndifferent($idMusique);
+        $modele=\ProjetLecteur\Modele\ModelMusique::getModelMusiqueAjoutAvisIndifferent($idMusique);
         
-        if ($modele->getError()===false ){ 
-            $verif=true; 
-            require \ProjetLecteur\Config\Config::getVues()['infos']; 
+        $modeleCommentaires=\ProjetLecteur\Modele\ModelCollectionCommentaire::getModelCommentaireMusique($idMusique); 
+        if ($modele->getError() ===false && $modeleCommentaires->getError()===false){ 
+            require \ProjetLecteur\Config\Config::getVues()['infos'];  
         }
         else if (isset($modele->getError()['verif'])){
             $verif=false;

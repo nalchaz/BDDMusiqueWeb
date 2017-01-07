@@ -22,11 +22,11 @@ class ControleurVisitorAuthCommentaire {
     
     
     
-    public function actionAjoutComment(){ 
+    public function actionAjoutComment(){         
+        \ProjetLecteur\Modele\ModelCommentaire::getModelCommentaireCreate($_POST); 
         $modele= \ProjetLecteur\Modele\ModelMusique::getModelMusique($_POST['idMusique']); 
-        $modeleCom= \ProjetLecteur\Modele\ModelCommentaire::getModelCommentaireCreate($_POST); 
-        if ($modele->getError() ===false){ 
-            $verif=true; 
+        $modeleCommentaires=\ProjetLecteur\Modele\ModelCollectionCommentaire::getModelCommentaireMusique($_POST['idMusique']); 
+        if ($modele->getError() ===false && $modeleCommentaires->getError()===false){ 
             require \ProjetLecteur\Config\Config::getVues()['infos'];  
         }
         else { 

@@ -37,7 +37,7 @@ class MusiqueFabrique
     
     protected static function validateDuree($duree){
         if ($duree != "") {
-            if (!preg_match('/^[0-9]{*}$/', $duree)) {
+            if (!preg_match('/^[0-9]{1,5}$/', $duree)) {
 
                 throw new \Exception("La durée doit être un nombre entier");
             }

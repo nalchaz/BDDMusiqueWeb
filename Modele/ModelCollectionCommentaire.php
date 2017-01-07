@@ -28,6 +28,6 @@ class ModelCollectionCommentaire extends Model {
     public static function getModelCommentaireMusique ($idMusique){ 
         $model = new self(array()); 
         $model->collectionCommentaire = \ProjetLecteur\Persistance\CommentaireGateway::getCommentaireMusique($model->dataError,$idMusique); 
-        return $model->collectionCommentaire; 
+        return $model; 
     }
 }

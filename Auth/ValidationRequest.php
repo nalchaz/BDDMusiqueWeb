@@ -26,9 +26,13 @@ class ValidationRequest {
             $dataError = array();
         }
         $wouldBePassword = $_POST['password'];
+        $passwordConfirm=$_POST['passwordConfirm']; 
+        if ($passwordConfirm !== $wouldBePassword){
+            $dataError['confirm']="La confirmation est incorrecte"; 
+        }
         if (empty($wouldBePassword) || !AuthUtils::isStrongPassword($wouldBePassword)) {
             $password = "";
-            $dataError['mdp'] = "Mot de passe incorrect" . ": votre mot de passe doit contenir au moins 8 caractères dont " . " au moins une majuscule et un chiffre.</p>";
+            $dataError['mdp'] = "Mot de passe incorrect" . ": votre mot de passe doit contenir au moins 8 caractères dont " . " des lettes et au moins un chiffre.</p>";
         } else {
             $password = $wouldBePassword;
         }
