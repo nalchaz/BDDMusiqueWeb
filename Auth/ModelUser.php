@@ -49,7 +49,7 @@ class ModelUser extends \ProjetLecteur\Modele\Model{
     }
     
 
-    public static function createUser ($inputArray){ 
+    public static function getModelUserCreate ($inputArray){ 
         $model=new self(array()); 
         $model->role="visitor"; 
         $model->email=$inputArray['email'];

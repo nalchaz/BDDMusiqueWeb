@@ -33,7 +33,7 @@
             <?php
             $nbmusiques = 0;
             $class;
-            $modele = \ProjetLecteur\Modele\ModelCollectionMusique::getModelMusiqueAll();
+
             echo "<table id=\"playListBody\">";
             echo "<thead class=\"head\">";
             echo "<th class=\"pouvoirAdmin\">ADMIN POWER</th>";

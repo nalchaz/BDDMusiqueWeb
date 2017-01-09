@@ -6,6 +6,7 @@
 <h1>Une erreur s'est produite</h1> 
 
 <?php
+
 foreach ($modele->getError() as $error){ 
     echo "<h2>".$error ."<h2>" ; 
 }

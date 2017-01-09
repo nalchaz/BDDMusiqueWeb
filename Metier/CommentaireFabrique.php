@@ -14,9 +14,26 @@ namespace ProjetLecteur\Metier;
  * @author alexd
  */
 class CommentaireFabrique {
-    public static function getValidInstance(&$dataErrors, &$inputArray, $policy = \ProjetLecteur\Controleur\ValidationUtils::SANITIZE_POLICY_DISCARD_HTML_NOQUOTE) {
+    
+    protected static function validateTexte($texte){
+        if (strlen($texte)>200){ 
+            throw new \Exception("Le commentaire a au maximum 200 caractères");
+        }
+    }
+    
+    protected static function validateInstance (&$dataErrors,&$commentaire){ 
         $dataErrors=array(); 
+        try {
+            self::validateTexte($commentaire->texte); 
+        } catch (\Exception $ex) {
+            $dataErrors['texte']=$ex->getMessage(); 
+        }
+    }
+
+
+    public static function getValidInstance(&$dataErrors, &$inputArray, $policy = \ProjetLecteur\Controleur\ValidationUtils::SANITIZE_POLICY_DISCARD_HTML_NOQUOTE) {
         CommentaireValidation::validationInput($inputArray, $commentaire, $policy);
+        self::validateInstance($dataErrors, $commentaire); 
         return $commentaire; 
     }
 }

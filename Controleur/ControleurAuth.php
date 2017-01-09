@@ -31,9 +31,7 @@ class ControleurAuth {
             case "deconnexion" : 
                 $this->actionDeconnexion(); 
                 break; 
-            default :
-                require(\ProjetLecteur\Config\Config::getVues()["default"]);
-                break;
+
         }
     }
 
@@ -44,11 +42,12 @@ class ControleurAuth {
     private function actionValidateRegister() {
         \ProjetLecteur\Auth\ValidationRequest::validationLogin($dataError, $email, $password);
         if (empty($dataError)) { //Si email et mot de passe valide
-            $modele=\ProjetLecteur\Auth\ModelUser::createUser($_POST);
+            $modele=\ProjetLecteur\Auth\ModelUser::getModelUserCreate($_POST);
  
             if ($modele->getError() === false) { //Si requete n'a pas échoué
                 $modele = \ProjetLecteur\Auth\Authentification::checkAndInitiateSession($email, $password, $dataError);
                 if ($modele->getError() === false) { //Si authentification n'a pas échoué
+                    $modele= \ProjetLecteur\Modele\ModelCollectionMusique::getModelMusiqueAll(); 
                     require (\ProjetLecteur\Config\Config::getVues()["visitorAuth"]);
                 } else {
                     require (\ProjetLecteur\Config\Config::getVuesErreur()['default']);
@@ -74,12 +73,13 @@ class ControleurAuth {
         $dataError=array(); 
         $email=$_POST['email']; 
         $password=$_POST['password']; 
-        $modele = \ProjetLecteur\Auth\Authentification::checkAndInitiateSession($email, $password, $dataError);
-        if ($modele->getError() === false) {
-           if($modele->getRole()==="admin") {
+        $modeleLogin = \ProjetLecteur\Auth\Authentification::checkAndInitiateSession($email, $password, $dataError);
+        if ($modeleLogin->getError() === false) {
+            $modele= \ProjetLecteur\Modele\ModelCollectionMusique::getModelMusiqueAll(); 
+           if($modeleLogin->getRole()==="admin") {
             require (\ProjetLecteur\Config\Config::getVues()["admin"]);
            }
-           else if ($modele->getRole()==="visitor"){ 
+           else if ($modeleLogin->getRole()==="visitor"){ 
                require (\ProjetLecteur\Config\Config::getVues()["visitorAuth"]);
            }
         } else {
@@ -90,6 +90,7 @@ class ControleurAuth {
     
      public function actionDeconnexion (){ 
         \ProjetLecteur\Auth\Authentification::deconnexion() ;
+        $modele= \ProjetLecteur\Modele\ModelCollectionMusique::getModelMusiqueAll(); 
         require (\ProjetLecteur\Config\Config::getVues()['default']); 
     }
     

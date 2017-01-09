@@ -63,7 +63,7 @@ class ModelMusique extends Model{
         $model= new self (array());
         $verif=true;  
         // Pour tester si l'avis a déjà été donné par cet utilisateur sur cette musique
-        \ProjetLecteur\Persistance\MusiqueUserGateway::addAvis($_SESSION['email'],$idMusique, $model->dataError);  
+        \ProjetLecteur\Persistance\MusiqueUserGateway::verifAvisUnique($_SESSION['email'],$idMusique, $model->dataError);  
         if (!empty($model->dataError)){  
             $verif=false; 
         }
@@ -77,7 +77,7 @@ class ModelMusique extends Model{
         $model= new self (array());
         $verif=true;  
         // Pour tester si l'avis a déjà été donné par cet utilisateur sur cette musique
-        \ProjetLecteur\Persistance\MusiqueUserGateway::addAvis($_SESSION['email'],$idMusique, $model->dataError);  
+        \ProjetLecteur\Persistance\MusiqueUserGateway::verifAvisUnique($_SESSION['email'],$idMusique, $model->dataError);  
         if (!empty($model->dataError)){ 
             $verif=false; 
         }
@@ -90,7 +90,7 @@ class ModelMusique extends Model{
         $model= new self (array());
         $verif=true;  
         // Pour tester si l'avis a déjà été donné par cet utilisateur sur cette musique
-        \ProjetLecteur\Persistance\MusiqueUserGateway::addAvis($_SESSION['email'],$idMusique, $model->dataError);  
+        \ProjetLecteur\Persistance\MusiqueUserGateway::verifAvisUnique($_SESSION['email'],$idMusique, $model->dataError);  
         if (!empty($model->dataError)){ 
             $verif=false; 
         }
@@ -98,5 +98,14 @@ class ModelMusique extends Model{
         $model->musique=\ProjetLecteur\Persistance\MusiqueGateway::addAvisIndifferent($model->dataError,$idMusique,$verif); 
         $model->title="Avis Indifférent ajouté"; 
         return $model;
+    }
+    
+    public static function getModelMusiqueAjoutCommentaire($inputArray){ 
+        
+        $model=new self (array()); 
+        \ProjetLecteur\Persistance\CommentaireGateway::createCommentaire($model->dataError,$inputArray); 
+        $model->musique=self::getModelMusique($inputArray['idMusique'])->musique; 
+        $model->title="Commentaire ajouté";
+        return $model; 
     }
 }

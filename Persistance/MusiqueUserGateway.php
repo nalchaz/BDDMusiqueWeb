@@ -9,7 +9,7 @@ namespace ProjetLecteur\Persistance;
 
 
 class MusiqueUserGateway {
-    public static function addAvis ($login,$idMusique,&$dataError){
+    public static function verifAvisUnique ($login,$idMusique,&$dataError){
         $args=array($login,$idMusique); 
         $verif= DataBaseManager::getInstance()->prepareAndExecuteQuery('SELECT count(*) from musiqueuser WHERE login=? AND idMusique=?',$args);
         if ($verif ===false){ 

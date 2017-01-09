@@ -23,9 +23,9 @@ class ControleurVisitorAuthMusique {
             case "indiffere": 
                 $this->actionIndiffere(); 
                 break; 
-            default : 
-                require(\ProjetLecteur\Config\Config::getVues()["visitorAuth"]);
-                break; 
+            case "ajoutComment" : 
+                $this->actionAjoutComment(); 
+                break ;
         }
     }
     
@@ -92,6 +92,22 @@ class ControleurVisitorAuthMusique {
         }
     }
     
+    public function actionAjoutComment(){ 
+             
+        $modele=\ProjetLecteur\Modele\ModelMusique::getModelMusiqueAjoutCommentaire($_POST); 
+        $modeleCommentaires= \ProjetLecteur\Modele\ModelCollectionCommentaire::getModelCommentaireMusique($_POST['idMusique']); 
+        if ($modele->getError() ===false && $modeleCommentaires->getError()===false){ 
+            require \ProjetLecteur\Config\Config::getVues()['infos'];  
+        }
+        else if (isset($modele->getError()['texte'])){ 
+            $verifTexte=false; 
+            require \ProjetLecteur\Config\Config::getVues()['infos'];  
+        }
+        else { 
+
+            require \ProjetLecteur\Config\Config::getVuesErreur()['default']; 
+        }
+    }
 
 
 }

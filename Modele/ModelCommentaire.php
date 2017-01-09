@@ -25,9 +25,7 @@ class ModelCommentaire extends Model{
         return $this->title; 
     }
     
-    public static function createCommentaire($inputArray){ 
-        \ProjetLecteur\Persistance\CommentaireGateway::createCommentaire($model->dataError,$inputArray); 
-    }
+    
     
     public static function getModelCommentaireDelete($idCommentaire){ 
         $model=new self (array()); 

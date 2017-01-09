@@ -28,6 +28,10 @@
                 }
                 echo \ProjetLecteur\Vue\MusiqueView::getHtmlInfos($modele->getData()); ?>
                 <div id="comment"  >
+                    <?php if (isset($verifTexte)){ 
+                            echo "<p style=\"color : red; font-size : 12px;\">".$modele->getError()['texte']."</p>"; 
+                        }
+                    ?>
                     <p id="ajoutComment"  >Ajouter un commentaire (200 caractères maximum)</p>
                     <form action="?action=ajoutComment" method="post" id="formulaire">
                         <?= \ProjetLecteur\Vue\FormManager::addHiddenInput("idCommentaire", "idCommentaire", uniqid()); ?>
@@ -43,6 +47,7 @@
                 <div class="afficherComms" id="afficherComms">
                     
                     <?php 
+                        
                         foreach ($modeleCommentaires->getData() as $com){ 
                             echo "<div class=\"unCom\">"; 
                             echo "<a class=\"deleteCom\" href=\"?action=deleteCom&idCommentaire=".$com->idCommentaire."\">Supprimer ce commentaire</a>";

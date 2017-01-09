@@ -40,7 +40,8 @@ class CommentaireGateway {
             }
         }
         else { 
-            $dataError=array_merge($dataError,$dataErrorAttributes); 
+             
+            $dataError=array_merge($dataError,$dataErrorAttributes);
         }
         return $commentaire; 
         

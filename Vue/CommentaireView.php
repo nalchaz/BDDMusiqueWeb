@@ -11,4 +11,6 @@ class CommentaireView {
         $htmlCode.="<p>Sur la musique : ".$titre."</p>"; 
         return $htmlCode; 
     }
+    
+ 
 }

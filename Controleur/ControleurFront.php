@@ -44,7 +44,8 @@ class ControleurFront {
                 case "infos" :
                 case "jaime":
                 case "jaimepas" :
-                case "indiffere":                    
+                case "indiffere": 
+                case "ajoutComment": 
                     if ($role ==="visitor" ) { 
                         $privateCtrl= new ControleurVisitorAuthMusique($action); 
                     }
@@ -55,18 +56,9 @@ class ControleurFront {
                         require (\ProjetLecteur\Config\Config::getVues()["pageAuth"]); 
                     }
                     break;
-                case "ajoutComment" : 
-                    if ($role ==="visitor" ) { 
-                        $privateCtrl= new ControleurVisitorAuthCommentaire($action); 
-                    }
-                    else if ($role==="admin"){
-                        $adminCtrl=new ControleurAdminCommentaire($action); 
-                    }
-                    else {
-                        require (\ProjetLecteur\Config\Config::getVues()["pageAuth"]); 
-                    }
-                    break;
+
                 default :
+                    $modele= \ProjetLecteur\Modele\ModelCollectionMusique::getModelMusiqueAll(); 
                     if ($role ==="admin"){ 
                         require(\ProjetLecteur\Config\Config::getVues()["admin"]);
                     }

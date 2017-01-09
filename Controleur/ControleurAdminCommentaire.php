@@ -25,9 +25,6 @@ class ControleurAdminCommentaire {
             case "ajoutComment": 
                 $this->actionAjoutComment(); 
                 break; 
-            default :
-                require(\ProjetLecteur\Config\Config::getVues()["admin"]);
-                break;
         }
     }
     
@@ -46,18 +43,7 @@ class ControleurAdminCommentaire {
     
   
     
-    public function actionAjoutComment(){ 
-        
-        \ProjetLecteur\Modele\ModelCommentaire::createCommentaire($_POST); 
-        $modele= \ProjetLecteur\Modele\ModelMusique::getModelMusique($_POST['idMusique']); 
-        $modeleCommentaires= \ProjetLecteur\Modele\ModelCollectionCommentaire::getModelCommentaireMusique($_POST['idMusique']); 
-        if ($modele->getError() ===false && $modeleCommentaires->getError()===false){ 
-            require \ProjetLecteur\Config\Config::getVues()['infosAdmin'];  
-        }
-        else { 
-            require \ProjetLecteur\Config\Config::getVuesErreur()['default']; 
-        }
-    }
+    
     
     
 }    
