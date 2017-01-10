@@ -90,7 +90,9 @@ class DataBaseManager{
 				for ($i=1 ; $i <= $numargs; $i++){
 					// Lien entre l'argument et le "?" numéro i
 					// (rappel : les "?" sont numérotés à partir de 1)
+                                       
 					$statement->bindParam($i, $args[$i-1]);
+                                        
 				}
 				// Exécution de la requête préparée :
 				$statement->execute();

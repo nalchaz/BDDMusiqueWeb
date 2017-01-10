@@ -12,16 +12,11 @@ namespace ProjetLecteur\Metier;
 class MusiqueFabrique
 {
     
-    protected static function validateIdMusique(&$id_musique){ 
-        if (!isset($id_musique) || !preg_match("/^[0-9a-f]{10,20}$/", $id_musique)){ 
-            $tmp=$idmusiques; $id_musique="";
-            throw new \Exception("Erreur, identifiant \"".$tmp."\"incorrect"); 
-        }
-    }
+   
     
     
     protected static function validateTitre(&$titre){ 
-        if (!ExpressionsRegexUtils::isValidLatin1($titre, 1, 50)){ 
+        if (!ExpressionsRegexUtils::isValidLatin1WithNumbers($titre, 1, 50)){ 
             throw new \Exception("Le titre doit être renseigné et il a au maximum 50 caractères"); 
         }
     }
@@ -54,12 +49,7 @@ class MusiqueFabrique
 
     public static function validateInstance (&$dataErrors,&$musique){ 
        $dataErrors= array(); 
-       try { 
-           self::validateIdMusique($musique->idMusique);
-       } 
-       catch (\Exception $ex) {
-          $dataErrors['idMusique']=$ex->getMessage();  
-       }
+
        
        try { 
            self::validateTitre($musique->titre);
@@ -88,9 +78,11 @@ class MusiqueFabrique
        }
    }
 
-    public static function getValidInstance(&$dataErrors, &$inputArray, $policy = \ProjetLecteur\Controleur\ValidationUtils::SANITIZE_POLICY_DISCARD_HTML_NOQUOTE) {
+    public static function getValidInstance(&$dataErrors, &$inputArray,$commentaires, $policy = \ProjetLecteur\Controleur\ValidationUtils::SANITIZE_POLICY_DISCARD_HTML_NOQUOTE) {
+        
         MusiqueValidation::validationInput($inputArray, $musique, $policy);
         self::validateInstance($dataErrors, $musique); 
+        $musique->commentaires=$commentaires; 
         return $musique; 
     }
 

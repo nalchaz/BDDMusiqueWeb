@@ -11,8 +11,8 @@
             <form class="form-signin" action="?action=validateAuth" method="post">
                 <span id="reauth-email" class="reauth-email"></span>
                                 <?php 
-                    if (isset($modele->getError()['login'])){ 
-                        echo "<p style=\"color : red;\">".$modele->getError()['login']."</p>"; 
+                    if (isset($modeleLogin->getError()['login'])){ 
+                        echo "<p style=\"color : red;\">".$modeleLogin->getError()['login']."</p>"; 
                     }
                 ?>
                 <input style="height : 40px;"  type="email" id="email" name="email" class="form-control" placeholder="Adresse email" required autofocus>

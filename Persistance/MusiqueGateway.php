@@ -1,13 +1,10 @@
 <?php
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 namespace ProjetLecteur\Persistance;
-
 /**
  * Description of MusiqueGateway
  * Permet d'accéder et de mettre à jour les valeurs dans la table musique
@@ -18,14 +15,23 @@ class MusiqueGateway {
     public static function getMusiqueById (&$dataError, $idMusique){ 
         if (isset($idMusique)){ 
             $args=array($idMusique); 
+            $commentaires=array(); 
             // Exécution de la requête
-            $queryResult= DataBaseManager::getInstance()->prepareAndExecuteQuery('SELECT * FROM musiques WHERE idMusique= ?',$args);
+            $queryResult= DataBaseManager::getInstance()->prepareAndExecuteQuery('SELECT * FROM musiques  NATURAL LEFT JOIN commentaires  WHERE musiques.idMusique= ?',$args);
             // Si requête a fonctionné
+
+
             if (isset($queryResult) && is_array($queryResult)){ 
                 // Si un seul résultat
-                if (count($queryResult)===1){ 
+                if (count($queryResult)>=1){ 
                     $row=$queryResult[0]; 
-                    $musique= \ProjetLecteur\Metier\MusiqueFabrique::getValidInstance($dataErrorAttributes, $row); 
+                    if (!is_null($row['idCommentaire'])){
+                        foreach ($queryResult as $ligne){ 
+                            $commentaires[]= \ProjetLecteur\Metier\CommentaireFabrique::getValidInstance($dataErrorsAttributes, $ligne);
+                        }
+                    }
+
+                    $musique= \ProjetLecteur\Metier\MusiqueFabrique::getValidInstance($dataErrorAttributes, $row,$commentaires); 
                     $dataError=array_merge($dataError,$dataErrorAttributes); //fusion 
                 }
                 else {
@@ -47,7 +53,7 @@ class MusiqueGateway {
         $collectionMusique=array(); 
         if ($queryResult !==false){ 
             foreach ($queryResult as $row){ 
-                $musique = \ProjetLecteur\Metier\MusiqueFabrique::getValidInstance($dataErrorsAttributes, $row); 
+                $musique = \ProjetLecteur\Metier\MusiqueFabrique::getValidInstance($dataErrorsAttributes, $row,null); 
                 $collectionMusique[]=$musique; 
                 $dataError= array_merge($dataError,$dataErrorsAttributes); 
             }
@@ -59,7 +65,7 @@ class MusiqueGateway {
     }
     
     public static function createMusique (&$dataError,&$inputArray){ 
-        $musique= \ProjetLecteur\Metier\MusiqueFabrique::getValidInstance($dataErrorAttributes, $inputArray);
+        $musique= \ProjetLecteur\Metier\MusiqueFabrique::getValidInstance($dataErrorAttributes, $inputArray,null);
         if (empty($dataErrorAttributes)){ 
             $queryResult= DataBaseManager::getInstance()->prepareAndExecuteQueryAssoc('REPLACE INTO '.'musiques(titre, nomAuteur, couvertureAlbum, nomAlbum,' 
                     .'anneeParution, duree, nbavisFavorables, nbavisIndifferents, nbavisDefavorables, idMusique, periodeMel,cheminAudio)'  
@@ -78,7 +84,7 @@ class MusiqueGateway {
     }
     
     public static function updateMusique(&$dataError, $inputArray){ 
-        $musique= \ProjetLecteur\Metier\MusiqueFabrique::getValidInstance($dataErrorsAttributes, $inputArray); 
+        $musique= \ProjetLecteur\Metier\MusiqueFabrique::getValidInstance($dataErrorsAttributes, $inputArray,null); 
         if (empty($dataErrorsAttributes)){ 
             $queryResults= DataBaseManager::getInstance()->prepareAndExecuteQueryAssoc('UPDATE musiques SET'
                     .' titre=:titre, nomAuteur=:nomAuteur, couvertureAlbum=:couvertureAlbum, nomAlbum=:nomAlbum,' 
@@ -97,7 +103,7 @@ class MusiqueGateway {
    
     public static function addAvisFavorable (&$dataError,$idMusique,$verif){ 
         $dataErrorIdSearch=array(); 
-        $musique=self::getMusiqueById($dataErrorIdSearch, $idMusique); 
+
         
         if (empty($dataErrorIdSearch) && $verif===true){ 
             $args=array($idMusique);
@@ -117,7 +123,6 @@ class MusiqueGateway {
     
     public static function addAvisIndifferent (&$dataError,$idMusique,$verif){ 
         $dataErrorIdSearch=array(); 
-        $musique=self::getMusiqueById($dataErrorIdSearch, $idMusique); 
         if (empty($dataErrorIdSearch) && $verif===true){
             $args=array($idMusique); 
             $queryResult = DataBaseManager::getInstance()->prepareAndExecuteQuery('UPDATE musiques set nbavisIndifferents=nbavisIndifferents+1 WHERE idMusique=?',$args); 
@@ -135,7 +140,7 @@ class MusiqueGateway {
     
     public static function addAvisDefavorable (&$dataError,$idMusique,$verif){ 
         $dataErrorIdSearch=array(); 
-        $musique=self::getMusiqueById($dataErrorIdSearch, $idMusique); 
+        
         if (empty($dataErrorIdSearch) && $verif===true){ 
             $args=array($idMusique); 
             $queryResult = DataBaseManager::getInstance()->prepareAndExecuteQuery('UPDATE musiques set nbavisDefavorables=nbavisDefavorables+1 WHERE idMusique=?',$args); 

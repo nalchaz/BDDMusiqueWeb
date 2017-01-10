@@ -67,6 +67,7 @@ class ModelMusique extends Model{
         if (!empty($model->dataError)){  
             $verif=false; 
         }
+
         $model->musique=\ProjetLecteur\Persistance\MusiqueGateway::addAvisFavorable($model->dataError,$idMusique,$verif); 
         $model->title="Avis positif ajouté"; 
         return $model;

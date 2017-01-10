@@ -116,11 +116,11 @@ class ControleurAdminMusique {
     
     
    public function actionInfos(){ 
-        $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
+        $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING);
+
         $modele= \ProjetLecteur\Modele\ModelMusique::getModelMusique($idMusique); 
         
-        $modeleCommentaires=\ProjetLecteur\Modele\ModelCollectionCommentaire::getModelCommentaireMusique($idMusique); 
-        if ($modele->getError() ===false && $modeleCommentaires->getError()===false){ 
+        if ($modele->getError() ===false ){ 
             require \ProjetLecteur\Config\Config::getVues()['infosAdmin'];  
         }
         else { 
@@ -129,10 +129,10 @@ class ControleurAdminMusique {
     }
     
     public function actionJaime() { 
-        $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
+        $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING);
+        
         $modele=\ProjetLecteur\Modele\ModelMusique::getModelMusiqueAjoutAvisFavorable($idMusique);
-        $modeleCommentaires=\ProjetLecteur\Modele\ModelCollectionCommentaire::getModelCommentaireMusique($idMusique); 
-        if ($modele->getError() ===false && $modeleCommentaires->getError()===false){ 
+        if ($modele->getError() ===false ){ 
             require \ProjetLecteur\Config\Config::getVues()['infosAdmin'];  
         }
         else if (isset($modele->getError()['verif'])){ 
@@ -147,8 +147,7 @@ class ControleurAdminMusique {
     public function actionJaimepas() { 
         $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
         $modele=\ProjetLecteur\Modele\ModelMusique::getModelMusiqueAjoutAvisDefavorable($idMusique);
-        $modeleCommentaires=\ProjetLecteur\Modele\ModelCollectionCommentaire::getModelCommentaireMusique($idMusique); 
-        if ($modele->getError() ===false || $modeleCommentaires->getError()===false){ 
+        if ($modele->getError() ===false ){ 
             require \ProjetLecteur\Config\Config::getVues()['infosAdmin'];  
         }
         else if (isset($modele->getError()['verif'])){ 
@@ -164,8 +163,7 @@ class ControleurAdminMusique {
         $idMusique=filter_var($_REQUEST['idMusique'], FILTER_SANITIZE_STRING); 
         $modele=\ProjetLecteur\Modele\ModelMusique::getModelMusiqueAjoutAvisIndifferent($idMusique);
         
-        $modeleCommentaires=\ProjetLecteur\Modele\ModelCollectionCommentaire::getModelCommentaireMusique($idMusique); 
-        if ($modele->getError() ===false && $modeleCommentaires->getError()===false){ 
+        if ($modele->getError() ===false ){ 
             require \ProjetLecteur\Config\Config::getVues()['infosAdmin'];  
         }
         else if (isset($modele->getError()['verif'])){
@@ -180,8 +178,7 @@ class ControleurAdminMusique {
     public function actionAjoutComment(){ 
              
         $modele=\ProjetLecteur\Modele\ModelMusique::getModelMusiqueAjoutCommentaire($_POST); 
-        $modeleCommentaires= \ProjetLecteur\Modele\ModelCollectionCommentaire::getModelCommentaireMusique($_POST['idMusique']); 
-        if ($modele->getError() ===false && $modeleCommentaires->getError()===false){ 
+        if ($modele->getError() ===false ){ 
             require \ProjetLecteur\Config\Config::getVues()['infosAdmin'];  
         }
         else if (isset($modele->getError()['texte'])){ 

@@ -26,38 +26,8 @@
                         echo "<p style=\"margin-top: 40px; color : red;font-size : 20px;\">Avis déjà ajouté</p>"; 
                     }
                 }
-                echo \ProjetLecteur\Vue\MusiqueView::getHtmlInfos($modele->getData()); ?>
-                <div id="comment"  >
-                    <?php if (isset($verifTexte)){ 
-                            echo "<p style=\"color : red; font-size : 12px;\">".$modele->getError()['texte']."</p>"; 
-                        }
-                    ?>
-                    <p id="ajoutComment"  >Ajouter un commentaire (200 caractères maximum)</p>
-                    <form action="?action=ajoutComment" method="post" id="formulaire">
-                        <?= \ProjetLecteur\Vue\FormManager::addHiddenInput("idCommentaire", "idCommentaire", uniqid()); ?>
-                        <?= \ProjetLecteur\Vue\FormManager::addHiddenInput("heureInsertion", "heureInsertion", null);  ?>
-                        <?= \ProjetLecteur\Vue\FormManager::addHiddenInput("dateInsertion", "dateInsertion", null); ?> <!--pour que l'index 'dateInsertion' existe -->
-                        <?= \ProjetLecteur\Vue\FormManager::addHiddenInput("idMusique", "idMusique", $modele->getData()->idMusique); ?>
-                        <?= \ProjetLecteur\Vue\FormManager::addHiddenInput("login", "login", $_SESSION['email']); ?>
-                        <?= \ProjetLecteur\Vue\FormManager::addTextArea("", "texte", "textarea", 8, 50, null); ?>
-                        <button type="submit" >Ajouter</button>                    
-                    </form>
-                </div>
-                <p id="affich">Cliquez pour afficher les commentaires</p>
-                <div class="afficherComms" id="afficherComms">
-                    
-                    <?php 
-                        
-                        foreach ($modeleCommentaires->getData() as $com){ 
-                            echo "<div class=\"unCom\">"; 
-                            echo "<a class=\"deleteCom\" href=\"?action=deleteCom&idCommentaire=".$com->idCommentaire."\">Supprimer ce commentaire</a>";
-                            echo "<p class=\"logincom\">".$com->login." le ".$com->dateInsertion." à ".$com->heureInsertion." : </p>"; 
-                            
-                            echo "<p class=\"textcom\">".$com->texte."</p>"; 
-                            echo "</div><br/>"; 
-                            
-                        }
-                    ?>    
+                echo \ProjetLecteur\Vue\MusiqueView::getHTMLInfosAdmin($modele->getData()); ?>
+                  
                 </div>
             </div>
 

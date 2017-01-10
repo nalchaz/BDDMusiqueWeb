@@ -32,6 +32,8 @@ class Musique {
     
     public $cheminAudio; 
     
+    public $commentaires; 
+    
     public function __construct($idMusique,$titre, $nomAuteur,$couverture_album,$nom_album, $annee_parution,$duree,$periode_mel, $chemin_audio,$nbavisind,$nbavisdef,$nbavisfav) {
         $this->idMusique = $idMusique;        
         $this->titre=$titre;
@@ -45,6 +47,7 @@ class Musique {
         $this->nbavisDefavorables=$nbavisdef; 
         $this->nbavisFavorables=$nbavisfav; 
         $this->nbavisIndifferents=$nbavisind; 
+ 
     }
     
     public static function getDefaultInstance(){ 

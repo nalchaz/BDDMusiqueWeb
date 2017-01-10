@@ -14,39 +14,38 @@ namespace ProjetLecteur\Persistance;
  * @author alexd
  */
 class CommentaireGateway {
-    public static function createCommentaire (&$dataError,&$inputArray){ 
-        $commentaire= \ProjetLecteur\Metier\CommentaireFabrique::getValidInstance($dataErrorAttributes, $inputArray);
-        $idMusique=$commentaire->idMusique; 
-        $args=array($idMusique);
-        $nbCom=DataBaseManager::getInstance()->prepareAndExecuteQuery('SELECT count(*) FROM '.'commentaires WHERE idMusique=?' ,$args);
-        foreach ($nbCom as $rox){ 
-            foreach ($rox as $l){ 
-                $nb= $l;
+
+    public static function createCommentaire(&$dataError, &$inputArray) {
+        $commentaire = \ProjetLecteur\Metier\CommentaireFabrique::getValidInstance($dataErrorAttributes, $inputArray);
+        $idMusique = $commentaire->idMusique;
+        $args = array($idMusique);
+        $nbCom = DataBaseManager::getInstance()->prepareAndExecuteQuery('SELECT count(*) FROM ' . 'commentaires WHERE idMusique=?', $args);
+        foreach ($nbCom as $rox) {
+            foreach ($rox as $l) {
+                $nb = $l;
             }
         }
-        if ($nb>=3){ //Si déjà 3 commentaires on en supprime 1
-           $resultSupp=DataBaseManager::getInstance()->prepareAndExecuteQuery('DELETE FROM '.'commentaires WHERE idMusique= ? ORDER BY dateInsertion,heureInsertion LIMIT 1'
-               ,$args);
-           if ($resultSupp === false){ 
-               $dataError['persistance']="Echec requête"; 
-           }
-        }
-        if (empty($dataErrorAttributes)){ 
-            $queryResult= DataBaseManager::getInstance()->prepareAndExecuteQueryAssoc('REPLACE INTO '.'commentaires(idCommentaire,texte, idMusique, login,dateInsertion,heureInsertion) '  
-                    .'VALUES(:idCommentaire,:texte,:idMusique, :login,sysdate(),curtime())', 
-                    $inputArray); 
-            if ($queryResult ===false){ 
-                $dataError['persistance']= "Problème d'exécution de la requête"; 
+        if (empty($dataErrorAttributes)) {
+            if ($nb >= 3) { //Si déjà 3 commentaires on en supprime 1
+                $resultSupp = DataBaseManager::getInstance()->prepareAndExecuteQuery('DELETE FROM ' . 'commentaires WHERE idMusique= ? ORDER BY dateInsertion,heureInsertion LIMIT 1'
+                        , $args);
+                if ($resultSupp === false) {
+                    $dataError['persistance'] = "Echec requête";
+                }
             }
+
+            $queryResult = DataBaseManager::getInstance()->prepareAndExecuteQueryAssoc('REPLACE INTO ' . 'commentaires(idCommentaire,texte, idMusique, login,dateInsertion,heureInsertion) '
+                    . 'VALUES(:idCommentaire,:texte,:idMusique, :login,sysdate(),curtime())', $inputArray);
+            if ($queryResult === false) {
+                $dataError['persistance'] = "Problème d'exécution de la requête";
+            }
+        } else {
+
+            $dataError = array_merge($dataError, $dataErrorAttributes);
         }
-        else { 
-             
-            $dataError=array_merge($dataError,$dataErrorAttributes);
-        }
-        return $commentaire; 
-        
+        return $commentaire;
     }
-    
+
     public static function getCommentaireById (&$dataError, $idCommentaire){ 
         if (isset($idCommentaire)){ 
             $args=array($idCommentaire); 
