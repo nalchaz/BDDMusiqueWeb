@@ -17,7 +17,7 @@ class MusiqueGateway {
             $args=array($idMusique); 
             $commentaires=array(); 
             // Exécution de la requête
-            $queryResult= DataBaseManager::getInstance()->prepareAndExecuteQuery('SELECT * FROM musiques  NATURAL LEFT JOIN commentaires  WHERE musiques.idMusique= ?',$args);
+            $queryResult= DataBaseManager::getInstance()->prepareAndExecuteQuery('SELECT * FROM musiques  NATURAL LEFT JOIN commentaires  WHERE musiques.idMusique= ? ORDER BY dateInsertion,heureInsertion DESC',$args);
             // Si requête a fonctionné
 
 

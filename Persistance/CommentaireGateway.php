@@ -20,13 +20,10 @@ class CommentaireGateway {
         $idMusique = $commentaire->idMusique;
         $args = array($idMusique);
         $nbCom = DataBaseManager::getInstance()->prepareAndExecuteQuery('SELECT count(*) FROM ' . 'commentaires WHERE idMusique=?', $args);
-        foreach ($nbCom as $rox) {
-            foreach ($rox as $l) {
-                $nb = $l;
-            }
-        }
+
+        
         if (empty($dataErrorAttributes)) {
-            if ($nb >= 3) { //Si déjà 3 commentaires on en supprime 1
+            if ($nbCom[0] >= 3) { //Si déjà 3 commentaires on en supprime 1
                 $resultSupp = DataBaseManager::getInstance()->prepareAndExecuteQuery('DELETE FROM ' . 'commentaires WHERE idMusique= ? ORDER BY dateInsertion,heureInsertion LIMIT 1'
                         , $args);
                 if ($resultSupp === false) {
@@ -73,22 +70,7 @@ class CommentaireGateway {
         return $commentaire; 
     }
     
-    public static function getCommentaireMusique(&$dataError,$idMusique){ 
-        $args=array($idMusique); 
-        $queryResult= DataBaseManager::getInstance()->prepareAndExecuteQuery('SELECT * FROM commentaires WHERE idMusique= ? ORDER BY dateInsertion,heureInsertion DESC ',$args);
-        $collectionCommentaire=array(); 
-        if ($queryResult !==false){ 
-            foreach ($queryResult as $row){ 
-                $commentaire = \ProjetLecteur\Metier\CommentaireFabrique::getValidInstance($dataErrorsAttributes, $row); 
-                $collectionCommentaire[]=$commentaire; 
-                $dataError= array_merge($dataError,$dataErrorsAttributes);
-            }
-        }
-        else { 
-            $dataError['persistance']="Problème d'accès aux données"; 
-        }
-        return $collectionCommentaire; 
-    }
+  
     
     public static function deleteCommentaire (&$dataError,$idCommentaire){ 
         $dataErrorIdSearch=array(); 

@@ -9,13 +9,17 @@
             <file>file:/C:/wamp64/www/ProjetLecteur/Vue/MusiqueView.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Controleur/ControleurFront.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Persistance/MusiqueGateway.php</file>
+            <file>file:/C:/wamp64/www/ProjetLecteur/Vue/vues/vueInfosAdmin.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Metier/MusiqueFabrique.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Controleur/ControleurAdminMusique.php</file>
+            <file>file:/C:/wamp64/www/ProjetLecteur/Persistance/CommentaireGateway.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Vue/vues/vueFormAuthErr.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Vue/MusiqueFormView.php</file>
+            <file>file:/C:/wamp64/www/ProjetLecteur/Persistance/MusiqueUserGateway.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Metier/MusiqueValidation.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Controleur/ControleurAuth.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Controleur/ControleurAdminCommentaire.php</file>
+            <file>file:/C:/wamp64/www/ProjetLecteur/Vue/CommentaireView.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Persistance/DataBaseManager.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Metier/Musique.php</file>
             <file>file:/C:/wamp64/www/ProjetLecteur/Vue/vues/vueAfficheCommentaire.php</file>
