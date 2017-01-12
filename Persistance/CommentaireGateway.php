@@ -20,10 +20,12 @@ class CommentaireGateway {
         $idMusique = $commentaire->idMusique;
         $args = array($idMusique);
         $nbCom = DataBaseManager::getInstance()->prepareAndExecuteQuery('SELECT count(*) FROM ' . 'commentaires WHERE idMusique=?', $args);
-
+        foreach ($nbCom as $ligne)
+            foreach ($ligne as $case)
+                $res=$case; 
         
         if (empty($dataErrorAttributes)) {
-            if ($nbCom[0] >= 3) { //Si déjà 3 commentaires on en supprime 1
+            if ($case >= 3) { //Si déjà 3 commentaires on en supprime 1
                 $resultSupp = DataBaseManager::getInstance()->prepareAndExecuteQuery('DELETE FROM ' . 'commentaires WHERE idMusique= ? ORDER BY dateInsertion,heureInsertion LIMIT 1'
                         , $args);
                 if ($resultSupp === false) {
