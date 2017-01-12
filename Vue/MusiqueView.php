@@ -24,15 +24,11 @@ class MusiqueView {
             $htmlCode="<td class=\"play\"><audio src=".$musique->cheminAudio."></audio></td>";
         }
         else { 
-            $htmlCode="<td></td>"; 
+            $htmlCode="<td>Pas de lien pour écouter</td>"; 
         }
-        if (isset($_SESSION['role'])){
-            $htmlCode.="<td ><a class=\"titre\" href=\"?action=infos&idMusique=".$musique->idMusique."\">".$musique->titre."</a></td>"; 
-        }
-        else { 
-            $htmlCode.="<td><p class=\"titre\">".$musique->titre."</p></td>"; 
-        }
-        $htmlCode.="<td class=\"couv\"><image src=".$musique->couvertureAlbum."</image></td>"; 
+        
+        $htmlCode.="<td ><a class=\"titre\" href=\"?action=infos&idMusique=".$musique->idMusique."\">".$musique->titre."</a></td>"; 
+        $htmlCode.="<td ><image height=\"50px\" witdh=\"50px\" src=".$musique->couvertureAlbum."></td>"; 
         $htmlCode.="<td><p class=\"periodeMel\">".$musique->periodeMel."</p></td>"; 
         $htmlCode.="<td><p class=\"avpos\" >".$musique->nbavisFavorables."</p></td>"; 
         return $htmlCode; 
@@ -51,7 +47,7 @@ class MusiqueView {
         else { 
             $htmlCode.=""; 
         }
-        $htmlCode.="<p><image src=".$musique->couvertureAlbum."</image></p>"; 
+        $htmlCode.="<p><image src=".$musique->couvertureAlbum."></p>"; 
         if (!empty($musique->nomAlbum)){
         $htmlCode.="<p class=\"nomAlbumI\"> Album :".$musique->nomAlbum."</p>";
         }
@@ -86,7 +82,7 @@ class MusiqueView {
         else { 
             $htmlCode.=""; 
         }
-        $htmlCode.="<p><image src=".$musique->couvertureAlbum."</image></p>"; 
+        $htmlCode.="<p><image src=".$musique->couvertureAlbum."></p>"; 
         if (!empty($musique->nomAlbum)){
         $htmlCode.="<p class=\"nomAlbumI\"> Album :".$musique->nomAlbum."</p>";
         }
@@ -158,7 +154,7 @@ class MusiqueView {
         else { 
             $htmlCode.=""; 
         }
-        $htmlCode.="<p><image src=".$musique->couvertureAlbum."</image></p>"; 
+        $htmlCode.="<p><image src=".$musique->couvertureAlbum."></p>"; 
         if (!empty($musique->nomAlbum)){
         $htmlCode.="<p class=\"nomAlbumI\"> Album :".$musique->nomAlbum."</p>";
         }

@@ -29,7 +29,7 @@
     <?php
         $nbmusiques=0; 
         $class; 
-        
+        echo "<p style=\"font-size : 16px;\">Avoir un compte pour accéder aux infos sur la musique, ajouter un avis et un commentaire</p>"; 
         echo "<table id=\"playListBody\">"; 
         echo "<thead class=\"head\">"; 
         echo  "<th class=\"left\">PLAY</th>"; 
